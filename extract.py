@@ -32,7 +32,7 @@ if not DEFAULT_OUT.exists():
 
 SOURCE_TYPE = "tiktok"
 PROCESSOR_ID = "tiktok-extractor-contract"
-PROCESSOR_VERSION = "2.0.0"
+PROCESSOR_VERSION = "2.1.0"
 LEDGER_PATH = Path.home() / ".extractors" / "tiktok" / "extraction-history.json"
 
 
@@ -150,10 +150,26 @@ def _normalize_source_url(source: str, info: dict) -> str:
         return str(info["webpage_url"])
     if source.startswith("http://") or source.startswith("https://"):
         return source
-    src = Path(source).expanduser()
-    if src.exists():
-        return src.resolve().as_uri()
-    return source
+    # Construct canonical TikTok URL from metadata when source is a local file
+    vid_id = str(info.get("id", ""))
+    uploader = str(info.get("uploader_id") or info.get("uploader") or "")
+    if vid_id and uploader:
+        return f"https://www.tiktok.com/@{uploader}/video/{vid_id}"
+    return ""
+
+
+def _title_from_source_path(source: str, video_id: str) -> str:
+    """Extract human-readable title from old TikTok export folder slug."""
+    m = re.search(r"/\d{8}_[^/]+_([^/]+?)(?:/|$)", source)
+    if m:
+        return m.group(1).rstrip("-").replace("-", " ").replace("_", " ").title()
+    return ""
+
+
+def _creator_from_source_path(source: str) -> str:
+    """Extract creator handle from old TikTok export folder name (YYYYMMDD_handle_slug)."""
+    m = re.search(r"/\d{8}_([^_/]+)_", source)
+    return m.group(1) if m else ""
 
 
 def _ensure_ledger() -> dict:
@@ -411,7 +427,7 @@ def transcribe(
     except ImportError:
         sys.exit(
             "ERROR: faster-whisper not installed.\n"
-            "Run: /Users/joshuawallace/Data/Ticktok/.venv/bin/pip install faster-whisper\n"
+            "Run: /Users/joshuawallace/Data/TikTok/.venv/bin/pip install faster-whisper\n"
             "Or activate the venv: source .venv/bin/activate"
         )
 
@@ -727,6 +743,7 @@ captured_at: {captured_at}
 
 content_form: reference
 zone: {zone}
+routing_zone: {zone}
 
 extraction_run_id: {run_id}
 processor_id: {PROCESSOR_ID}
@@ -793,10 +810,7 @@ supporting_files:
         body += f"[video file](./{video_path.relative_to(asset_dir)})\n"
 
     content_path = asset_dir / "content.md"
-    summary_path = asset_dir / "summary.md"
     content_path.write_text(frontmatter + body, encoding="utf-8")
-    # Compatibility: keep summary.md for existing workflows while moving to content.md contract.
-    summary_path.write_text(frontmatter + body, encoding="utf-8")
 
     required_fields = [
         "source_type",
@@ -832,10 +846,23 @@ def write_package(
     caption_path: Path | None,
 ) -> None:
     captured_at = datetime.now(timezone.utc).isoformat()
-    creator = info.get("uploader", info.get("creator", "unknown"))
-    title = info.get("title", Path(source).stem)
-    source_url = info.get("webpage_url", source if source.startswith("http") else "")
-    duration_s = info.get("duration", None)
+    creator = str(info.get("uploader_id") or info.get("uploader") or info.get("creator") or "")
+    if not creator:
+        creator = _creator_from_source_path(source)
+    if not creator:
+        creator = "unknown"
+    video_id = str(info.get("id") or _video_id_from_source(source))
+    raw_title = str(info.get("title", ""))
+    if not raw_title or re.match(r"^\d{15,}$", raw_title):
+        raw_title = _title_from_source_path(source, video_id) or f"TikTok by @{creator}"
+    title = raw_title
+    source_url = _normalize_source_url(source, info)
+    duration_s = info.get("duration") or None
+    if duration_s is None:
+        # Find video in out_dir/source/
+        for mp4 in (out_dir / "source").glob("*.mp4") if (out_dir / "source").exists() else []:
+            duration_s = _probe_duration_seconds(mp4) or None
+            break
 
     # meta.json
     meta: dict = {
@@ -858,46 +885,6 @@ def write_package(
         meta["files"]["audio"] = {"path": str(wav_path.relative_to(out_dir)), "sha256": _sha256(wav_path)}
     (out_dir / "meta.json").write_text(json.dumps(meta, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    # summary.md
-    frame_embeds = "\n".join(
-        f"![frame {i+1}](frames/{p.name})" for i, p in enumerate(frames[:20])
-    )
-    transcript_section = transcript_text[:12000] + ("\n\n…[truncated]" if len(transcript_text) > 12000 else "")
-
-    md = f"""---
-source_url: {source_url}
-captured_at: {captured_at}
-source_type: tiktok_video
-creator: {creator}
-rights_status: {rights}
-language: {language}
-transcript_model: {transcript_model}
-topics: []
-entities: []
-acl_tags: []
-note_type: ""
----
-
-# {title}
-
-## Key Points
--
-
-## Tags
--
-
-## Follow-ups
--
-
-## Transcript
-
-{transcript_section}
-
-## Frames
-
-{frame_embeds if frame_embeds else "_No frames extracted._"}
-"""
-    (out_dir / "summary.md").write_text(md, encoding="utf-8")
 
 
 # ---------------------------------------------------------------------------
@@ -931,7 +918,7 @@ def main() -> None:
     run_id = str(uuid.uuid4())
     out_root = Path(args.out)
     out_root.mkdir(parents=True, exist_ok=True)
-    staging_root = out_root / ".staging"
+    staging_root = out_root / "_staging"
     staging_root.mkdir(parents=True, exist_ok=True)
 
     rights = check_rights(args.rights)
@@ -985,7 +972,8 @@ def main() -> None:
             shutil.rmtree(acquire_dir, ignore_errors=True)
             return
 
-        stage_dir = staging_root / asset_id
+        stage_dir = staging_root / SOURCE_TYPE / asset_id
+        stage_dir.parent.mkdir(parents=True, exist_ok=True)
         if stage_dir.exists():
             shutil.rmtree(stage_dir)
         acquire_dir.rename(stage_dir)
@@ -1083,8 +1071,16 @@ def main() -> None:
             shutil.rmtree(stage_dir, ignore_errors=True)
             return
 
-        stage_dir.rename(final_dir)
+        # content.md → inbox (normalizer sees only this file)
+        final_dir.mkdir(parents=True, exist_ok=True)
+        shutil.move(str(stage_dir / "content.md"), str(final_dir / "content.md"))
+
+        # everything else → _assets/ (normalizer does not walk here)
+        assets_dir = out_root / "_assets" / SOURCE_TYPE / asset_id
+        assets_dir.parent.mkdir(parents=True, exist_ok=True)
+        stage_dir.rename(assets_dir)
         print(f"  atomic move complete: {final_dir}")
+        print(f"  assets: {assets_dir}")
 
         _append_run(
             ledger,
