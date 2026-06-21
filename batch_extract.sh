@@ -9,7 +9,8 @@ LOG_FILE="exports/batch_extract.log"
 LINKS_FILE="exports/batch_links.tsv"
 DONE_FILE="exports/done_ids.txt"       # persistent: survives reboots
 FAILED_FILE="exports/failed_ids.txt"   # persistent: remove an ID here to retry it
-OUT_DIR="/Users/joshuawallace/Data/Sync_Data/Inbox-Test"
+OUT_DIR="/Users/joshuawallace/Data/Sync_Data/Inbox-Raw"
+COOKIE_FILE="exports/tiktok_cookies.txt"
 
 mkdir -p exports
 
@@ -27,6 +28,17 @@ fi
 
 echo "# Batch extraction started $(date)" >> "$LOG_FILE"
 echo -e "url\tdescription_links" >> "$LINKS_FILE" 2>/dev/null || true
+
+# Prefer browser cookies if Brave profile exists; otherwise fall back to exported cookie file.
+COOKIE_ARGS=("--cookies-from-browser" "brave")
+if [[ ! -d "$HOME/Library/Application Support/BraveSoftware/Brave-Browser" ]]; then
+  if [[ -f "$COOKIE_FILE" ]]; then
+    COOKIE_ARGS=("--cookies" "$COOKIE_FILE")
+    echo "[INFO] Brave cookies not found; using cookie file: $COOKIE_FILE" | tee -a "$LOG_FILE"
+  else
+    echo "[WARN] No Brave cookie DB and no $COOKIE_FILE; continuing without cookie fallback" | tee -a "$LOG_FILE"
+  fi
+fi
 
 # Read ALL URLs into array first (bash 3.2 compatible) — prevents subprocesses
 # (ffmpeg/whisper) from consuming bytes off the while-loop's stdin fd.
@@ -65,7 +77,7 @@ for url in "${URLS[@]}"; do
       --frames both \
       --interval 3 \
       --out "$OUT_DIR" \
-      --cookies-from-browser safari < /dev/null 2>>"$LOG_FILE"; then
+      "${COOKIE_ARGS[@]}" < /dev/null 2>>"$LOG_FILE"; then
 
     # Record the new ID as done
     if [ -n "$vid_id" ]; then echo "$vid_id" >> "$DONE_FILE"; fi

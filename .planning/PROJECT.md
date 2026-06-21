@@ -1,4 +1,4 @@
-# Ticktok Extractor
+# TikTok Extractor
 
 ## What This Is
 

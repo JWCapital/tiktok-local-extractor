@@ -26,7 +26,7 @@ from pathlib import Path
 from typing import Literal
 
 RIGHTS_VALUES = ("own", "permitted", "research")
-DEFAULT_OUT = Path("/Users/joshuawallace/Data/Sync_Data/Inbox-Test")
+DEFAULT_OUT = Path("/Users/joshuawallace/Data/Sync_Data/Inbox-Raw")
 if not DEFAULT_OUT.exists():
     DEFAULT_OUT = Path(__file__).parent / "inbox-raw"
 
@@ -145,15 +145,26 @@ def _probe_duration_seconds(video_path: Path | None) -> int:
         return 0
 
 
-def _normalize_source_url(source: str, info: dict) -> str:
+def _normalize_source_url(
+    source: str,
+    info: dict,
+    creator_hint: str = "",
+    video_id_hint: str = "",
+) -> str:
     if info.get("webpage_url"):
         return str(info["webpage_url"])
     if source.startswith("http://") or source.startswith("https://"):
         return source
     # Construct canonical TikTok URL from metadata when source is a local file
-    vid_id = str(info.get("id", ""))
-    uploader = str(info.get("uploader_id") or info.get("uploader") or "")
-    if vid_id and uploader:
+    vid_id = str(info.get("id") or video_id_hint or _video_id_from_source(source) or "")
+    uploader = str(
+        info.get("uploader_id")
+        or info.get("uploader")
+        or creator_hint
+        or _creator_from_source_path(source)
+        or ""
+    ).lstrip("@")
+    if vid_id and uploader and re.fullmatch(r"\d{8,}", vid_id):
         return f"https://www.tiktok.com/@{uploader}/video/{vid_id}"
     return ""
 
@@ -170,6 +181,11 @@ def _creator_from_source_path(source: str) -> str:
     """Extract creator handle from old TikTok export folder name (YYYYMMDD_handle_slug)."""
     m = re.search(r"/\d{8}_([^_/]+)_", source)
     return m.group(1) if m else ""
+
+
+def _humanize_handle(handle: str) -> str:
+    cleaned = handle.strip().lstrip("@").replace("-", " ").replace("_", " ").strip()
+    return cleaned.title() if cleaned else "unknown"
 
 
 def _ensure_ledger() -> dict:
@@ -661,12 +677,25 @@ def write_contract_content(
     extracted_at = _now_iso()
     video_id = str(info.get("id") or _video_id_from_source(source))
     asset_id = f"tiktok-video-{video_id}"
-    uploader_handle = str(info.get("uploader_id") or info.get("uploader") or "unknown")
+    creator_fallback = _creator_from_source_path(source)
+    uploader_handle = str(info.get("uploader_id") or info.get("uploader") or "").strip()
+    if not uploader_handle or uploader_handle.lower() == "unknown":
+        uploader_handle = creator_fallback
     if uploader_handle and not uploader_handle.startswith("@"):
         uploader_handle = f"@{uploader_handle}"
-    uploader_name = str(info.get("creator") or info.get("uploader") or "unknown")
+    if not uploader_handle:
+        uploader_handle = "@unknown"
+
+    uploader_name = str(info.get("creator") or info.get("uploader") or "").strip()
+    if not uploader_name or uploader_name.lower() == "unknown":
+        uploader_name = _humanize_handle(creator_fallback or uploader_handle)
     caption = str(info.get("description") or info.get("title") or "")
-    video_url = _normalize_source_url(source, info)
+    video_url = _normalize_source_url(
+        source,
+        info,
+        creator_hint=creator_fallback,
+        video_id_hint=video_id,
+    )
     duration = _safe_int(info.get("duration"), 0)
     if duration == 0:
         duration = _probe_duration_seconds(video_path)
@@ -722,6 +751,8 @@ def write_contract_content(
         metadata_gaps.append("caption missing")
     if duration == 0:
         metadata_gaps.append("video_duration missing")
+    if not video_url:
+        metadata_gaps.append("source_url missing")
 
     quality_checks = {
         "all_metadata_extracted": len(metadata_gaps) == 0,
@@ -737,6 +768,7 @@ def write_contract_content(
 source_type: tiktok
 source_id: {asset_id}
 source_system: tiktok
+source_url: {video_url}
 extracted_from_url: {video_url}
 extracted_at: {extracted_at}
 captured_at: {captured_at}
@@ -816,6 +848,7 @@ supporting_files:
         "source_type",
         "source_id",
         "source_system",
+        "source_url",
         "extracted_at",
         "captured_at",
         "extraction_run_id",
@@ -856,7 +889,7 @@ def write_package(
     if not raw_title or re.match(r"^\d{15,}$", raw_title):
         raw_title = _title_from_source_path(source, video_id) or f"TikTok by @{creator}"
     title = raw_title
-    source_url = _normalize_source_url(source, info)
+    source_url = _normalize_source_url(source, info, creator_hint=creator, video_id_hint=video_id)
     duration_s = info.get("duration") or None
     if duration_s is None:
         # Find video in out_dir/source/
@@ -913,6 +946,7 @@ def main() -> None:
     parser.add_argument("--zone", choices=("personal", "work", "bridge"), default="personal",
                         help="Classification zone (default: personal).")
     parser.add_argument("--dry-run", action="store_true", help="Resolve and validate metadata but skip final move.")
+    parser.add_argument("--force", action="store_true", help="Bypass duplicate source-hash skip for recovery/backfill runs.")
     args = parser.parse_args()
 
     run_id = str(uuid.uuid4())
@@ -948,7 +982,7 @@ def main() -> None:
         source_hash = _sha256_text(f"{video_id}{uploader_handle}{duration}")
 
         ledger = _ensure_ledger()
-        if _is_duplicate_source_hash(ledger, source_hash):
+        if (not args.force) and _is_duplicate_source_hash(ledger, source_hash):
             _append_run(
                 ledger,
                 {
@@ -971,6 +1005,8 @@ def main() -> None:
             print(f"Duplicate detected via source_hash; skipped asset creation for {asset_id}")
             shutil.rmtree(acquire_dir, ignore_errors=True)
             return
+        if args.force and _is_duplicate_source_hash(ledger, source_hash):
+            print(f"Force mode: proceeding despite duplicate source_hash for {asset_id}")
 
         stage_dir = staging_root / SOURCE_TYPE / asset_id
         stage_dir.parent.mkdir(parents=True, exist_ok=True)

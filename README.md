@@ -1,4 +1,4 @@
-# Ticktok — TikTok extraction pipeline
+# TikTok — extraction pipeline
 
 Turns a TikTok URL (or local `.mp4`) into an ingestion-contract-ready asset:
 video · transcript artifacts · `content.md` · `meta.json`.
@@ -7,7 +7,7 @@ video · transcript artifacts · `content.md` · `meta.json`.
 
 ```bash
 brew install ffmpeg yt-dlp
-cd /Users/joshuawallace/Data/Ticktok
+cd /Users/joshuawallace/Data/TikTok
 python3.12 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 ```
@@ -18,7 +18,7 @@ python3.12 -m venv .venv
 ## Usage
 
 ```bash
-cd /Users/joshuawallace/Data/Ticktok
+cd /Users/joshuawallace/Data/TikTok
 
 # From a URL (your own video)
 .venv/bin/python extract.py "https://www.tiktok.com/@you/video/..." --rights own
@@ -35,7 +35,7 @@ cd /Users/joshuawallace/Data/Ticktok
   [--frames scene]         # scene | interval | both
   [--interval 2]           # seconds between frames (interval mode)
   [--no-video]             # skip video download (audio-only)
-  [--out /Users/joshuawallace/Data/Sync_Data/Inbox-Test]  # contract destination root
+  [--out /Users/joshuawallace/Data/Sync_Data/Inbox-Raw]  # contract destination root
 ```
 
 ## Rights values
@@ -51,27 +51,30 @@ cd /Users/joshuawallace/Data/Ticktok
 ## Contract output structure
 
 ```text
-Inbox-Test/
-  .staging/
-    tiktok-video-<video_id>/
+Inbox-Raw/
+  _staging/
+    tiktok/
+      tiktok-video-<video_id>/
   _extraction_errors/
     tiktok/
       tiktok-video-<video_id>-error.json
   tiktok/
     tiktok-video-<video_id>/
-      content.md
-      summary.md            # compatibility mirror of content.md
-      meta.json
-      video.mp4
-      thumbnail.jpg
-      transcript/
-      source/
-      audio/
-      frames/
+      content.md            # only file in polled inbox lane
+  _assets/
+    tiktok/
+      tiktok-video-<video_id>/
+        meta.json
+        source/
+        transcript/
+        audio/
+        frames/
+        thumbnail.jpg
 ```
 
-The extractor writes to `.staging` first, validates required metadata/files, then
-atomically moves to `inbox-raw/tiktok/tiktok-video-<video_id>/`.
+The extractor writes to `_staging` first, validates required metadata/files, then
+atomically moves `content.md` to `Inbox-Raw/tiktok/tiktok-video-<video_id>/` and places
+all supporting assets under `Inbox-Raw/_assets/tiktok/tiktok-video-<video_id>/`.
 
 Persistent dedupe ledger (outside inbox purge lifecycle):
 

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Reprocess all preserved source video files into Inbox-Test using contract extractor.
+# Reprocess all preserved source video files into Inbox-Raw using contract extractor.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
-OUT_DIR="/Users/joshuawallace/Data/Sync_Data/Inbox-Test"
+OUT_DIR="/Users/joshuawallace/Data/Sync_Data/Inbox-Raw"
 LOG_FILE="$ROOT/exports/reprocess_sources.log"
 DONE_FILE="$ROOT/exports/done_ids.txt"
 FAILED_FILE="$ROOT/exports/failed_ids.txt"
@@ -31,7 +31,7 @@ while IFS= read -r src_dir; do
     vid_id=$(echo "$vid" | grep -oE '[0-9]{17,}' | head -1 || true)
     echo "[RUN $count] $vid" | tee -a "$LOG_FILE"
 
-    if /Users/joshuawallace/Data/Ticktok/.venv/bin/python extract.py "$vid" --rights research --out "$OUT_DIR" < /dev/null >> "$LOG_FILE" 2>&1; then
+    if /Users/joshuawallace/Data/TikTok/.venv/bin/python extract.py "$vid" --rights research --out "$OUT_DIR" < /dev/null >> "$LOG_FILE" 2>&1; then
       ok=$((ok + 1))
       if [[ -n "$vid_id" ]]; then
         echo "$vid_id" >> "$DONE_FILE"
