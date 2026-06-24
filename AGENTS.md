@@ -1,19 +1,27 @@
 # TikTok Extraction Pipeline — Agent Instructions
 
-Turns TikTok URLs or local video files into ingestion-contract-ready assets for the Hive Brain pipeline.
+Turns TikTok URLs or local video files into Hive-compliant ingestion-contract assets.
 
-## Critical constraints
+**Version:** 2.1.0 | **Updated:** 2026-06-24
 
-- **Python 3.12 only** — `faster-whisper` requires `ctranslate2` wheels not yet built for 3.14+
-- **Venv is outside this repo**: `/Users/joshuawallace/Data/TikTok/.venv`
-- **`--rights` is mandatory** — the script refuses to run without `own | permitted | research`
+## Critical Constraints
+
+- **Python 3.12 only** — `faster-whisper` requires `ctranslate2` wheels not available for Python 3.14+
+- **Venv location:** `./.venv` (project root, NOT `/Users/joshuawallace/Data/TikTok/.venv`)
+- **`--rights` mandatory** — script refuses to run without `own | permitted | research`
+- **Zone compliance:** `routing_zone: work` enforced (changed from personal, 2026-06-24)
 
 ## Running the extractor
 
 ```bash
 # Single video (URL or local file)
 cd /Users/joshuawallace/Data/TikTok
-.venv/bin/python extract.py "<URL or /path/to/file.mp4>" --rights research
+
+# Step 1: stage only
+.venv/bin/python extract.py "<URL or /path/to/file.mp4>" --rights research --stage-only
+
+# Step 2: finalize staged assets (separate run)
+.venv/bin/python extract.py --finalize-all
 
 # Batch from favs_raw.txt
 ./batch_extract.sh                        # uses exports/favs_raw.txt
@@ -46,29 +54,39 @@ test -f /Users/joshuawallace/Data/TikTok/.venv/bin/python || echo "venv missing"
 | `exports/done_ids.txt` | Persistent dedup ledger — extracted video IDs |
 | `exports/failed_ids.txt` | Persistent skip list — remove an ID here to retry |
 
-## Output contract
+## Contract Output Structure
 
-The extractor writes to `.staging/` first, validates, then atomically moves to the final path:
+Two-step workflow:
+1. **Stage:** Write to `_staging/tiktok/tiktok-video-<id>/` (validate, non-destructive)
+2. **Finalize:** Atomically move to final lanes (polled + asset storage)
 
 ```text
-/Users/joshuawallace/Data/Sync_Data/Inbox-Raw/tiktok/tiktok-video-<id>/
-  content.md        # YAML frontmatter + ingestion contract fields
-
-/Users/joshuawallace/Data/Sync_Data/Inbox-Raw/_assets/tiktok/tiktok-video-<id>/
-  meta.json
-  source/
-  thumbnail.jpg
-  transcript/
-  audio/
-  frames/
+/Users/joshuawallace/Data/Sync_Data/Inbox-Raw/
+  tiktok/tiktok-video-<id>/
+    content.md        # YAML frontmatter (polled inbox lane)
+  _assets/tiktok/tiktok-video-<id>/
+    meta.json
+    source/
+    thumbnail.jpg
+    transcript/
+    audio/
+    frames/
+  _extraction_errors/tiktok/
+    tiktok-video-<id>-error.json
 ```
 
-Errors land in: `Inbox-Raw/_extraction_errors/tiktok/tiktok-video-<id>-error.json`
+**Hive Compliance:**
+- All required fields present and validated
+- `routing_zone: work` (public TikTok content)
+- Quality checks: metadata_completeness, dedup_status, extraction_errors
+
+See [EXTRACTION_CONTRACT.md](./EXTRACTION_CONTRACT.md) for full specification.
 
 ## Deduplication
 
 - Video ID extracted from URL via regex `[0-9]{17,}`
 - `done_ids.txt` and `failed_ids.txt` are checked before each run
+- In batch/reprocess workflows, `done_ids.txt` is written only after successful finalize
 - Persistent ledger at `~/.extractors/tiktok/extraction-history.json`
 - Re-run a failed video: remove its ID from `failed_ids.txt`
 
@@ -76,21 +94,40 @@ Errors land in: `Inbox-Raw/_extraction_errors/tiktok/tiktok-video-<id>-error.jso
 
 `exports/<date>_<creator>_<title-slug>/` folders are the old format. They are **never modified** by the pipeline — use `reprocess_sources.sh` to re-extract them into the contract format, or `exports/ingest.py` to push them into Hive Brain.
 
-## Common pitfalls
+## Common Issues & Workarounds
 
-- `yt-dlp` breaks when TikTok changes its site — download manually and pass the local `.mp4` path
-- First `faster-whisper` run downloads ~500 MB to `~/.cache/huggingface/`
-- If TikTok provides platform captions, ASR transcription is skipped automatically
-- `--zone work` overrides the default `personal` zone tag in the contract output
+| Issue | Cause | Fix |
+|-------|-------|-----|
+| `yt-dlp` download fails | TikTok site changes | Download manually, pass local `.mp4` path |
+| Whisper model missing | First run | Accept ~500 MB download to `~/.cache/huggingface/` |
+| Platform captions ignored | By design | ASR only if no platform captions |
+| Zone compliance fails | Old code | Upgrade extract.py (v2.1.0+) |
+| Venv path error | Wrong location | Use `./.venv` (project root, not TikTok/) |
+
+See [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) for detailed solutions.
 
 ## Favorites pull scope (process update)
 
 - When checking for new favorites, only pull recent items from the latest **2–3 pages**.
 - Do not backfill older historical favorites unless explicitly requested.
 
-## Skill
+## Recent Changes (v2.1.0 — 2026-06-24)
 
-The `tiktok-extract` skill (`.claude/skills/tiktok-extract/SKILL.md`) covers both single-video extraction and the "new favorites" browser-scrape + batch workflow. Load it for step-by-step guidance on either flow.
+- ✅ `routing_zone: work` enforced (changed from `personal` for Hive indexer compliance)
+- ✅ Title extraction: use `meta.json` title (not generic fallback)
+- ✅ Creator handles: strip `@` prefix for dedup consistency
+- ✅ Venv paths corrected to `./.venv`
+- ✅ Default `--zone` changed from `personal` to `work`
+- ✅ Extraction ledger reset (2026-06-24) for reprocessing 381 legacy videos
+
+## Skill & Automation
+
+The `tiktok-extract` skill (`.claude/skills/tiktok-extract/SKILL.md`) covers:
+- Single-video extraction (URL or local file)
+- "Process new favorites" browser-scrape + batch workflow
+- Metadata patching and legacy reprocessing
+
+Load the skill for step-by-step guidance on any workflow.
 
 ## Further reading
 

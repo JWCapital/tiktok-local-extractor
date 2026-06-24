@@ -1,80 +1,134 @@
-# TikTok — extraction pipeline
+# TikTok Extraction Pipeline — Ingestion Contract Extractor
 
-Turns a TikTok URL (or local `.mp4`) into an ingestion-contract-ready asset:
-video · transcript artifacts · `content.md` · `meta.json`.
+Turns TikTok URLs or local video files into Hive-compliant ingestion-contract assets: normalized metadata, ASR transcripts, keyframes, and YAML frontmatter (`content.md`).
 
-## One-time setup
+**Status:** Active | **Version:** 2.1.0 | **Updated:** 2026-06-24
+
+## One-time Setup
 
 ```bash
-brew install ffmpeg yt-dlp
-cd /Users/joshuawallace/Data/TikTok
-python3.12 -m venv .venv
-.venv/bin/pip install -r requirements.txt
+brew install ffmpeg yt-dlp      # System binaries for video processing
+cd /Users/joshuawallace/Data/Sync_Data/tools/tittok-local-extactor
+python3.12 -m venv .venv        # Create isolated Python 3.12 environment
+.venv/bin/pip install -r requirements.txt  # Install dependencies
 ```
 
-> **Why python3.12?** `faster-whisper` requires `ctranslate2` wheels that are not
-> yet available for Python 3.14 (the system default). The venv pins 3.12.
+> **Python 3.12 required** — `faster-whisper` needs `ctranslate2` wheels not available for Python 3.14+
+>
+> **Venv location:** `.venv` (project root) — NOT `~/Data/TikTok/.venv`
 
 ## Usage
 
 ```bash
-cd /Users/joshuawallace/Data/TikTok
+cd /Users/joshuawallace/Data/Sync_Data/tools/tittok-local-extactor
 
-# From a URL (your own video)
-.venv/bin/python extract.py "https://www.tiktok.com/@you/video/..." --rights own
+# From a URL (your own content)
+.venv/bin/python extract.py "https://www.tiktok.com/@creator/video/..." --rights own
 
 # From a local file
 .venv/bin/python extract.py ~/Downloads/video.mp4 --rights own
 
-# More options
+# Detailed options
 .venv/bin/python extract.py <source> --rights <own|permitted|research> \
-  [--model small]          # Whisper model: tiny, small, medium, large-v3
-  [--lang en]              # language code or 'auto'
-  [--zone personal]        # default zone; set --zone work for work context
-  [--scene-threshold 0.35] # lower = more frames
-  [--frames scene]         # scene | interval | both
-  [--interval 2]           # seconds between frames (interval mode)
-  [--no-video]             # skip video download (audio-only)
-  [--out /Users/joshuawallace/Data/Sync_Data/Inbox-Raw]  # contract destination root
+  [--stage-only]           # Stage only; validates but does not finalize
+  [--finalize-all]         # Finalize all staged assets (separate run)
+  [--finalize <id|path>]   # Finalize one staged asset
+  [--model small]          # Whisper model: tiny, small, medium, large-v3 (default: small)
+  [--lang en]              # Language code or 'auto' (default: auto-detect)
+  [--zone work]            # Routing zone: personal, work, bridge (default: work)
+  [--scene-threshold 0.35] # Scene detection threshold (lower = more frames)
+  [--frames scene]         # Frame mode: scene | interval | both (default: scene)
+  [--interval 2]           # Seconds between interval frames (default: 2)
+  [--no-video]             # Skip video download (audio-only mode)
+  [--force]                # Bypass dedup ledger (reprocess forced)
+  [--out /Users/joshuawallace/Data/Sync_Data/Inbox-Raw]  # Output root (default: $HIVE_INBOX_RAW)
 ```
 
-## Rights values
+## Two-Step Workflow (Recommended)
 
-| Value | When to use |
-| --- | --- |
-| `own` | Your own TikTok content |
-| `permitted` | Creator has explicitly permitted download/use |
-| `research` | Fair-use personal research context |
+### Step 1: Stage — validate without promoting
 
-`--rights` is required. The script refuses to run without a valid value.
+```bash
+.venv/bin/python extract.py "https://www.tiktok.com/@creator/video/..." \
+  --rights research \
+  --stage-only
+```
 
-## Contract output structure
+This:
+- Downloads/copies video to `_staging/tiktok/tiktok-video-<id>/source/`
+- Extracts audio, transcribes, extracts frames
+- Generates YAML frontmatter in `_staging/tiktok/tiktok-video-<id>/content.md`
+- Validates all required contract fields
+- **Does NOT update `done_ids.txt`** (staging is non-destructive)
+
+### Step 2: Finalize — promote all staged assets
+
+```bash
+# Finalize all staged videos in one operation
+.venv/bin/python extract.py --finalize-all
+
+# Or finalize one staged video
+.venv/bin/python extract.py --finalize tiktok-video-<video_id>
+```
+
+This:
+- Atomically moves `content.md` to `tiktok/tiktok-video-<id>/` (polled inbox lane)
+- Moves video, audio, transcripts, frames to `_assets/tiktok/tiktok-video-<id>/`
+- Updates `done_ids.txt` and persistent ledger (`~/.extractors/tiktok/extraction-history.json`)
+- **Only finalized videos are marked as done** (retryable on stage failure)
+
+**Batch scripts automatically follow this pattern:** stage all → validate → finalize all
+
+## Contract Compliance (Hive Indexer Ready)
+
+All extractions produce **Hive-compliant ingestion contracts** with:
+- **routing_zone:** `work` (public TikTok content — enforced)
+- **source_type:** `tiktok`
+- **content_form:** `reference` (source preserved on TikTok)
+- **YAML frontmatter:** All required fields validated
+- **Quality checks:** Metadata completeness, dedup status, validation errors
+
+For full contract specification, see [EXTRACTION_CONTRACT.md](./EXTRACTION_CONTRACT.md).
+
+## Output Directory Structure
 
 ```text
-Inbox-Raw/
-  _staging/
-    tiktok/
-      tiktok-video-<video_id>/
-  _extraction_errors/
-    tiktok/
-      tiktok-video-<video_id>-error.json
-  tiktok/
+/Users/joshuawallace/Data/Sync_Data/Inbox-Raw/
+  _staging/tiktok/
     tiktok-video-<video_id>/
-      content.md            # only file in polled inbox lane
-  _assets/
-    tiktok/
-      tiktok-video-<video_id>/
-        meta.json
-        source/
-        transcript/
-        audio/
-        frames/
-        thumbnail.jpg
+      content.md            # Staged frontmatter (not yet polled)
+      source/
+        *.mp4               # Downloaded video
+        *.info.json         # yt-dlp metadata
+      thumbnail.jpg
+      transcript/
+        transcript.txt, .json, .srt, .vtt
+      audio/
+        audio.wav
+      frames/
+        *.jpg               # Scene keyframes
+  
+  tiktok/                   # ← POLLED INBOX LANE
+    tiktok-video-<video_id>/
+      content.md            # Frontmatter (after finalize)
+  
+  _assets/tiktok/           # ← Asset storage
+    tiktok-video-<video_id>/
+      meta.json
+      source/
+      transcript/
+      audio/
+      frames/
+      thumbnail.jpg
+  
+  _extraction_errors/tiktok/
+    tiktok-video-<video_id>-error.json
 ```
 
-The extractor writes to `_staging` first, validates required metadata/files, then
-atomically moves `content.md` to `Inbox-Raw/tiktok/tiktok-video-<video_id>/` and places
-all supporting assets under `Inbox-Raw/_assets/tiktok/tiktok-video-<video_id>/`.
+The extractor writes to `_staging/` first and validates required fields. On successful finalization, all assets move to their final locations.
+finalization mode, it atomically moves `content.md` to
+`Inbox-Raw/tiktok/tiktok-video-<video_id>/` and places all supporting assets under
+`Inbox-Raw/_assets/tiktok/tiktok-video-<video_id>/`.
 
 Persistent dedupe ledger (outside inbox purge lifecycle):
 
@@ -93,21 +147,58 @@ Legacy `exports/` folders remain untouched unless manually migrated.
 - TikTok metadata (video id, uploader, caption, counts, hashtags, audio)
 - `supporting_files` and `quality_checks`
 
-When source metadata is sparse (common with local files), the extractor now:
+## Batch Processing
 
-- computes best-effort `captured_at` (source timestamp -> upload date -> local file mtime -> now)
-- probes video duration with `ffprobe` when missing in source metadata
-- writes completeness annotations in `quality_checks`:
-  - `all_metadata_extracted: false`
-  - `extraction_errors: "..."`
-  - `metadata_gaps: [...]`
+For extracting multiple videos from a URL list:
 
-Default zone is `personal`; override with `--zone work` when applicable.
+```bash
+# Extract all URLs in exports/favs_raw.txt
+./batch_extract.sh
 
-## Notes
+# Extract from custom URL list
+./batch_extract.sh /path/to/urls.txt
 
-- First `faster-whisper` run downloads the model to `~/.cache/huggingface/` (~500 MB for `small`).
-- `yt-dlp` + TikTok can break when TikTok changes its site. If it fails, download manually
-  and pass the local file path.
-- Caption-first: if TikTok provides platform captions, ASR is skipped automatically.
-- Duplicate prevention is extractor-owned via `source_hash` in the persistent ledger.
+# Reprocess all legacy source videos (exports/*/source/)
+./reprocess_sources.sh
+```
+
+Batch scripts:
+- Stage all videos (parallel or sequential)
+- Skip videos in `done_ids.txt` (already extracted)
+- Skip videos in `failed_ids.txt` (permanently failed)
+- Log progress to `exports/batch_extract.log` or `exports/reprocess_sources.log`
+- Finalize all in one run
+- Update `done_ids.txt` only after successful finalize
+
+## Ledger & Deduplication
+
+**Persistent ledger:** `~/.extractors/tiktok/extraction-history.json`
+- Records extraction runs (one entry per finalized video)
+- Tracks source hash for dedup detection
+
+**Local dedup files:**
+- `exports/done_ids.txt` — extracted video IDs (do not re-extract)
+- `exports/failed_ids.txt` — permanently failed IDs (skip by default)
+
+**Retry a failed video:**
+```bash
+# Remove ID from failed list
+sed -i '' '/^<video_id>$/d' exports/failed_ids.txt
+
+# Re-extract (with --force to bypass ledger)
+.venv/bin/python extract.py /path/to/video.mp4 --rights research --stage-only --force
+.venv/bin/python extract.py --finalize-all
+```
+
+## Troubleshooting
+
+Common issues and solutions are documented in [TROUBLESHOOTING.md](./TROUBLESHOOTING.md).
+
+## Related Documentation
+
+- [EXTRACTION_CONTRACT.md](./EXTRACTION_CONTRACT.md) — Full contract specification
+- [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) — Common issues and fixes
+- [AGENTS.md](./AGENTS.md) — Agent instructions for automation
+- [.planning/PROJECT.md](./.planning/PROJECT.md) — Project overview
+- [.planning/ROADMAP.md](./.planning/ROADMAP.md) — Phase timeline
+- [.planning/STATE.md](./.planning/STATE.md) — Current extraction state

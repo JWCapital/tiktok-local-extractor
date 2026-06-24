@@ -2,7 +2,76 @@
 
 ## Active Milestone
 
-(No active milestone phases yet.)
+**Milestone:** v2.1 Hive Compliance & Reprocessing
+**Target Completion:** 2026-07-02
+
+## Phases
+
+- [x] **Phase 1: Contract Compliance Fixes** ✅ Completed 2026-06-24
+  - Enforce routing_zone: work
+  - Fix title extraction (meta.json first)
+  - Strip @ from creator handles
+  - Correct venv paths in scripts
+
+- [ ] **Phase 2: Legacy Video Reprocessing** 📍 Active (73/381 complete)
+  - Reprocess 381 local videos via reprocess_sources.sh
+  - Validate routing_zone: work compliance
+  - Update done_ids.txt ledger
+  - Estimated completion: 2026-06-28
+
+- [ ] **Phase 3: Documentation & Integration** ⏳ Parallel
+  - Publish EXTRACTION_CONTRACT.md
+  - Create TROUBLESHOOTING.md
+  - Update README.md with correct paths
+  - Publish Hive Brain skill docs
+
+- [ ] **Phase 4: Hive Indexer Validation** ⏱️ Post-reprocessing
+  - Validate 5 sample videos with Hive indexer
+  - Test routing_zone: work routing
+  - Address any contract issues
+
+## Timeline
+
+| Phase | Start      | Target      | Status      |
+|-------|-----------|-----------|-----------|
+| 1     | 2026-06-24 | 2026-06-24 | ✅ Complete |
+| 2     | 2026-06-24 | 2026-06-28 | 📋 Active   |
+| 3     | 2026-06-24 | 2026-06-25 | 📋 Active   |
+| 4     | 2026-07-01 | 2026-07-02 | ⏱️ Pending  |
+
+### Phase 2: Todo Triage & Promotion
+
+**Goal**: User can review pending todo items and explicitly move selected work into active milestone scope
+**Depends on**: Phase 1
+**Requirements**: TRIAGE-01, TRIAGE-02
+**Success Criteria** (what must be TRUE):
+
+1. User can review each pending todo item and mark it as promote, defer, or keep pending.
+2. User can promote selected pending todo items into active milestone planning scope.
+3. User can verify triage outcomes remain visible and consistent after the review step is complete.
+
+**Plans**: TBD
+
+### Phase 3: Roadmap Linkage
+
+**Goal**: User can explicitly link roadmap-approved todo items to phases without losing unmatched items
+**Depends on**: Phase 2
+**Requirements**: LINK-01, LINK-02
+**Success Criteria** (what must be TRUE):
+
+1. User can tag clearly matched pending todo items with `resolves_phase: N` after roadmap approval.
+2. User can leave ambiguous or unmatched todo items unlinked while preserving their full content.
+3. User can distinguish linked vs unlinked items during planning without losing any pending records.
+
+**Plans**: TBD
+
+## Progress
+
+| Phase | Plans Complete | Status | Completed |
+| ----- | -------------- | ------ | --------- |
+| 1. Todo Capture Foundation | 1/1 | Complete | 2026-06-24 |
+| 2. Todo Triage & Promotion | 0/0 | Not started | - |
+| 3. Roadmap Linkage | 0/0 | Not started | - |
 
 ## Backlog
 

@@ -31,11 +31,8 @@ while IFS= read -r src_dir; do
     vid_id=$(echo "$vid" | grep -oE '[0-9]{17,}' | head -1 || true)
     echo "[RUN $count] $vid" | tee -a "$LOG_FILE"
 
-    if /Users/joshuawallace/Data/TikTok/.venv/bin/python extract.py "$vid" --rights research --out "$OUT_DIR" < /dev/null >> "$LOG_FILE" 2>&1; then
+    if ./.venv/bin/python extract.py "$vid" --rights research --stage-only --force --out "$OUT_DIR" < /dev/null >> "$LOG_FILE" 2>&1; then
       ok=$((ok + 1))
-      if [[ -n "$vid_id" ]]; then
-        echo "$vid_id" >> "$DONE_FILE"
-      fi
       echo "[OK  $count] $vid" | tee -a "$LOG_FILE"
     else
       failed=$((failed + 1))
@@ -48,6 +45,48 @@ while IFS= read -r src_dir; do
 done < <(find exports -mindepth 2 -maxdepth 2 -type d -name source)
 
 echo "" | tee -a "$LOG_FILE"
+echo "=== Finalize staged assets ===" | tee -a "$LOG_FILE"
+FINALIZE_OUT=$(mktemp)
+if ./.venv/bin/python extract.py --finalize-all --out "$OUT_DIR" < /dev/null | tee "$FINALIZE_OUT" >> "$LOG_FILE"; then
+  finalize_exit=0
+else
+  finalize_exit=$?
+  echo "[FAIL] finalize-all encountered errors" | tee -a "$LOG_FILE"
+fi
+
+while IFS= read -r line; do
+  case "$line" in
+    *"[OK] tiktok-video-"*)
+      asset_id=$(echo "$line" | sed -E 's/.*\[OK\] (tiktok-video-[^ ]+).*/\1/')
+      vid_id=$(echo "$asset_id" | grep -oE '[0-9]{17,}' | head -1)
+      if [[ -n "$vid_id" ]]; then
+        echo "$vid_id" >> "$DONE_FILE"
+      fi
+      ;;
+    *"[FAIL] tiktok-video-"*)
+      asset_id=$(echo "$line" | sed -E 's/.*\[FAIL\] (tiktok-video-[^: ]+).*/\1/')
+      vid_id=$(echo "$asset_id" | grep -oE '[0-9]{17,}' | head -1)
+      if [[ -n "$vid_id" ]]; then
+        echo "$vid_id" >> "$FAILED_FILE"
+      fi
+      ;;
+  esac
+done < "$FINALIZE_OUT"
+
+rm -f "$FINALIZE_OUT"
+
+if [[ -f "$DONE_FILE" ]]; then
+  sort -u "$DONE_FILE" -o "$DONE_FILE"
+fi
+if [[ -f "$FAILED_FILE" ]]; then
+  sort -u "$FAILED_FILE" -o "$FAILED_FILE"
+fi
+
+if [[ "${finalize_exit:-0}" -ne 0 ]]; then
+  echo "[WARN] finalize-all exited non-zero; inspect $LOG_FILE" | tee -a "$LOG_FILE"
+fi
+
+echo "" | tee -a "$LOG_FILE"
 echo "=== Reprocess complete ===" | tee -a "$LOG_FILE"
-echo "Total run: $count | OK: $ok | Failed: $failed" | tee -a "$LOG_FILE"
+echo "Total run: $count | Stage OK: $ok | Stage Failed: $failed" | tee -a "$LOG_FILE"
 echo "Log: $LOG_FILE" | tee -a "$LOG_FILE"

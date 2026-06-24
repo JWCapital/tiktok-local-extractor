@@ -51,6 +51,7 @@ total="${#URLS[@]}"
 count=0
 skipped=0
 failed=0
+staged_ok=0
 
 for url in "${URLS[@]}"; do
   [[ -z "$url" ]] && continue
@@ -74,13 +75,12 @@ for url in "${URLS[@]}"; do
   # Redirect stdin from /dev/null so no subprocess can steal from our loop
   if .venv/bin/python extract.py "$url" \
       --rights research \
+      --stage-only \
       --frames both \
       --interval 3 \
       --out "$OUT_DIR" \
       "${COOKIE_ARGS[@]}" < /dev/null 2>>"$LOG_FILE"; then
-
-    # Record the new ID as done
-    if [ -n "$vid_id" ]; then echo "$vid_id" >> "$DONE_FILE"; fi
+    staged_ok=$((staged_ok + 1))
 
     # Extract links from info.json description
     latest_dir=$(ls -td exports/*/ 2>/dev/null | head -1)
@@ -112,6 +112,48 @@ print('\t'.join(set(u for u in urls if u)))
 done
 
 echo ""
+echo "=== Finalize staged assets ==="
+FINALIZE_OUT=$(mktemp)
+if .venv/bin/python extract.py --finalize-all --out "$OUT_DIR" < /dev/null | tee "$FINALIZE_OUT" >> "$LOG_FILE"; then
+  finalize_exit=0
+else
+  finalize_exit=$?
+  echo "[FAIL] finalize-all encountered errors" | tee -a "$LOG_FILE"
+fi
+
+while IFS= read -r line; do
+  case "$line" in
+    *"[OK] tiktok-video-"*)
+      asset_id=$(echo "$line" | sed -E 's/.*\[OK\] (tiktok-video-[^ ]+).*/\1/')
+      vid_id=$(echo "$asset_id" | grep -oE '[0-9]{17,}' | head -1)
+      if [ -n "$vid_id" ]; then
+        echo "$vid_id" >> "$DONE_FILE"
+      fi
+      ;;
+    *"[FAIL] tiktok-video-"*)
+      asset_id=$(echo "$line" | sed -E 's/.*\[FAIL\] (tiktok-video-[^: ]+).*/\1/')
+      vid_id=$(echo "$asset_id" | grep -oE '[0-9]{17,}' | head -1)
+      if [ -n "$vid_id" ]; then
+        echo "$vid_id" >> "$FAILED_FILE"
+      fi
+      ;;
+  esac
+done < "$FINALIZE_OUT"
+
+rm -f "$FINALIZE_OUT"
+
+if [ -f "$DONE_FILE" ]; then
+  sort -u "$DONE_FILE" -o "$DONE_FILE"
+fi
+if [ -f "$FAILED_FILE" ]; then
+  sort -u "$FAILED_FILE" -o "$FAILED_FILE"
+fi
+
+if [ "${finalize_exit:-0}" -ne 0 ]; then
+  echo "[WARN] finalize-all exited non-zero; inspect $LOG_FILE" | tee -a "$LOG_FILE"
+fi
+
+echo ""
 echo "=== Batch complete ==="
-echo "Total: $total | Skipped: $skipped | Failed: $failed | Done: $((total - skipped - failed))"
+echo "Total: $total | Skipped: $skipped | Stage Failed: $failed | Staged OK: $staged_ok"
 echo "Links with URLs saved to: $LINKS_FILE"
