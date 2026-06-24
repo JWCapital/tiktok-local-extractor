@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -32,6 +33,25 @@ SOURCE_TYPE = "tiktok"
 PROCESSOR_ID = "tiktok-extractor-contract"
 PROCESSOR_VERSION = "2.1.0"
 LEDGER_PATH = Path.home() / ".extractors" / "tiktok" / "extraction-history.json"
+REQUIRED_CONTRACT_FIELDS = [
+    "source_type",
+    "source_id",
+    "source_system",
+    "source_url",
+    "extracted_at",
+    "captured_at",
+    "title",
+    "creator",
+    "content_form",
+    "extraction_run_id",
+    "processor_id",
+    "processor_version",
+    "source_hash",
+    "extraction_status",
+    "supporting_files",
+    "quality_checks",
+    "routing_zone",
+]
 
 
 # ---------------------------------------------------------------------------
@@ -657,6 +677,155 @@ def _validate_supporting_files(asset_dir: Path, supporting_files: list[dict]) ->
             raise RuntimeError(f"supporting file missing: {rel}")
 
 
+def _parse_frontmatter(content_path: Path) -> dict[str, str]:
+    text = content_path.read_text(encoding="utf-8")
+    if not text.startswith("---\n"):
+        raise RuntimeError(f"invalid frontmatter in {content_path}")
+
+    lines = text.splitlines()
+    try:
+        end_idx = lines[1:].index("---") + 1
+    except ValueError as exc:
+        raise RuntimeError(f"frontmatter terminator not found in {content_path}") from exc
+
+    frontmatter: dict[str, str] = {}
+    for line in lines[1:end_idx]:
+        if ":" not in line:
+            continue
+        key, value = line.split(":", 1)
+        key = key.strip()
+        value = value.strip()
+        if key and not key.startswith("-"):
+            frontmatter[key] = value.strip('"')
+    return frontmatter
+
+
+def _supporting_files_from_frontmatter(content_path: Path) -> list[dict]:
+    text = content_path.read_text(encoding="utf-8")
+    filenames: list[dict] = []
+    for line in text.splitlines():
+        m = re.match(r"^\s*-\s*filename:\s*(.+)$", line)
+        if m:
+            filenames.append({"filename": m.group(1).strip().strip('"')})
+    return filenames
+
+
+def _append_finalize_run(
+    ledger: dict,
+    run_id: str,
+    source_hash: str,
+    asset_id: str,
+    *,
+    status: Literal["created", "skipped", "failed"],
+    error_summary: str | None = None,
+    error_type: str | None = None,
+    error_logged_to: str | None = None,
+) -> None:
+    items_created = 1 if status == "created" else 0
+    items_skipped_duplicate = 1 if status == "skipped" else 0
+    items_failed = 1 if status == "failed" else 0
+    errors: list[dict] = []
+    if status == "failed" and error_summary:
+        errors = [
+            {
+                "source_id": asset_id,
+                "error_type": error_type or "RuntimeError",
+                "error_message": error_summary,
+                "asset_created": False,
+                "error_logged_to": error_logged_to,
+            }
+        ]
+
+    _append_run(
+        ledger,
+        {
+            "run_id": run_id,
+            "timestamp": _now_iso(),
+            "processor_id": PROCESSOR_ID,
+            "processor_version": PROCESSOR_VERSION,
+            "batch_name": f"tiktok-finalize-{_now_iso()[:10]}",
+            "source_hash": source_hash,
+            "items_requested": 1,
+            "items_processed": 1,
+            "items_created": items_created,
+            "items_skipped_duplicate": items_skipped_duplicate,
+            "items_failed": items_failed,
+            "new_assets": [asset_id] if status == "created" else [],
+            "error_summary": error_summary,
+            "errors": errors,
+        },
+    )
+
+
+def _finalize_stage_dir(stage_dir: Path, out_root: Path, force: bool = False) -> tuple[str, str, str]:
+    if not stage_dir.exists() or not stage_dir.is_dir():
+        raise RuntimeError(f"staged directory not found: {stage_dir}")
+
+    asset_id = stage_dir.name
+    content_path = stage_dir / "content.md"
+    if not content_path.exists():
+        raise RuntimeError(f"missing staged content.md: {content_path}")
+
+    _validate_contract_fields(content_path, REQUIRED_CONTRACT_FIELDS)
+    supporting_files = _supporting_files_from_frontmatter(content_path)
+    _validate_supporting_files(stage_dir, supporting_files)
+
+    fm = _parse_frontmatter(content_path)
+    source_hash = fm.get("source_hash", "")
+    frontmatter_asset_id = fm.get("source_id", "")
+    if frontmatter_asset_id and frontmatter_asset_id != asset_id:
+        raise RuntimeError(
+            f"asset id mismatch: stage={asset_id} frontmatter={frontmatter_asset_id}"
+        )
+
+    final_dir = out_root / SOURCE_TYPE / asset_id
+    final_content = final_dir / "content.md"
+    assets_dir = out_root / "_assets" / SOURCE_TYPE / asset_id
+    if final_content.exists() or assets_dir.exists():
+        if not force:
+            return "skipped", asset_id, source_hash
+        if final_dir.exists():
+            shutil.rmtree(final_dir, ignore_errors=True)
+        if assets_dir.exists():
+            shutil.rmtree(assets_dir, ignore_errors=True)
+
+    final_dir.mkdir(parents=True, exist_ok=True)
+    assets_dir.parent.mkdir(parents=True, exist_ok=True)
+
+    moved_content = False
+    try:
+        shutil.move(str(content_path), str(final_content))
+        moved_content = True
+        stage_dir.rename(assets_dir)
+    except Exception:
+        if moved_content and final_content.exists() and stage_dir.exists():
+            shutil.move(str(final_content), str(stage_dir / "content.md"))
+        raise
+
+    return "created", asset_id, source_hash
+
+
+def _resolve_finalize_targets(
+    out_root: Path,
+    finalize_target: str | None,
+    finalize_all: bool,
+) -> list[Path]:
+    staged_root = out_root / "_staging" / SOURCE_TYPE
+    if finalize_all or finalize_target in (None, "", "__ALL__"):
+        if not staged_root.exists():
+            return []
+        return sorted([p for p in staged_root.glob("tiktok-video-*") if p.is_dir()])
+
+    target = Path(finalize_target)
+    if target.exists() and target.is_dir():
+        return [target]
+
+    asset_id = finalize_target
+    if not asset_id.startswith("tiktok-video-"):
+        asset_id = f"tiktok-video-{asset_id}"
+    return [staged_root / asset_id]
+
+
 def write_contract_content(
     asset_dir: Path,
     source: str,
@@ -679,10 +848,11 @@ def write_contract_content(
     uploader_handle = str(info.get("uploader_id") or info.get("uploader") or "").strip()
     if not uploader_handle or uploader_handle.lower() == "unknown":
         uploader_handle = creator_fallback
-    if uploader_handle and not uploader_handle.startswith("@"):
-        uploader_handle = f"@{uploader_handle}"
+    # Strip @ prefix if present for consistent storage in downstream systems
+    if uploader_handle:
+        uploader_handle = uploader_handle.lstrip("@")
     if not uploader_handle:
-        uploader_handle = "@unknown"
+        uploader_handle = "unknown"
 
     uploader_name = str(info.get("creator") or info.get("uploader") or "").strip()
     if not uploader_name or uploader_name.lower() == "unknown":
@@ -762,8 +932,12 @@ def write_contract_content(
     hashtags = _extract_hashtags(caption)
     extracted_text = _extract_visible_text(transcript_text)
 
-    handle_display = uploader_handle.lstrip("@")
-    title_value = f"{handle_display} — {caption[:80]}" if caption else f"TikTok by @{handle_display}"
+    # Use meta.json title if available, fall back to derived title
+    title_from_meta = str(info.get("title") or "").strip()
+    if title_from_meta and not re.match(r"^\d{15,}$", title_from_meta):
+        title_value = title_from_meta
+    else:
+        title_value = f"{uploader_handle} — {caption[:80]}" if caption else f"TikTok by {uploader_handle}"
 
     frontmatter = f"""---
 source_type: tiktok
@@ -775,9 +949,9 @@ extracted_at: {extracted_at}
 captured_at: {captured_at}
 
 title: "{title_value.replace('"', "'")}"
-creator: "{uploader_handle}"
+creator: {uploader_handle}
 content_form: reference
-zone: {zone}
+routing_zone: work
 
 extraction_run_id: {run_id}
 processor_id: {PROCESSOR_ID}
@@ -787,7 +961,7 @@ extraction_status: complete
 extracted_from_inbox_path: {asset_dir.parent.parent}
 
 tiktok_video_id: {video_id}
-tiktok_uploader_handle: \"{uploader_handle}\"
+tiktok_uploader_handle: {uploader_handle}
 tiktok_uploader_name: \"{uploader_name}\"
 tiktok_caption: \"{caption.replace('"', "'")}\"
 tiktok_video_url: {video_url}
@@ -846,28 +1020,9 @@ supporting_files:
     content_path = asset_dir / "content.md"
     content_path.write_text(frontmatter + body, encoding="utf-8")
 
-    required_fields = [
-        "source_type",
-        "source_id",
-        "source_system",
-        "source_url",
-        "extracted_at",
-        "captured_at",
-        "title",
-        "creator",
-        "content_form",
-        "extraction_run_id",
-        "processor_id",
-        "processor_version",
-        "source_hash",
-        "extraction_status",
-        "supporting_files",
-        "quality_checks",
-        "zone",
-    ]
-    _validate_contract_fields(content_path, required_fields)
+    _validate_contract_fields(content_path, REQUIRED_CONTRACT_FIELDS)
     _validate_supporting_files(asset_dir, supporting_files)
-    return content_path, supporting_files, required_fields
+    return content_path, supporting_files, REQUIRED_CONTRACT_FIELDS
 
 
 def write_package(
@@ -931,11 +1086,10 @@ def write_package(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="TikTok -> ingestion-contract extraction pipeline")
-    parser.add_argument("source", help="TikTok URL or local video file path")
+    parser.add_argument("source", nargs="?", help="TikTok URL or local video file path")
     parser.add_argument(
         "--rights",
         choices=RIGHTS_VALUES,
-        required=True,
         help="Rights status: own | permitted | research",
     )
     parser.add_argument("--out", default=str(DEFAULT_OUT), help="Output root dir (default: inbox-raw)")
@@ -948,17 +1102,85 @@ def main() -> None:
     parser.add_argument("--no-video", action="store_true", help="Skip video download; audio-only")
     parser.add_argument("--cookies-from-browser", metavar="BROWSER", default=None,
                         help="Pass browser cookies to yt-dlp (e.g. safari, chrome). Needed for age-gated videos.")
-    parser.add_argument("--zone", choices=("personal", "work", "bridge"), default="personal",
-                        help="Classification zone (default: personal).")
+    parser.add_argument("--zone", choices=("personal", "work", "bridge"), default="work",
+                        help="Classification zone (default: work for public TikTok content).")
     parser.add_argument("--dry-run", action="store_true", help="Resolve and validate metadata but skip final move.")
+    parser.add_argument("--stage-only", action="store_true",
+                        help="Stage and validate extraction output, but do not move into final inbox/assets paths.")
+    parser.add_argument("--finalize-all", action="store_true",
+                        help="Finalize all staged items in _staging/tiktok/.")
+    parser.add_argument("--finalize", nargs="?", const="__ALL__", metavar="ID_OR_PATH",
+                        help="Finalize one staged item by id/path; omit value to finalize all staged items.")
     parser.add_argument("--force", action="store_true", help="Bypass duplicate source-hash skip for recovery/backfill runs.")
     args = parser.parse_args()
+
+    finalize_requested = bool(args.finalize_all or args.finalize is not None)
+    if finalize_requested and args.source:
+        parser.error("Do not pass <source> when using --finalize/--finalize-all")
+    if not finalize_requested and not args.source:
+        parser.error("<source> is required unless using --finalize/--finalize-all")
+    if finalize_requested and args.stage_only:
+        parser.error("--stage-only cannot be combined with finalize modes")
+    if finalize_requested and args.dry_run:
+        parser.error("--dry-run cannot be combined with finalize modes")
+    if not finalize_requested and not args.rights:
+        parser.error("--rights is required unless using --finalize/--finalize-all")
 
     run_id = str(uuid.uuid4())
     out_root = Path(args.out)
     out_root.mkdir(parents=True, exist_ok=True)
     staging_root = out_root / "_staging"
     staging_root.mkdir(parents=True, exist_ok=True)
+
+    if finalize_requested:
+        ledger = _ensure_ledger()
+        targets = _resolve_finalize_targets(out_root, args.finalize, args.finalize_all)
+        if not targets:
+            print("No staged assets found to finalize.")
+            return
+
+        finalized = 0
+        skipped = 0
+        failed = 0
+        print(f"Finalizing {len(targets)} staged item(s) …")
+        for stage_dir in targets:
+            asset_id = stage_dir.name
+            try:
+                status, asset_id, source_hash = _finalize_stage_dir(stage_dir, out_root, force=args.force)
+                if status == "created":
+                    finalized += 1
+                    _append_finalize_run(ledger, run_id, source_hash, asset_id, status="created")
+                    print(f"  [OK] {asset_id}")
+                else:
+                    skipped += 1
+                    _append_finalize_run(ledger, run_id, source_hash, asset_id, status="skipped")
+                    print(f"  [SKIP] {asset_id} (already finalized)")
+            except Exception as exc:  # noqa: BLE001
+                failed += 1
+                error_path = _write_error_record(
+                    out_root=out_root,
+                    asset_id=asset_id,
+                    run_id=run_id,
+                    error_type=exc.__class__.__name__,
+                    error_message=str(exc),
+                    error_context={"stage_dir": str(stage_dir), "processor_version": PROCESSOR_VERSION},
+                )
+                _append_finalize_run(
+                    ledger,
+                    run_id,
+                    "",
+                    asset_id,
+                    status="failed",
+                    error_summary=str(exc),
+                    error_type=exc.__class__.__name__,
+                    error_logged_to=str(error_path),
+                )
+                print(f"  [FAIL] {asset_id}: {exc}")
+
+        print(f"Finalize summary -> finalized={finalized} skipped={skipped} failed={failed}")
+        if failed > 0:
+            sys.exit(1)
+        return
 
     rights = check_rights(args.rights)
     print(f"[1/7] rights: {rights} ✓")
@@ -1018,12 +1240,6 @@ def main() -> None:
         if stage_dir.exists():
             shutil.rmtree(stage_dir)
         acquire_dir.rename(stage_dir)
-
-        final_parent = out_root / SOURCE_TYPE
-        final_parent.mkdir(parents=True, exist_ok=True)
-        final_dir = final_parent / asset_id
-        if final_dir.exists():
-            raise RuntimeError(f"final destination already exists: {final_dir}")
 
         if video_path is not None:
             video_path = stage_dir / "source" / video_path.name
@@ -1112,14 +1328,17 @@ def main() -> None:
             shutil.rmtree(stage_dir, ignore_errors=True)
             return
 
-        # content.md → inbox (normalizer sees only this file)
-        final_dir.mkdir(parents=True, exist_ok=True)
-        shutil.move(str(stage_dir / "content.md"), str(final_dir / "content.md"))
+        if args.stage_only:
+            print(f"Stage-only complete: {stage_dir}")
+            print("Run finalize later with: extract.py --finalize-all --out <out_root>")
+            return
 
-        # everything else → _assets/ (normalizer does not walk here)
-        assets_dir = out_root / "_assets" / SOURCE_TYPE / asset_id
-        assets_dir.parent.mkdir(parents=True, exist_ok=True)
-        stage_dir.rename(assets_dir)
+        status, finalized_asset_id, _ = _finalize_stage_dir(stage_dir, out_root, force=args.force)
+        if status != "created":
+            raise RuntimeError(f"final destination already exists for {finalized_asset_id}; use --force to overwrite")
+
+        final_dir = out_root / SOURCE_TYPE / finalized_asset_id
+        assets_dir = out_root / "_assets" / SOURCE_TYPE / finalized_asset_id
         print(f"  atomic move complete: {final_dir}")
         print(f"  assets: {assets_dir}")
 
