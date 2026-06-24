@@ -26,9 +26,7 @@ from pathlib import Path
 from typing import Literal
 
 RIGHTS_VALUES = ("own", "permitted", "research")
-DEFAULT_OUT = Path("/Users/joshuawallace/Data/Sync_Data/Inbox-Raw")
-if not DEFAULT_OUT.exists():
-    DEFAULT_OUT = Path(__file__).parent / "inbox-raw"
+DEFAULT_OUT = Path(os.environ.get("HIVE_INBOX_RAW", Path.home() / "Code/hive/inbox-raw"))
 
 SOURCE_TYPE = "tiktok"
 PROCESSOR_ID = "tiktok-extractor-contract"
@@ -764,6 +762,9 @@ def write_contract_content(
     hashtags = _extract_hashtags(caption)
     extracted_text = _extract_visible_text(transcript_text)
 
+    handle_display = uploader_handle.lstrip("@")
+    title_value = f"{handle_display} — {caption[:80]}" if caption else f"TikTok by @{handle_display}"
+
     frontmatter = f"""---
 source_type: tiktok
 source_id: {asset_id}
@@ -773,9 +774,10 @@ extracted_from_url: {video_url}
 extracted_at: {extracted_at}
 captured_at: {captured_at}
 
+title: "{title_value.replace('"', "'")}"
+creator: "{uploader_handle}"
 content_form: reference
 zone: {zone}
-routing_zone: {zone}
 
 extraction_run_id: {run_id}
 processor_id: {PROCESSOR_ID}
@@ -851,6 +853,9 @@ supporting_files:
         "source_url",
         "extracted_at",
         "captured_at",
+        "title",
+        "creator",
+        "content_form",
         "extraction_run_id",
         "processor_id",
         "processor_version",
