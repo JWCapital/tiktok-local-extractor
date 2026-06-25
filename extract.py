@@ -433,7 +433,7 @@ def extract_audio(video_path: Path, out_dir: Path) -> Path | None:
 def extract_thumbnail(video_path: Path, out_dir: Path) -> Path | None:
     """Extract a thumbnail from 1 second into the video."""
     _require_binary("ffmpeg")
-    assets_dir = out_dir / "assets"
+    assets_dir = out_dir / "images"  # images/ per Revised_process_overview.md
     assets_dir.mkdir(exist_ok=True)
     thumb = assets_dir / "thumbnail.jpg"
     cmd = [
@@ -580,7 +580,7 @@ def extract_frames(
     frames_mode: Literal["scene", "interval", "both"],
 ) -> list[Path]:
     _require_binary("ffmpeg")
-    frames_dir = out_dir / "assets"
+    frames_dir = out_dir / "images"
     frames_dir.mkdir(exist_ok=True)
 
     def _run_scene_at(thresh: float, prefix: str = "scene") -> list[Path]:
@@ -805,7 +805,7 @@ def _finalize_stage_dir(stage_dir: Path, out_root: Path, force: bool = False) ->
         moved_content = True
         
         # Move only key assets (thumbnail + frames) to centralized location
-        stage_assets = stage_dir / "assets"
+        stage_assets = stage_dir / "images"
         if stage_assets.exists():
             # Copy thumbnail + first few key frames only
             assets_dir.mkdir(parents=True, exist_ok=True)
@@ -843,7 +843,7 @@ def _resolve_finalize_targets(
     finalize_target: str | None,
     finalize_all: bool,
 ) -> list[Path]:
-    staged_root = out_root / "_staging" / SOURCE_TYPE
+    staged_root = out_root.parent / "_staging" / SOURCE_TYPE
     if finalize_all or finalize_target in (None, "", "__ALL__"):
         if not staged_root.exists():
             return []
@@ -1012,10 +1012,10 @@ def write_contract_content(
 
 """
     if thumb_path and thumb_path.exists():
-        content += f"![Thumbnail](/assets/{thumb_path.name})\n\n"
+        content += f"![Thumbnail](images/{thumb_path.name})\n\n"
     
     content += "### Extracted Frames\n\n"
-    content += "Key frames from video analysis (see `/assets/` folder)\n\n"
+    content += "Key frames from video analysis (see `images/` folder)\n\n"
     
     content += f"""## Extraction Details
 
@@ -1142,7 +1142,7 @@ def main() -> None:
     run_id = str(uuid.uuid4())
     out_root = Path(args.out)
     out_root.mkdir(parents=True, exist_ok=True)
-    staging_root = out_root / "_staging"
+    staging_root = out_root.parent / "_staging"
     staging_root.mkdir(parents=True, exist_ok=True)
 
     if finalize_requested:
