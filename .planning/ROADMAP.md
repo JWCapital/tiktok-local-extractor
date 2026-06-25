@@ -16,7 +16,10 @@
 3. Finalize destination is `Inbox-Raw/tiktok/tiktok-video-<id>/` (with `tiktok/` subfolder)
 4. OCR → transcript timeline merge is verified present or implemented
 
-**Plans:** TBD
+**Plans:** 1 plan
+
+Plans:
+- [ ] 01-01-PLAN.md — Fix staging root path and rename images subfolder throughout extract.py and shell scripts
 
 ### Phase 2: Reprocess Remaining Videos
 
