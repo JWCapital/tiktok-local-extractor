@@ -2,51 +2,40 @@
 gsd_state_version: 1.0
 milestone: v2.2
 milestone_name: — Pipeline Alignment to Revised Process Overview
-status: executing
-stopped_at: Phase 1 context gathered
-last_updated: "2026-06-25T18:51:38.331Z"
+status: In Progress
+stopped_at: Phase 1 complete — ready for Phase 2 planning
+last_updated: "2026-06-25T00:00:00.000Z"
 progress:
   total_phases: 4
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 1
-  completed_plans: 0
-  percent: 0
+  completed_plans: 1
+  percent: 25
 ---
 
 # TikTok Extraction Pipeline — Current State
 
-**Last Updated:** 2026-06-25 | **Status:** Executing Phase 1
+**Last Updated:** 2026-06-25 | **Status:** Phase 1 Complete — Path Alignment Done
 
 See: [PROJECT.md](./PROJECT.md) — Project overview and constraints
 
-## Status
+## Phase 1: Code Alignment ✅ COMPLETE
 
-All v2.1 phases have been closed and archived. The pipeline is being re-scoped to match the canonical 3-step architecture defined in `Revised_process_overview.md`.
+All storage path discrepancies in `extract.py` and `check_progress.sh` are fixed and verified:
+- Staging root: `Sync_Data/_staging/tiktok/` (out_root.parent, not inside Inbox-Raw)
+- Image subfolder: `images/` (was `assets/`)
+- Finalize destination: `Inbox-Raw/tiktok/tiktok-video-<id>/` (unchanged, confirmed correct)
 
-### v2.1 Phase Archive Summary
-
-| Phase | Final Status | Archived |
-|-------|-------------|---------|
-| v2.1-01 Contract Compliance | ✅ COMPLETE (commit a4b1bd5) | 2026-06-25 |
-| v2.1-02 Legacy Reprocessing | ❌ CANCELLED (~45% complete, old layout) | 2026-06-25 |
-| v2.1-03 Documentation | ❌ CANCELLED (docs exist; phase not formally closed) | 2026-06-25 |
-| v2.1-04 Hive Validation | ❌ CANCELLED (never started) | 2026-06-25 |
-
-Archived to: `.planning/archive/v2.1-0{1-4}-*/`
-
-## Active Todo
-
-- [Full project review and reset to match Revised process overview](./todos/pending/2026-06-25-full-project-review-and-reset-to-match-revised-process-overv.md)
+Verification: 4/4 success criteria passed. See `.planning/phases/01-code-alignment/01-VERIFICATION.md`.
 
 ## Next Steps
 
-1. Work the active todo — audit codebase against `Revised_process_overview.md`
-2. Align storage paths: `_assets/tiktok/`, `_staging/tiktok/`, `Inbox-Raw/tiktok/`
-3. Create fresh phases reflecting the 3-step pipeline (Extract → Stage → Finalize)
-4. Update PROJECT.md, ROADMAP.md to reflect revised architecture
+1. **Phase 2:** Plan and run reprocessing of 186 queued videos through corrected pipeline (`/gsd-plan-phase 2`)
+2. **Phase 3:** Update README.md, AGENTS.md, EXTRACTION_CONTRACT.md docs (can parallel Phase 2)
+3. **Phase 4:** End-to-end validation test
 
 ## Session
 
-**Last session:** 2026-06-25T18:21:46.507Z
-**Stopped at:** Phase 1 context gathered
-**Resume file:** .planning/phases/01-code-alignment/01-CONTEXT.md
+**Last session:** 2026-06-25
+**Stopped at:** Phase 1 complete — VERIFICATION.md created
+**Resume file:** .planning/phases/01-code-alignment/01-VERIFICATION.md
