@@ -1,27 +1,43 @@
 # TikTok Extraction Pipeline — Project Overview
 
-**Status:** Active | **Version:** 2.1.0 | **Updated:** 2026-06-24
+**Status:** Active | **Version:** 2.2.0 | **Updated:** 2026-06-25
 
 ## Project Goal
 
 Transform TikTok videos (URLs or local files) into ingestion-contract-ready assets for the Hive Brain knowledge pipeline. Each extraction produces a self-contained `tiktok-video-<id>` directory with normalized metadata, transcripts, frames, and structured YAML frontmatter compliant with Hive indexer requirements.
 
-## Current Milestone: v2.1 Compliance & Reprocessing
+## Current Milestone: v2.2 — Pipeline Alignment to Revised Process Overview
 
-**Goal:** Reprocess 381 legacy local TikTok videos with corrected Hive contract compliance (routing_zone: work, proper title extraction, creator handle normalization).
+**Goal:** Align the codebase to the canonical 3-step pipeline defined in `Revised_process_overview.md` (Extract → Stage → Finalize), fix storage path discrepancies, reprocess 186 remaining queued videos, and update all documentation.
 
-**Status:** In Progress (Phase 2 Active)
+**Status:** Planning — Phase 1 starting
 
 ### Milestone Progress
 
-| Phase | Goal | Status | Progress |
-|-------|------|--------|----------|
-| Phase 1: Contract Compliance | Implement Hive ingestion fixes | ✅ Complete | 3/3 fixes deployed (git a4b1bd5) |
-| Phase 2: Reprocessing | Stage & finalize 381 videos | 📍 Active | 172/381 staged (45%) — ETA 2026-06-28 |
-| Phase 3: Documentation | Complete docs suite | 📍 Active (parallel) | 9/9 docs complete, GSD phases created |
-| Phase 4: Hive Validation | Verify indexing end-to-end | 📋 Planned | 0/5 samples (starts 2026-06-29) |
+| Phase | Goal | Status |
+|-------|------|--------|
+| Phase 1: Code Alignment | Fix staging/finalize paths and image folder naming | 📋 Not started |
+| Phase 2: Reprocess Remaining | Run 186 queued videos through corrected pipeline | 📋 Not started |
+| Phase 3: Documentation | Update README, AGENTS.md, EXTRACTION_CONTRACT.md | 📋 Not started |
+| Phase 4: Validation | End-to-end test + Hive intake verification | 📋 Not started |
 
-**Estimated Completion:** 2026-07-01
+**Estimated Completion:** 2026-07-02
+
+## Canonical Pipeline (Revised_process_overview.md)
+
+```
+TikTok URL / local file
+        │
+        ▼
+  1. EXTRACT → _assets/tiktok/tiktok-video-<id>/
+        │        source/, images/, transcript/, audio/, meta.json
+        ▼
+  2. STAGE   → _staging/tiktok/tiktok-video-<id>/
+        │        <slug>.md (contract), images/
+        ▼
+  3. FINALIZE → Inbox-Raw/tiktok/tiktok-video-<id>/
+                 Hive intake polls this lane
+```
 
 ## Core Value
 
