@@ -843,7 +843,7 @@ def _resolve_finalize_targets(
     finalize_target: str | None,
     finalize_all: bool,
 ) -> list[Path]:
-    staged_root = out_root / "_staging" / SOURCE_TYPE
+    staged_root = out_root.parent / "_staging" / SOURCE_TYPE
     if finalize_all or finalize_target in (None, "", "__ALL__"):
         if not staged_root.exists():
             return []
@@ -1142,7 +1142,7 @@ def main() -> None:
     run_id = str(uuid.uuid4())
     out_root = Path(args.out)
     out_root.mkdir(parents=True, exist_ok=True)
-    staging_root = out_root / "_staging"
+    staging_root = out_root.parent / "_staging"
     staging_root.mkdir(parents=True, exist_ok=True)
 
     if finalize_requested:
