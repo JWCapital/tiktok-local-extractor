@@ -87,7 +87,7 @@ for url in "${URLS[@]}"; do
     staged_ok=$((staged_ok + 1))
 
     # Extract links from info.json description
-    latest_stage=$(ls -td "$OUT_DIR"/_staging/tiktok/tiktok-video-*/ 2>/dev/null | head -1)
+    latest_stage=$(ls -td "${OUT_DIR%/*}"/_staging/tiktok/tiktok-video-*/ 2>/dev/null | head -1)
     if [ -n "$latest_stage" ]; then
       info_json=$(ls "$latest_stage"source/*.info.json 2>/dev/null | head -1)
       if [ -n "$info_json" ]; then
