@@ -898,156 +898,6 @@
       "norm_label": "notes"
     },
     {
-      "label": "MILESTONE_V2.1_CHECKPOINT.md",
-      "file_type": "document",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "planning_milestone_v2_1_checkpoint",
-      "community": 10,
-      "norm_label": "milestone_v2.1_checkpoint.md"
-    },
-    {
-      "label": "GSD Milestone v2.1 \u2014 Phase Restructuring Complete \u2705",
-      "file_type": "document",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "planning_milestone_v2_1_checkpoint_gsd_milestone_v2_1_phase_restructuring_complete",
-      "community": 10,
-      "norm_label": "gsd milestone v2.1 \u2014 phase restructuring complete \u2705"
-    },
-    {
-      "label": "What Was Accomplished",
-      "file_type": "document",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L9",
-      "_origin": "ast",
-      "id": "planning_milestone_v2_1_checkpoint_what_was_accomplished",
-      "community": 10,
-      "norm_label": "what was accomplished"
-    },
-    {
-      "label": "1. Archive Old GSD Phases \u2705",
-      "file_type": "document",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L11",
-      "_origin": "ast",
-      "id": "planning_milestone_v2_1_checkpoint_1_archive_old_gsd_phases",
-      "community": 10,
-      "norm_label": "1. archive old gsd phases \u2705"
-    },
-    {
-      "label": "2. Create v2.1 Milestone Structure \u2705",
-      "file_type": "document",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L19",
-      "_origin": "ast",
-      "id": "planning_milestone_v2_1_checkpoint_2_create_v2_1_milestone_structure",
-      "community": 10,
-      "norm_label": "2. create v2.1 milestone structure \u2705"
-    },
-    {
-      "label": "3. Document Phase 1 Completion \u2705",
-      "file_type": "document",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L36",
-      "_origin": "ast",
-      "id": "planning_milestone_v2_1_checkpoint_3_document_phase_1_completion",
-      "community": 10,
-      "norm_label": "3. document phase 1 completion \u2705"
-    },
-    {
-      "label": "4. Update Milestone Tracking \u2705",
-      "file_type": "document",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L47",
-      "_origin": "ast",
-      "id": "planning_milestone_v2_1_checkpoint_4_update_milestone_tracking",
-      "community": 10,
-      "norm_label": "4. update milestone tracking \u2705"
-    },
-    {
-      "label": "5. Create Phase 2 Tracking \u2705",
-      "file_type": "document",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L60",
-      "_origin": "ast",
-      "id": "planning_milestone_v2_1_checkpoint_5_create_phase_2_tracking",
-      "community": 10,
-      "norm_label": "5. create phase 2 tracking \u2705"
-    },
-    {
-      "label": "Current Milestone Status",
-      "file_type": "document",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L70",
-      "_origin": "ast",
-      "id": "planning_milestone_v2_1_checkpoint_current_milestone_status",
-      "community": 10,
-      "norm_label": "current milestone status"
-    },
-    {
-      "label": "What's Next",
-      "file_type": "document",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L85",
-      "_origin": "ast",
-      "id": "planning_milestone_v2_1_checkpoint_what_s_next",
-      "community": 10,
-      "norm_label": "what's next"
-    },
-    {
-      "label": "Immediate (Next 1-2 hours)",
-      "file_type": "document",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L87",
-      "_origin": "ast",
-      "id": "planning_milestone_v2_1_checkpoint_immediate_next_1_2_hours",
-      "community": 10,
-      "norm_label": "immediate (next 1-2 hours)"
-    },
-    {
-      "label": "2026-06-28",
-      "file_type": "document",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L92",
-      "_origin": "ast",
-      "id": "planning_milestone_v2_1_checkpoint_2026_06_28",
-      "community": 10,
-      "norm_label": "2026-06-28"
-    },
-    {
-      "label": "2026-06-29",
-      "file_type": "document",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L97",
-      "_origin": "ast",
-      "id": "planning_milestone_v2_1_checkpoint_2026_06_29",
-      "community": 10,
-      "norm_label": "2026-06-29"
-    },
-    {
-      "label": "2026-07-01",
-      "file_type": "document",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L101",
-      "_origin": "ast",
-      "id": "planning_milestone_v2_1_checkpoint_2026_07_01",
-      "community": 10,
-      "norm_label": "2026-07-01"
-    },
-    {
-      "label": "Cleanup Checkpoints",
-      "file_type": "document",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L108",
-      "_origin": "ast",
-      "id": "planning_milestone_v2_1_checkpoint_cleanup_checkpoints",
-      "community": 10,
-      "norm_label": "cleanup checkpoints"
-    },
-    {
       "label": "PROJECT.md",
       "file_type": "document",
       "source_file": ".planning/PROJECT.md",
@@ -1324,7 +1174,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "planning_roadmap",
-      "community": 11,
+      "community": 10,
       "norm_label": "roadmap.md"
     },
     {
@@ -1334,7 +1184,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "planning_roadmap_roadmap",
-      "community": 11,
+      "community": 10,
       "norm_label": "roadmap"
     },
     {
@@ -1344,7 +1194,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "planning_roadmap_active_milestone",
-      "community": 11,
+      "community": 10,
       "norm_label": "active milestone"
     },
     {
@@ -1354,7 +1204,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "planning_roadmap_phases",
-      "community": 11,
+      "community": 10,
       "norm_label": "phases"
     },
     {
@@ -1364,7 +1214,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "planning_roadmap_timeline",
-      "community": 11,
+      "community": 10,
       "norm_label": "timeline"
     },
     {
@@ -1374,7 +1224,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "planning_roadmap_phase_2_todo_triage_promotion",
-      "community": 11,
+      "community": 10,
       "norm_label": "phase 2: todo triage & promotion"
     },
     {
@@ -1384,7 +1234,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "planning_roadmap_phase_3_roadmap_linkage",
-      "community": 11,
+      "community": 10,
       "norm_label": "phase 3: roadmap linkage"
     },
     {
@@ -1394,7 +1244,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "planning_roadmap_progress",
-      "community": 11,
+      "community": 10,
       "norm_label": "progress"
     },
     {
@@ -1404,7 +1254,7 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "planning_roadmap_backlog",
-      "community": 11,
+      "community": 10,
       "norm_label": "backlog"
     },
     {
@@ -1414,7 +1264,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "planning_roadmap_phase_999_1_update_extractor_based_on_ingestion_template_contract_backlog",
-      "community": 11,
+      "community": 10,
       "norm_label": "phase 999.1: update extractor based on ingestion template contract (backlog)"
     },
     {
@@ -3965,9 +3815,9 @@
       "source_file": "batch_extract.sh",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "batch_extract",
-      "target": "volumes_sync_data_tools_tittok_local_extactor_batch_extract_sh__entry"
+      "target": "volumes_sync_data_tools_tittok_local_extactor_batch_extract_sh__entry",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3975,9 +3825,9 @@
       "source_file": "check_progress.sh",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "check_progress",
-      "target": "volumes_sync_data_tools_tittok_local_extactor_check_progress_sh__entry"
+      "target": "volumes_sync_data_tools_tittok_local_extactor_check_progress_sh__entry",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3995,9 +3845,9 @@
       "source_file": "extract.py",
       "source_location": "L713",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract",
-      "target": "extract_append_finalize_run"
+      "target": "extract_append_finalize_run",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4145,9 +3995,9 @@
       "source_file": "extract.py",
       "source_location": "L760",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract",
-      "target": "extract_finalize_stage_dir"
+      "target": "extract_finalize_stage_dir",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4215,9 +4065,9 @@
       "source_file": "extract.py",
       "source_location": "L680",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract",
-      "target": "extract_parse_frontmatter"
+      "target": "extract_parse_frontmatter",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4255,9 +4105,9 @@
       "source_file": "extract.py",
       "source_location": "L808",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract",
-      "target": "extract_resolve_finalize_targets"
+      "target": "extract_resolve_finalize_targets",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4315,9 +4165,9 @@
       "source_file": "extract.py",
       "source_location": "L703",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract",
-      "target": "extract_supporting_files_from_frontmatter"
+      "target": "extract_supporting_files_from_frontmatter",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4635,9 +4485,9 @@
       "source_file": "extract.py",
       "source_location": "L760",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_finalize_stage_dir",
-      "target": "extract_py_path"
+      "target": "extract_py_path",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4668,9 +4518,9 @@
       "source_file": "extract.py",
       "source_location": "L680",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_parse_frontmatter",
-      "target": "extract_py_path"
+      "target": "extract_py_path",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4690,9 +4540,9 @@
       "source_file": "extract.py",
       "source_location": "L808",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_resolve_finalize_targets",
-      "target": "extract_py_path"
+      "target": "extract_py_path",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4712,9 +4562,9 @@
       "source_file": "extract.py",
       "source_location": "L703",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_supporting_files_from_frontmatter",
-      "target": "extract_py_path"
+      "target": "extract_py_path",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4811,9 +4661,9 @@
       "source_file": "extract.py",
       "source_location": "L743",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_append_finalize_run",
-      "target": "extract_now_iso"
+      "target": "extract_now_iso",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5019,9 +4869,9 @@
       "source_file": "extract.py",
       "source_location": "L191",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_rationale_191",
-      "target": "extract_title_from_source_path"
+      "target": "extract_title_from_source_path",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5040,9 +4890,9 @@
       "source_file": "extract.py",
       "source_location": "L199",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_rationale_199",
-      "target": "extract_creator_from_source_path"
+      "target": "extract_creator_from_source_path",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5117,9 +4967,9 @@
       "source_file": "extract.py",
       "source_location": "L739",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_append_finalize_run",
-      "target": "extract_append_run"
+      "target": "extract_append_run",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5171,9 +5021,9 @@
       "source_file": "extract.py",
       "source_location": "L293",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_rationale_293",
-      "target": "extract_acquire"
+      "target": "extract_acquire",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5192,9 +5042,9 @@
       "source_file": "extract.py",
       "source_location": "L365",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_rationale_365",
-      "target": "extract_collect_captions"
+      "target": "extract_collect_captions",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5235,9 +5085,9 @@
       "source_file": "extract.py",
       "source_location": "L434",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_rationale_434",
-      "target": "extract_extract_thumbnail"
+      "target": "extract_extract_thumbnail",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5256,9 +5106,9 @@
       "source_file": "extract.py",
       "source_location": "L458",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_rationale_458",
-      "target": "extract_transcribe"
+      "target": "extract_transcribe",
+      "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",
@@ -5266,9 +5116,9 @@
       "source_file": "extract.py",
       "source_location": "L528",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_rationale_528",
-      "target": "extract_frame_timestamps"
+      "target": "extract_frame_timestamps",
+      "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",
@@ -5276,9 +5126,9 @@
       "source_file": "extract.py",
       "source_location": "L553",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_rationale_553",
-      "target": "extract_extract_at_timestamps"
+      "target": "extract_extract_at_timestamps",
+      "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",
@@ -5286,9 +5136,9 @@
       "source_file": "extract.py",
       "source_location": "L568",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_rationale_568",
-      "target": "extract_dedup_by_proximity"
+      "target": "extract_dedup_by_proximity",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5330,9 +5180,9 @@
       "source_file": "extract.py",
       "source_location": "L769",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_finalize_stage_dir",
-      "target": "extract_validate_contract_fields"
+      "target": "extract_validate_contract_fields",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5352,9 +5202,9 @@
       "source_file": "extract.py",
       "source_location": "L771",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_finalize_stage_dir",
-      "target": "extract_validate_supporting_files"
+      "target": "extract_validate_supporting_files",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5374,9 +5224,9 @@
       "source_file": "extract.py",
       "source_location": "L773",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_finalize_stage_dir",
-      "target": "extract_parse_frontmatter"
+      "target": "extract_parse_frontmatter",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5385,9 +5235,9 @@
       "source_file": "extract.py",
       "source_location": "L770",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_finalize_stage_dir",
-      "target": "extract_supporting_files_from_frontmatter"
+      "target": "extract_supporting_files_from_frontmatter",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5396,9 +5246,9 @@
       "source_file": "extract.py",
       "source_location": "L1152",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_main",
-      "target": "extract_append_finalize_run"
+      "target": "extract_append_finalize_run",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5407,9 +5257,9 @@
       "source_file": "extract.py",
       "source_location": "L1149",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_main",
-      "target": "extract_finalize_stage_dir"
+      "target": "extract_finalize_stage_dir",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5418,9 +5268,9 @@
       "source_file": "extract.py",
       "source_location": "L1137",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extract_main",
-      "target": "extract_resolve_finalize_targets"
+      "target": "extract_resolve_finalize_targets",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5450,9 +5300,9 @@
       "source_file": "patch_metadata.py",
       "source_location": "L26",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "volumes_sync_data_extractors_tittok_local_extactor_patch_metadata_py",
-      "target": "patch_metadata_build_url_map"
+      "target": "patch_metadata_build_url_map",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5460,9 +5310,9 @@
       "source_file": "patch_metadata.py",
       "source_location": "L72",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "volumes_sync_data_extractors_tittok_local_extactor_patch_metadata_py",
-      "target": "patch_metadata_extract_username"
+      "target": "patch_metadata_extract_username",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5470,9 +5320,9 @@
       "source_file": "patch_metadata.py",
       "source_location": "L39",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "volumes_sync_data_extractors_tittok_local_extactor_patch_metadata_py",
-      "target": "patch_metadata_ffprobe_duration"
+      "target": "patch_metadata_ffprobe_duration",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5480,9 +5330,9 @@
       "source_file": "patch_metadata.py",
       "source_location": "L112",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "volumes_sync_data_extractors_tittok_local_extactor_patch_metadata_py",
-      "target": "patch_metadata_main"
+      "target": "patch_metadata_main",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5490,9 +5340,9 @@
       "source_file": "patch_metadata.py",
       "source_location": "L77",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "volumes_sync_data_extractors_tittok_local_extactor_patch_metadata_py",
-      "target": "patch_metadata_parse_args"
+      "target": "patch_metadata_parse_args",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5500,9 +5350,9 @@
       "source_file": "patch_metadata.py",
       "source_location": "L57",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "volumes_sync_data_extractors_tittok_local_extactor_patch_metadata_py",
-      "target": "patch_metadata_patch_frontmatter"
+      "target": "patch_metadata_patch_frontmatter",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5510,9 +5360,9 @@
       "source_file": "patch_metadata.py",
       "source_location": "L98",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "volumes_sync_data_extractors_tittok_local_extactor_patch_metadata_py",
-      "target": "patch_metadata_resolve_video_file"
+      "target": "patch_metadata_resolve_video_file",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -5652,9 +5502,9 @@
       "source_file": "reprocess_sources.sh",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "reprocess_sources",
-      "target": "volumes_sync_data_tools_tittok_local_extactor_reprocess_sources_sh__entry"
+      "target": "volumes_sync_data_tools_tittok_local_extactor_reprocess_sources_sh__entry",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5662,9 +5512,9 @@
       "source_file": ".claude/skills/tiktok-extract/SKILL.md",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "volumes_sync_data_extractors_tittok_local_extactor_claude_skills_tiktok_extract_skill_md",
-      "target": "tiktok_extract_skill_tiktok_extract"
+      "target": "tiktok_extract_skill_tiktok_extract",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5809,152 +5659,12 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "planning_milestone_v2_1_checkpoint",
-      "target": "planning_milestone_v2_1_checkpoint_gsd_milestone_v2_1_phase_restructuring_complete",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L108",
-      "weight": 1.0,
-      "source": "planning_milestone_v2_1_checkpoint_gsd_milestone_v2_1_phase_restructuring_complete",
-      "target": "planning_milestone_v2_1_checkpoint_cleanup_checkpoints",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L70",
-      "weight": 1.0,
-      "source": "planning_milestone_v2_1_checkpoint_gsd_milestone_v2_1_phase_restructuring_complete",
-      "target": "planning_milestone_v2_1_checkpoint_current_milestone_status",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L85",
-      "weight": 1.0,
-      "source": "planning_milestone_v2_1_checkpoint_gsd_milestone_v2_1_phase_restructuring_complete",
-      "target": "planning_milestone_v2_1_checkpoint_what_s_next",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L9",
-      "weight": 1.0,
-      "source": "planning_milestone_v2_1_checkpoint_gsd_milestone_v2_1_phase_restructuring_complete",
-      "target": "planning_milestone_v2_1_checkpoint_what_was_accomplished",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L11",
-      "weight": 1.0,
-      "source": "planning_milestone_v2_1_checkpoint_what_was_accomplished",
-      "target": "planning_milestone_v2_1_checkpoint_1_archive_old_gsd_phases",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L19",
-      "weight": 1.0,
-      "source": "planning_milestone_v2_1_checkpoint_what_was_accomplished",
-      "target": "planning_milestone_v2_1_checkpoint_2_create_v2_1_milestone_structure",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L36",
-      "weight": 1.0,
-      "source": "planning_milestone_v2_1_checkpoint_what_was_accomplished",
-      "target": "planning_milestone_v2_1_checkpoint_3_document_phase_1_completion",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L47",
-      "weight": 1.0,
-      "source": "planning_milestone_v2_1_checkpoint_what_was_accomplished",
-      "target": "planning_milestone_v2_1_checkpoint_4_update_milestone_tracking",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L60",
-      "weight": 1.0,
-      "source": "planning_milestone_v2_1_checkpoint_what_was_accomplished",
-      "target": "planning_milestone_v2_1_checkpoint_5_create_phase_2_tracking",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L92",
-      "weight": 1.0,
-      "source": "planning_milestone_v2_1_checkpoint_what_s_next",
-      "target": "planning_milestone_v2_1_checkpoint_2026_06_28",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L97",
-      "weight": 1.0,
-      "source": "planning_milestone_v2_1_checkpoint_what_s_next",
-      "target": "planning_milestone_v2_1_checkpoint_2026_06_29",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L101",
-      "weight": 1.0,
-      "source": "planning_milestone_v2_1_checkpoint_what_s_next",
-      "target": "planning_milestone_v2_1_checkpoint_2026_07_01",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".planning/MILESTONE_V2.1_CHECKPOINT.md",
-      "source_location": "L87",
-      "weight": 1.0,
-      "source": "planning_milestone_v2_1_checkpoint_what_s_next",
-      "target": "planning_milestone_v2_1_checkpoint_immediate_next_1_2_hours",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": ".planning/PROJECT.md",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_project",
-      "target": "planning_project_tiktok_extraction_pipeline_project_overview"
+      "target": "planning_project_tiktok_extraction_pipeline_project_overview",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -5962,9 +5672,9 @@
       "source_file": ".planning/STATE.md",
       "source_location": "L22",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_state",
-      "target": "planning_project"
+      "target": "planning_project",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -5972,9 +5682,9 @@
       "source_file": "README.md",
       "source_location": "L202",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme",
-      "target": "planning_project"
+      "target": "planning_project",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5982,9 +5692,9 @@
       "source_file": ".planning/PROJECT.md",
       "source_location": "L50",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_project_tiktok_extraction_pipeline_project_overview",
-      "target": "planning_project_constraints"
+      "target": "planning_project_constraints",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5992,9 +5702,9 @@
       "source_file": ".planning/PROJECT.md",
       "source_location": "L44",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_project_tiktok_extraction_pipeline_project_overview",
-      "target": "planning_project_context"
+      "target": "planning_project_context",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6002,9 +5712,9 @@
       "source_file": ".planning/PROJECT.md",
       "source_location": "L26",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_project_tiktok_extraction_pipeline_project_overview",
-      "target": "planning_project_core_value"
+      "target": "planning_project_core_value",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6012,9 +5722,9 @@
       "source_file": ".planning/PROJECT.md",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_project_tiktok_extraction_pipeline_project_overview",
-      "target": "planning_project_current_milestone_v2_1_compliance_reprocessing"
+      "target": "planning_project_current_milestone_v2_1_compliance_reprocessing",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6022,9 +5732,9 @@
       "source_file": ".planning/PROJECT.md",
       "source_location": "L62",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_project_tiktok_extraction_pipeline_project_overview",
-      "target": "planning_project_evolution"
+      "target": "planning_project_evolution",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6032,9 +5742,9 @@
       "source_file": ".planning/PROJECT.md",
       "source_location": "L30",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_project_tiktok_extraction_pipeline_project_overview",
-      "target": "planning_project_key_constraints"
+      "target": "planning_project_key_constraints",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6042,9 +5752,9 @@
       "source_file": ".planning/PROJECT.md",
       "source_location": "L56",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_project_tiktok_extraction_pipeline_project_overview",
-      "target": "planning_project_key_decisions"
+      "target": "planning_project_key_decisions",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6052,9 +5762,9 @@
       "source_file": ".planning/PROJECT.md",
       "source_location": "L81",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_project_tiktok_extraction_pipeline_project_overview",
-      "target": "planning_project_last_updated"
+      "target": "planning_project_last_updated",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6062,9 +5772,9 @@
       "source_file": ".planning/PROJECT.md",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_project_tiktok_extraction_pipeline_project_overview",
-      "target": "planning_project_project_goal"
+      "target": "planning_project_project_goal",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6072,9 +5782,9 @@
       "source_file": ".planning/PROJECT.md",
       "source_location": "L15",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_project_current_milestone_v2_1_compliance_reprocessing",
-      "target": "planning_project_milestone_progress"
+      "target": "planning_project_milestone_progress",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6082,9 +5792,9 @@
       "source_file": ".planning/PROJECT.md",
       "source_location": "L39",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_project_key_constraints",
-      "target": "planning_project_out_of_scope"
+      "target": "planning_project_out_of_scope",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6092,9 +5802,9 @@
       "source_file": ".planning/REQUIREMENTS.md",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_requirements",
-      "target": "planning_requirements_tiktok_extraction_pipeline_requirements"
+      "target": "planning_requirements_tiktok_extraction_pipeline_requirements",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6102,9 +5812,9 @@
       "source_file": ".planning/REQUIREMENTS.md",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_requirements_tiktok_extraction_pipeline_requirements",
-      "target": "planning_requirements_functional_requirements_active"
+      "target": "planning_requirements_functional_requirements_active",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6112,9 +5822,9 @@
       "source_file": ".planning/REQUIREMENTS.md",
       "source_location": "L57",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_requirements_tiktok_extraction_pipeline_requirements",
-      "target": "planning_requirements_non_functional_requirements"
+      "target": "planning_requirements_non_functional_requirements",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6122,9 +5832,9 @@
       "source_file": ".planning/REQUIREMENTS.md",
       "source_location": "L64",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_requirements_tiktok_extraction_pipeline_requirements",
-      "target": "planning_requirements_out_of_scope"
+      "target": "planning_requirements_out_of_scope",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6132,9 +5842,9 @@
       "source_file": ".planning/REQUIREMENTS.md",
       "source_location": "L71",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_requirements_tiktok_extraction_pipeline_requirements",
-      "target": "planning_requirements_traceability"
+      "target": "planning_requirements_traceability",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6142,9 +5852,9 @@
       "source_file": ".planning/REQUIREMENTS.md",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_requirements_functional_requirements_active",
-      "target": "planning_requirements_fr_1_single_video_extraction"
+      "target": "planning_requirements_fr_1_single_video_extraction",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6152,9 +5862,9 @@
       "source_file": ".planning/REQUIREMENTS.md",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_requirements_functional_requirements_active",
-      "target": "planning_requirements_fr_2_metadata_extraction"
+      "target": "planning_requirements_fr_2_metadata_extraction",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6162,9 +5872,9 @@
       "source_file": ".planning/REQUIREMENTS.md",
       "source_location": "L20",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_requirements_functional_requirements_active",
-      "target": "planning_requirements_fr_3_asr_transcription"
+      "target": "planning_requirements_fr_3_asr_transcription",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6172,9 +5882,9 @@
       "source_file": ".planning/REQUIREMENTS.md",
       "source_location": "L26",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_requirements_functional_requirements_active",
-      "target": "planning_requirements_fr_4_frame_extraction"
+      "target": "planning_requirements_fr_4_frame_extraction",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6182,9 +5892,9 @@
       "source_file": ".planning/REQUIREMENTS.md",
       "source_location": "L32",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_requirements_functional_requirements_active",
-      "target": "planning_requirements_fr_5_contract_generation"
+      "target": "planning_requirements_fr_5_contract_generation",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6192,9 +5902,9 @@
       "source_file": ".planning/REQUIREMENTS.md",
       "source_location": "L39",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_requirements_functional_requirements_active",
-      "target": "planning_requirements_fr_6_batch_processing"
+      "target": "planning_requirements_fr_6_batch_processing",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6202,9 +5912,9 @@
       "source_file": ".planning/REQUIREMENTS.md",
       "source_location": "L45",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_requirements_functional_requirements_active",
-      "target": "planning_requirements_fr_7_legacy_reprocessing"
+      "target": "planning_requirements_fr_7_legacy_reprocessing",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6212,9 +5922,9 @@
       "source_file": ".planning/REQUIREMENTS.md",
       "source_location": "L51",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_requirements_functional_requirements_active",
-      "target": "planning_requirements_fr_8_rights_policy"
+      "target": "planning_requirements_fr_8_rights_policy",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6232,9 +5942,9 @@
       "source_file": "README.md",
       "source_location": "L203",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme",
-      "target": "planning_roadmap"
+      "target": "planning_roadmap",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6262,9 +5972,9 @@
       "source_file": ".planning/ROADMAP.md",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_roadmap_roadmap",
-      "target": "planning_roadmap_phases"
+      "target": "planning_roadmap_phases",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6272,9 +5982,9 @@
       "source_file": ".planning/ROADMAP.md",
       "source_location": "L68",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_roadmap_roadmap",
-      "target": "planning_roadmap_progress"
+      "target": "planning_roadmap_progress",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6282,9 +5992,9 @@
       "source_file": ".planning/ROADMAP.md",
       "source_location": "L33",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_roadmap_roadmap",
-      "target": "planning_roadmap_timeline"
+      "target": "planning_roadmap_timeline",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6292,9 +6002,9 @@
       "source_file": ".planning/ROADMAP.md",
       "source_location": "L42",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_roadmap_timeline",
-      "target": "planning_roadmap_phase_2_todo_triage_promotion"
+      "target": "planning_roadmap_phase_2_todo_triage_promotion",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6302,9 +6012,9 @@
       "source_file": ".planning/ROADMAP.md",
       "source_location": "L55",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_roadmap_timeline",
-      "target": "planning_roadmap_phase_3_roadmap_linkage"
+      "target": "planning_roadmap_phase_3_roadmap_linkage",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6322,9 +6032,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L364",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract",
-      "target": "planning_state"
+      "target": "planning_state",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6332,9 +6042,9 @@
       "source_file": ".planning/STATE.md",
       "source_location": "L18",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_state",
-      "target": "planning_state_tiktok_extraction_pipeline_current_state"
+      "target": "planning_state_tiktok_extraction_pipeline_current_state",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -6342,9 +6052,9 @@
       "source_file": "README.md",
       "source_location": "L204",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme",
-      "target": "planning_state"
+      "target": "planning_state",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -6352,9 +6062,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L549",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting",
-      "target": "planning_state"
+      "target": "planning_state",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6362,9 +6072,9 @@
       "source_file": ".planning/STATE.md",
       "source_location": "L70",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_state_tiktok_extraction_pipeline_current_state",
-      "target": "planning_state_current_configuration"
+      "target": "planning_state_current_configuration",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6372,9 +6082,9 @@
       "source_file": ".planning/STATE.md",
       "source_location": "L57",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_state_tiktok_extraction_pipeline_current_state",
-      "target": "planning_state_deduplication_ledger"
+      "target": "planning_state_deduplication_ledger",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6382,9 +6092,9 @@
       "source_file": ".planning/STATE.md",
       "source_location": "L24",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_state_tiktok_extraction_pipeline_current_state",
-      "target": "planning_state_extraction_progress"
+      "target": "planning_state_extraction_progress",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6392,9 +6102,9 @@
       "source_file": ".planning/STATE.md",
       "source_location": "L79",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_state_tiktok_extraction_pipeline_current_state",
-      "target": "planning_state_next_steps_phase_2_active"
+      "target": "planning_state_next_steps_phase_2_active",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6402,9 +6112,9 @@
       "source_file": ".planning/STATE.md",
       "source_location": "L43",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_state_tiktok_extraction_pipeline_current_state",
-      "target": "planning_state_phase_1_outcome_2026_06_24"
+      "target": "planning_state_phase_1_outcome_2026_06_24",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6412,9 +6122,9 @@
       "source_file": ".planning/STATE.md",
       "source_location": "L26",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_state_extraction_progress",
-      "target": "planning_state_overall_status"
+      "target": "planning_state_overall_status",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6422,9 +6132,9 @@
       "source_file": ".planning/STATE.md",
       "source_location": "L34",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_state_extraction_progress",
-      "target": "planning_state_phase_completion_summary"
+      "target": "planning_state_phase_completion_summary",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6432,9 +6142,9 @@
       "source_file": ".planning/STATE.md",
       "source_location": "L59",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_state_deduplication_ledger",
-      "target": "planning_state_file_locations"
+      "target": "planning_state_file_locations",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6442,9 +6152,9 @@
       "source_file": ".planning/STATE.md",
       "source_location": "L66",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "planning_state_deduplication_ledger",
-      "target": "planning_state_ledger_reset_2026_06_24"
+      "target": "planning_state_ledger_reset_2026_06_24",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6452,9 +6162,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-01-PLAN.md",
       "source_location": "L32",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_01_plan",
-      "target": "01_todo_capture_foundation_01_01_plan_plan_01_01"
+      "target": "01_todo_capture_foundation_01_01_plan_plan_01_01",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6462,9 +6172,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-01-PLAN.md",
       "source_location": "L99",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_01_plan_plan_01_01",
-      "target": "01_todo_capture_foundation_01_01_plan_stride_threat_register"
+      "target": "01_todo_capture_foundation_01_01_plan_stride_threat_register",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6472,9 +6182,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-01-PLAN.md",
       "source_location": "L94",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_01_plan_plan_01_01",
-      "target": "01_todo_capture_foundation_01_01_plan_trust_boundaries"
+      "target": "01_todo_capture_foundation_01_01_plan_trust_boundaries",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6482,9 +6192,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-01-SUMMARY.md",
       "source_location": "L39",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_01_summary",
-      "target": "01_todo_capture_foundation_01_01_summary_phase_01_plan_01_summary"
+      "target": "01_todo_capture_foundation_01_01_summary_phase_01_plan_01_summary",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6492,9 +6202,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-01-SUMMARY.md",
       "source_location": "L43",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_01_summary_phase_01_plan_01_summary",
-      "target": "01_todo_capture_foundation_01_01_summary_accomplishments"
+      "target": "01_todo_capture_foundation_01_01_summary_accomplishments",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6502,9 +6212,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-01-SUMMARY.md",
       "source_location": "L74",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_01_summary_phase_01_plan_01_summary",
-      "target": "01_todo_capture_foundation_01_01_summary_next_readiness"
+      "target": "01_todo_capture_foundation_01_01_summary_next_readiness",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6512,9 +6222,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-01-SUMMARY.md",
       "source_location": "L69",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_01_summary_phase_01_plan_01_summary",
-      "target": "01_todo_capture_foundation_01_01_summary_notes"
+      "target": "01_todo_capture_foundation_01_01_summary_notes",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6522,9 +6232,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-01-SUMMARY.md",
       "source_location": "L58",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_01_summary_phase_01_plan_01_summary",
-      "target": "01_todo_capture_foundation_01_01_summary_verification_results"
+      "target": "01_todo_capture_foundation_01_01_summary_verification_results",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6532,9 +6242,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context",
-      "target": "01_todo_capture_foundation_01_context_phase_1_todo_capture_foundation_context"
+      "target": "01_todo_capture_foundation_01_context_phase_1_todo_capture_foundation_context",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6542,9 +6252,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L34",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context_phase_1_todo_capture_foundation_context",
-      "target": "01_todo_capture_foundation_01_context_canonical_references"
+      "target": "01_todo_capture_foundation_01_context_canonical_references",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6552,9 +6262,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L74",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context_phase_1_todo_capture_foundation_context",
-      "target": "01_todo_capture_foundation_01_context_deferred_ideas"
+      "target": "01_todo_capture_foundation_01_context_deferred_ideas",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6562,9 +6272,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L53",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context_phase_1_todo_capture_foundation_context",
-      "target": "01_todo_capture_foundation_01_context_existing_code_insights"
+      "target": "01_todo_capture_foundation_01_context_existing_code_insights",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6572,9 +6282,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context_phase_1_todo_capture_foundation_context",
-      "target": "01_todo_capture_foundation_01_context_implementation_decisions"
+      "target": "01_todo_capture_foundation_01_context_implementation_decisions",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6582,9 +6292,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context_phase_1_todo_capture_foundation_context",
-      "target": "01_todo_capture_foundation_01_context_phase_boundary"
+      "target": "01_todo_capture_foundation_01_context_phase_boundary",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6592,9 +6302,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L69",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context_phase_1_todo_capture_foundation_context",
-      "target": "01_todo_capture_foundation_01_context_specific_ideas"
+      "target": "01_todo_capture_foundation_01_context_specific_ideas",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6602,9 +6312,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L18",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context_implementation_decisions",
-      "target": "01_todo_capture_foundation_01_context_capture_entrypoint"
+      "target": "01_todo_capture_foundation_01_context_capture_entrypoint",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6612,9 +6322,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L26",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context_implementation_decisions",
-      "target": "01_todo_capture_foundation_01_context_deduplication_policy"
+      "target": "01_todo_capture_foundation_01_context_deduplication_policy",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6622,9 +6332,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L30",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context_implementation_decisions",
-      "target": "01_todo_capture_foundation_01_context_the_agent_s_discretion"
+      "target": "01_todo_capture_foundation_01_context_the_agent_s_discretion",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6632,9 +6342,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L12",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context_implementation_decisions",
-      "target": "01_todo_capture_foundation_01_context_todo_file_schema"
+      "target": "01_todo_capture_foundation_01_context_todo_file_schema",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6642,9 +6352,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L22",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context_implementation_decisions",
-      "target": "01_todo_capture_foundation_01_context_validation_behavior"
+      "target": "01_todo_capture_foundation_01_context_validation_behavior",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6652,9 +6362,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L49",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context_canonical_references",
-      "target": "01_todo_capture_foundation_01_context_external_specifications"
+      "target": "01_todo_capture_foundation_01_context_external_specifications",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6662,9 +6372,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L38",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context_canonical_references",
-      "target": "01_todo_capture_foundation_01_context_milestone_and_scope"
+      "target": "01_todo_capture_foundation_01_context_milestone_and_scope",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6672,9 +6382,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L44",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context_canonical_references",
-      "target": "01_todo_capture_foundation_01_context_prior_implementation_context"
+      "target": "01_todo_capture_foundation_01_context_prior_implementation_context",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6682,9 +6392,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L59",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context_existing_code_insights",
-      "target": "01_todo_capture_foundation_01_context_established_patterns"
+      "target": "01_todo_capture_foundation_01_context_established_patterns",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6692,9 +6402,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L64",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context_existing_code_insights",
-      "target": "01_todo_capture_foundation_01_context_integration_points"
+      "target": "01_todo_capture_foundation_01_context_integration_points",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6702,9 +6412,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-CONTEXT.md",
       "source_location": "L55",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_context_existing_code_insights",
-      "target": "01_todo_capture_foundation_01_context_reusable_assets"
+      "target": "01_todo_capture_foundation_01_context_reusable_assets",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6712,9 +6422,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-DISCUSSION-LOG.md",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_discussion_log",
-      "target": "01_todo_capture_foundation_01_discussion_log_phase_1_todo_capture_foundation_discussion_log"
+      "target": "01_todo_capture_foundation_01_discussion_log_phase_1_todo_capture_foundation_discussion_log",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6722,9 +6432,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-DISCUSSION-LOG.md",
       "source_location": "L25",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_discussion_log_phase_1_todo_capture_foundation_discussion_log",
-      "target": "01_todo_capture_foundation_01_discussion_log_capture_entrypoint"
+      "target": "01_todo_capture_foundation_01_discussion_log_capture_entrypoint",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6732,9 +6442,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-DISCUSSION-LOG.md",
       "source_location": "L68",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_discussion_log_phase_1_todo_capture_foundation_discussion_log",
-      "target": "01_todo_capture_foundation_01_discussion_log_carry_forward_from_phase_999_1"
+      "target": "01_todo_capture_foundation_01_discussion_log_carry_forward_from_phase_999_1",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6742,9 +6452,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-DISCUSSION-LOG.md",
       "source_location": "L51",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_discussion_log_phase_1_todo_capture_foundation_discussion_log",
-      "target": "01_todo_capture_foundation_01_discussion_log_deduplication_policy"
+      "target": "01_todo_capture_foundation_01_discussion_log_deduplication_policy",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6752,9 +6462,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-DISCUSSION-LOG.md",
       "source_location": "L74",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_discussion_log_phase_1_todo_capture_foundation_discussion_log",
-      "target": "01_todo_capture_foundation_01_discussion_log_deferred_ideas"
+      "target": "01_todo_capture_foundation_01_discussion_log_deferred_ideas",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6762,9 +6472,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-DISCUSSION-LOG.md",
       "source_location": "L64",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_discussion_log_phase_1_todo_capture_foundation_discussion_log",
-      "target": "01_todo_capture_foundation_01_discussion_log_the_agent_s_discretion"
+      "target": "01_todo_capture_foundation_01_discussion_log_the_agent_s_discretion",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6772,9 +6482,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-DISCUSSION-LOG.md",
       "source_location": "L12",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_discussion_log_phase_1_todo_capture_foundation_discussion_log",
-      "target": "01_todo_capture_foundation_01_discussion_log_todo_file_schema"
+      "target": "01_todo_capture_foundation_01_discussion_log_todo_file_schema",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6782,9 +6492,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-DISCUSSION-LOG.md",
       "source_location": "L38",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_discussion_log_phase_1_todo_capture_foundation_discussion_log",
-      "target": "01_todo_capture_foundation_01_discussion_log_validation_behavior"
+      "target": "01_todo_capture_foundation_01_discussion_log_validation_behavior",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6792,9 +6502,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-UAT.md",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_uat",
-      "target": "01_todo_capture_foundation_01_uat_phase_01_uat"
+      "target": "01_todo_capture_foundation_01_uat_phase_01_uat",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6802,9 +6512,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-UAT.md",
       "source_location": "L12",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_uat_phase_01_uat",
-      "target": "01_todo_capture_foundation_01_uat_current_test"
+      "target": "01_todo_capture_foundation_01_uat_current_test",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6812,9 +6522,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-UAT.md",
       "source_location": "L52",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_uat_phase_01_uat",
-      "target": "01_todo_capture_foundation_01_uat_gaps"
+      "target": "01_todo_capture_foundation_01_uat_gaps",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6822,9 +6532,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-UAT.md",
       "source_location": "L43",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_uat_phase_01_uat",
-      "target": "01_todo_capture_foundation_01_uat_summary"
+      "target": "01_todo_capture_foundation_01_uat_summary",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6832,9 +6542,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-UAT.md",
       "source_location": "L21",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_uat_phase_01_uat",
-      "target": "01_todo_capture_foundation_01_uat_tests"
+      "target": "01_todo_capture_foundation_01_uat_tests",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6842,9 +6552,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-UAT.md",
       "source_location": "L23",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_uat_tests",
-      "target": "01_todo_capture_foundation_01_uat_1_capture_a_pending_todo"
+      "target": "01_todo_capture_foundation_01_uat_1_capture_a_pending_todo",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6852,9 +6562,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-UAT.md",
       "source_location": "L28",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_uat_tests",
-      "target": "01_todo_capture_foundation_01_uat_2_reopen_preserved_todo_details"
+      "target": "01_todo_capture_foundation_01_uat_2_reopen_preserved_todo_details",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6862,9 +6572,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-UAT.md",
       "source_location": "L33",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_uat_tests",
-      "target": "01_todo_capture_foundation_01_uat_3_lenient_capture_warnings_do_not_block_saving"
+      "target": "01_todo_capture_foundation_01_uat_3_lenient_capture_warnings_do_not_block_saving",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6872,9 +6582,9 @@
       "source_file": ".planning/archive/01-todo-capture-foundation/01-UAT.md",
       "source_location": "L38",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "01_todo_capture_foundation_01_uat_tests",
-      "target": "01_todo_capture_foundation_01_uat_4_pending_queue_path_is_consistent"
+      "target": "01_todo_capture_foundation_01_uat_4_pending_queue_path_is_consistent",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7002,9 +6712,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-PLAN.md",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_plan",
-      "target": "v2_1_01_contract_compliance_01_plan_phase_1_contract_compliance_fixes_plan"
+      "target": "v2_1_01_contract_compliance_01_plan_phase_1_contract_compliance_fixes_plan",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7012,9 +6722,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-PLAN.md",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_plan_phase_1_contract_compliance_fixes_plan",
-      "target": "v2_1_01_contract_compliance_01_plan_goal"
+      "target": "v2_1_01_contract_compliance_01_plan_goal",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7022,9 +6732,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-PLAN.md",
       "source_location": "L82",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_plan_phase_1_contract_compliance_fixes_plan",
-      "target": "v2_1_01_contract_compliance_01_plan_impact"
+      "target": "v2_1_01_contract_compliance_01_plan_impact",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7032,9 +6742,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-PLAN.md",
       "source_location": "L73",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_plan_phase_1_contract_compliance_fixes_plan",
-      "target": "v2_1_01_contract_compliance_01_plan_outcome"
+      "target": "v2_1_01_contract_compliance_01_plan_outcome",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7042,9 +6752,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-PLAN.md",
       "source_location": "L14",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_plan_phase_1_contract_compliance_fixes_plan",
-      "target": "v2_1_01_contract_compliance_01_plan_requirements"
+      "target": "v2_1_01_contract_compliance_01_plan_requirements",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7052,9 +6762,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-PLAN.md",
       "source_location": "L35",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_plan_phase_1_contract_compliance_fixes_plan",
-      "target": "v2_1_01_contract_compliance_01_plan_tasks"
+      "target": "v2_1_01_contract_compliance_01_plan_tasks",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7062,9 +6772,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-PLAN.md",
       "source_location": "L57",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_plan_phase_1_contract_compliance_fixes_plan",
-      "target": "v2_1_01_contract_compliance_01_plan_verification"
+      "target": "v2_1_01_contract_compliance_01_plan_verification",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7072,9 +6782,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-PLAN.md",
       "source_location": "L16",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_plan_requirements",
-      "target": "v2_1_01_contract_compliance_01_plan_compliance_01_routing_zone_compliance"
+      "target": "v2_1_01_contract_compliance_01_plan_compliance_01_routing_zone_compliance",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7082,9 +6792,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-PLAN.md",
       "source_location": "L21",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_plan_requirements",
-      "target": "v2_1_01_contract_compliance_01_plan_compliance_02_title_searchability"
+      "target": "v2_1_01_contract_compliance_01_plan_compliance_02_title_searchability",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7092,9 +6802,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-PLAN.md",
       "source_location": "L26",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_plan_requirements",
-      "target": "v2_1_01_contract_compliance_01_plan_compliance_03_creator_handle_consistency"
+      "target": "v2_1_01_contract_compliance_01_plan_compliance_03_creator_handle_consistency",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7102,9 +6812,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-PLAN.md",
       "source_location": "L31",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_plan_requirements",
-      "target": "v2_1_01_contract_compliance_01_plan_venv_01_script_paths"
+      "target": "v2_1_01_contract_compliance_01_plan_venv_01_script_paths",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7112,9 +6822,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-PLAN.md",
       "source_location": "L37",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_plan_tasks",
-      "target": "v2_1_01_contract_compliance_01_plan_wave_1_code_changes_2026_06_24"
+      "target": "v2_1_01_contract_compliance_01_plan_wave_1_code_changes_2026_06_24",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7122,9 +6832,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-PLAN.md",
       "source_location": "L49",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_plan_tasks",
-      "target": "v2_1_01_contract_compliance_01_plan_wave_2_configuration_2026_06_24"
+      "target": "v2_1_01_contract_compliance_01_plan_wave_2_configuration_2026_06_24",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7132,9 +6842,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-PLAN.md",
       "source_location": "L52",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_plan_tasks",
-      "target": "v2_1_01_contract_compliance_01_plan_wave_3_ledger_reset_2026_06_24"
+      "target": "v2_1_01_contract_compliance_01_plan_wave_3_ledger_reset_2026_06_24",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7142,9 +6852,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-PLAN.md",
       "source_location": "L59",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_plan_verification",
-      "target": "v2_1_01_contract_compliance_01_plan_contract_compliance_checklist"
+      "target": "v2_1_01_contract_compliance_01_plan_contract_compliance_checklist",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7152,9 +6862,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-PLAN.md",
       "source_location": "L67",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_plan_verification",
-      "target": "v2_1_01_contract_compliance_01_plan_testing_sample_staged_video"
+      "target": "v2_1_01_contract_compliance_01_plan_testing_sample_staged_video",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7162,9 +6872,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-SUMMARY.md",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_summary",
-      "target": "v2_1_01_contract_compliance_01_summary_phase_1_contract_compliance_fixes_summary"
+      "target": "v2_1_01_contract_compliance_01_summary_phase_1_contract_compliance_fixes_summary",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7172,9 +6882,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-SUMMARY.md",
       "source_location": "L59",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_summary_phase_1_contract_compliance_fixes_summary",
-      "target": "v2_1_01_contract_compliance_01_summary_code_changes"
+      "target": "v2_1_01_contract_compliance_01_summary_code_changes",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7182,9 +6892,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-SUMMARY.md",
       "source_location": "L109",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_summary_phase_1_contract_compliance_fixes_summary",
-      "target": "v2_1_01_contract_compliance_01_summary_risk_assessment"
+      "target": "v2_1_01_contract_compliance_01_summary_risk_assessment",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7192,9 +6902,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-SUMMARY.md",
       "source_location": "L115",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_summary_phase_1_contract_compliance_fixes_summary",
-      "target": "v2_1_01_contract_compliance_01_summary_sign_off"
+      "target": "v2_1_01_contract_compliance_01_summary_sign_off",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7202,9 +6912,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-SUMMARY.md",
       "source_location": "L80",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_summary_phase_1_contract_compliance_fixes_summary",
-      "target": "v2_1_01_contract_compliance_01_summary_validation"
+      "target": "v2_1_01_contract_compliance_01_summary_validation",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7212,9 +6922,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-SUMMARY.md",
       "source_location": "L92",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_summary_phase_1_contract_compliance_fixes_summary",
-      "target": "v2_1_01_contract_compliance_01_summary_what_s_next"
+      "target": "v2_1_01_contract_compliance_01_summary_what_s_next",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7222,9 +6932,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-SUMMARY.md",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_summary_phase_1_contract_compliance_fixes_summary",
-      "target": "v2_1_01_contract_compliance_01_summary_what_was_delivered"
+      "target": "v2_1_01_contract_compliance_01_summary_what_was_delivered",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7232,9 +6942,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-SUMMARY.md",
       "source_location": "L47",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_summary_what_was_delivered",
-      "target": "v2_1_01_contract_compliance_01_summary_bonus_script_path_fixes"
+      "target": "v2_1_01_contract_compliance_01_summary_bonus_script_path_fixes",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7242,9 +6952,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-SUMMARY.md",
       "source_location": "L14",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_summary_what_was_delivered",
-      "target": "v2_1_01_contract_compliance_01_summary_issue_1_routing_zone_compliance_critical"
+      "target": "v2_1_01_contract_compliance_01_summary_issue_1_routing_zone_compliance_critical",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7252,9 +6962,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-SUMMARY.md",
       "source_location": "L25",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_summary_what_was_delivered",
-      "target": "v2_1_01_contract_compliance_01_summary_issue_2_title_searchability_minor"
+      "target": "v2_1_01_contract_compliance_01_summary_issue_2_title_searchability_minor",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7262,9 +6972,9 @@
       "source_file": ".planning/phases/v2.1-01-contract-compliance/01-SUMMARY.md",
       "source_location": "L36",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_01_contract_compliance_01_summary_what_was_delivered",
-      "target": "v2_1_01_contract_compliance_01_summary_issue_3_creator_handle_consistency_minor"
+      "target": "v2_1_01_contract_compliance_01_summary_issue_3_creator_handle_consistency_minor",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7272,9 +6982,9 @@
       "source_file": ".planning/phases/v2.1-02-reprocessing/02-PLAN.md",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_02_reprocessing_02_plan",
-      "target": "v2_1_02_reprocessing_02_plan_phase_2_legacy_video_reprocessing_plan"
+      "target": "v2_1_02_reprocessing_02_plan_phase_2_legacy_video_reprocessing_plan",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7282,9 +6992,9 @@
       "source_file": ".planning/phases/v2.1-02-reprocessing/02-PLAN.md",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_02_reprocessing_02_plan_phase_2_legacy_video_reprocessing_plan",
-      "target": "v2_1_02_reprocessing_02_plan_goal"
+      "target": "v2_1_02_reprocessing_02_plan_goal",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7292,9 +7002,9 @@
       "source_file": ".planning/phases/v2.1-02-reprocessing/02-PLAN.md",
       "source_location": "L83",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_02_reprocessing_02_plan_phase_2_legacy_video_reprocessing_plan",
-      "target": "v2_1_02_reprocessing_02_plan_progress_tracking"
+      "target": "v2_1_02_reprocessing_02_plan_progress_tracking",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7302,9 +7012,9 @@
       "source_file": ".planning/phases/v2.1-02-reprocessing/02-PLAN.md",
       "source_location": "L14",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_02_reprocessing_02_plan_phase_2_legacy_video_reprocessing_plan",
-      "target": "v2_1_02_reprocessing_02_plan_requirements"
+      "target": "v2_1_02_reprocessing_02_plan_requirements",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7312,9 +7022,9 @@
       "source_file": ".planning/phases/v2.1-02-reprocessing/02-PLAN.md",
       "source_location": "L118",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_02_reprocessing_02_plan_phase_2_legacy_video_reprocessing_plan",
-      "target": "v2_1_02_reprocessing_02_plan_risks_mitigation"
+      "target": "v2_1_02_reprocessing_02_plan_risks_mitigation",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7322,9 +7032,9 @@
       "source_file": ".planning/phases/v2.1-02-reprocessing/02-PLAN.md",
       "source_location": "L36",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_02_reprocessing_02_plan_phase_2_legacy_video_reprocessing_plan",
-      "target": "v2_1_02_reprocessing_02_plan_tasks"
+      "target": "v2_1_02_reprocessing_02_plan_tasks",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7332,9 +7042,9 @@
       "source_file": ".planning/phases/v2.1-02-reprocessing/02-PLAN.md",
       "source_location": "L108",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_02_reprocessing_02_plan_phase_2_legacy_video_reprocessing_plan",
-      "target": "v2_1_02_reprocessing_02_plan_validation_criteria"
+      "target": "v2_1_02_reprocessing_02_plan_validation_criteria",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7342,9 +7052,9 @@
       "source_file": ".planning/phases/v2.1-02-reprocessing/02-PLAN.md",
       "source_location": "L127",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_02_reprocessing_02_plan_phase_2_legacy_video_reprocessing_plan",
-      "target": "v2_1_02_reprocessing_02_plan_what_happens_next"
+      "target": "v2_1_02_reprocessing_02_plan_what_happens_next",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7352,9 +7062,9 @@
       "source_file": ".planning/phases/v2.1-02-reprocessing/02-PLAN.md",
       "source_location": "L16",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_02_reprocessing_02_plan_requirements",
-      "target": "v2_1_02_reprocessing_02_plan_reprocess_01_complete_extraction"
+      "target": "v2_1_02_reprocessing_02_plan_reprocess_01_complete_extraction",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7362,9 +7072,9 @@
       "source_file": ".planning/phases/v2.1-02-reprocessing/02-PLAN.md",
       "source_location": "L20",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_02_reprocessing_02_plan_requirements",
-      "target": "v2_1_02_reprocessing_02_plan_reprocess_02_ledger_tracking"
+      "target": "v2_1_02_reprocessing_02_plan_reprocess_02_ledger_tracking",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7372,9 +7082,9 @@
       "source_file": ".planning/phases/v2.1-02-reprocessing/02-PLAN.md",
       "source_location": "L25",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_02_reprocessing_02_plan_requirements",
-      "target": "v2_1_02_reprocessing_02_plan_reprocess_03_compliance_validation"
+      "target": "v2_1_02_reprocessing_02_plan_reprocess_03_compliance_validation",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7382,9 +7092,9 @@
       "source_file": ".planning/phases/v2.1-02-reprocessing/02-PLAN.md",
       "source_location": "L31",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_02_reprocessing_02_plan_requirements",
-      "target": "v2_1_02_reprocessing_02_plan_reprocess_04_performance"
+      "target": "v2_1_02_reprocessing_02_plan_reprocess_04_performance",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7392,9 +7102,9 @@
       "source_file": ".planning/phases/v2.1-02-reprocessing/02-PLAN.md",
       "source_location": "L38",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_02_reprocessing_02_plan_tasks",
-      "target": "v2_1_02_reprocessing_02_plan_wave_1_staging_2026_06_24_2026_06_28"
+      "target": "v2_1_02_reprocessing_02_plan_wave_1_staging_2026_06_24_2026_06_28",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7402,9 +7112,9 @@
       "source_file": ".planning/phases/v2.1-02-reprocessing/02-PLAN.md",
       "source_location": "L53",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_02_reprocessing_02_plan_tasks",
-      "target": "v2_1_02_reprocessing_02_plan_wave_2_finalization_2026_06_28"
+      "target": "v2_1_02_reprocessing_02_plan_wave_2_finalization_2026_06_28",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7412,9 +7122,9 @@
       "source_file": ".planning/phases/v2.1-02-reprocessing/02-PLAN.md",
       "source_location": "L68",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_02_reprocessing_02_plan_tasks",
-      "target": "v2_1_02_reprocessing_02_plan_wave_3_cleanup_2026_06_28"
+      "target": "v2_1_02_reprocessing_02_plan_wave_3_cleanup_2026_06_28",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7422,9 +7132,9 @@
       "source_file": ".planning/phases/v2.1-02-reprocessing/02-PLAN.md",
       "source_location": "L85",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_02_reprocessing_02_plan_progress_tracking",
-      "target": "v2_1_02_reprocessing_02_plan_metrics"
+      "target": "v2_1_02_reprocessing_02_plan_metrics",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7432,9 +7142,9 @@
       "source_file": ".planning/phases/v2.1-02-reprocessing/02-PLAN.md",
       "source_location": "L94",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_02_reprocessing_02_plan_progress_tracking",
-      "target": "v2_1_02_reprocessing_02_plan_monitoring"
+      "target": "v2_1_02_reprocessing_02_plan_monitoring",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7442,9 +7152,9 @@
       "source_file": ".planning/phases/v2.1-03-documentation/03-PLAN.md",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_03_documentation_03_plan",
-      "target": "v2_1_03_documentation_03_plan_phase_3_documentation_final_handoff_plan"
+      "target": "v2_1_03_documentation_03_plan_phase_3_documentation_final_handoff_plan",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7452,9 +7162,9 @@
       "source_file": ".planning/phases/v2.1-03-documentation/03-PLAN.md",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_03_documentation_03_plan_phase_3_documentation_final_handoff_plan",
-      "target": "v2_1_03_documentation_03_plan_goal"
+      "target": "v2_1_03_documentation_03_plan_goal",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7462,9 +7172,9 @@
       "source_file": ".planning/phases/v2.1-03-documentation/03-PLAN.md",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_03_documentation_03_plan_phase_3_documentation_final_handoff_plan",
-      "target": "v2_1_03_documentation_03_plan_requirements"
+      "target": "v2_1_03_documentation_03_plan_requirements",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7472,9 +7182,9 @@
       "source_file": ".planning/phases/v2.1-03-documentation/03-PLAN.md",
       "source_location": "L32",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_03_documentation_03_plan_phase_3_documentation_final_handoff_plan",
-      "target": "v2_1_03_documentation_03_plan_tasks"
+      "target": "v2_1_03_documentation_03_plan_tasks",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7482,9 +7192,9 @@
       "source_file": ".planning/phases/v2.1-03-documentation/03-PLAN.md",
       "source_location": "L66",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_03_documentation_03_plan_phase_3_documentation_final_handoff_plan",
-      "target": "v2_1_03_documentation_03_plan_validation_criteria"
+      "target": "v2_1_03_documentation_03_plan_validation_criteria",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7492,9 +7202,9 @@
       "source_file": ".planning/phases/v2.1-03-documentation/03-PLAN.md",
       "source_location": "L74",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_03_documentation_03_plan_phase_3_documentation_final_handoff_plan",
-      "target": "v2_1_03_documentation_03_plan_what_s_next"
+      "target": "v2_1_03_documentation_03_plan_what_s_next",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7502,9 +7212,9 @@
       "source_file": ".planning/phases/v2.1-03-documentation/03-PLAN.md",
       "source_location": "L15",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_03_documentation_03_plan_requirements",
-      "target": "v2_1_03_documentation_03_plan_doc_01_core_documentation"
+      "target": "v2_1_03_documentation_03_plan_doc_01_core_documentation",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7512,9 +7222,9 @@
       "source_file": ".planning/phases/v2.1-03-documentation/03-PLAN.md",
       "source_location": "L21",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_03_documentation_03_plan_requirements",
-      "target": "v2_1_03_documentation_03_plan_doc_02_gsd_phase_docs"
+      "target": "v2_1_03_documentation_03_plan_doc_02_gsd_phase_docs",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7522,9 +7232,9 @@
       "source_file": ".planning/phases/v2.1-03-documentation/03-PLAN.md",
       "source_location": "L27",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_03_documentation_03_plan_requirements",
-      "target": "v2_1_03_documentation_03_plan_doc_03_verification"
+      "target": "v2_1_03_documentation_03_plan_doc_03_verification",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7532,9 +7242,9 @@
       "source_file": ".planning/phases/v2.1-03-documentation/03-PLAN.md",
       "source_location": "L34",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_03_documentation_03_plan_tasks",
-      "target": "v2_1_03_documentation_03_plan_wave_1_core_documentation_complete"
+      "target": "v2_1_03_documentation_03_plan_wave_1_core_documentation_complete",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7542,9 +7252,9 @@
       "source_file": ".planning/phases/v2.1-03-documentation/03-PLAN.md",
       "source_location": "L42",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_03_documentation_03_plan_tasks",
-      "target": "v2_1_03_documentation_03_plan_wave_2_gsd_phase_documentation_in_progress"
+      "target": "v2_1_03_documentation_03_plan_wave_2_gsd_phase_documentation_in_progress",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7552,9 +7262,9 @@
       "source_file": ".planning/phases/v2.1-03-documentation/03-PLAN.md",
       "source_location": "L49",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_03_documentation_03_plan_tasks",
-      "target": "v2_1_03_documentation_03_plan_wave_3_integration_handoff_2026_06_28"
+      "target": "v2_1_03_documentation_03_plan_wave_3_integration_handoff_2026_06_28",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7562,9 +7272,9 @@
       "source_file": ".planning/phases/v2.1-04-hive-validation/04-PLAN.md",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_04_hive_validation_04_plan",
-      "target": "v2_1_04_hive_validation_04_plan_phase_4_hive_validation_sign_off_plan"
+      "target": "v2_1_04_hive_validation_04_plan_phase_4_hive_validation_sign_off_plan",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7572,9 +7282,9 @@
       "source_file": ".planning/phases/v2.1-04-hive-validation/04-PLAN.md",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_04_hive_validation_04_plan_phase_4_hive_validation_sign_off_plan",
-      "target": "v2_1_04_hive_validation_04_plan_goal"
+      "target": "v2_1_04_hive_validation_04_plan_goal",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7582,9 +7292,9 @@
       "source_file": ".planning/phases/v2.1-04-hive-validation/04-PLAN.md",
       "source_location": "L14",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_04_hive_validation_04_plan_phase_4_hive_validation_sign_off_plan",
-      "target": "v2_1_04_hive_validation_04_plan_requirements"
+      "target": "v2_1_04_hive_validation_04_plan_requirements",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7592,9 +7302,9 @@
       "source_file": ".planning/phases/v2.1-04-hive-validation/04-PLAN.md",
       "source_location": "L82",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_04_hive_validation_04_plan_phase_4_hive_validation_sign_off_plan",
-      "target": "v2_1_04_hive_validation_04_plan_success_criteria"
+      "target": "v2_1_04_hive_validation_04_plan_success_criteria",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7602,9 +7312,9 @@
       "source_file": ".planning/phases/v2.1-04-hive-validation/04-PLAN.md",
       "source_location": "L37",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_04_hive_validation_04_plan_phase_4_hive_validation_sign_off_plan",
-      "target": "v2_1_04_hive_validation_04_plan_tasks"
+      "target": "v2_1_04_hive_validation_04_plan_tasks",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7612,9 +7322,9 @@
       "source_file": ".planning/phases/v2.1-04-hive-validation/04-PLAN.md",
       "source_location": "L75",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_04_hive_validation_04_plan_phase_4_hive_validation_sign_off_plan",
-      "target": "v2_1_04_hive_validation_04_plan_validation_criteria"
+      "target": "v2_1_04_hive_validation_04_plan_validation_criteria",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7622,9 +7332,9 @@
       "source_file": ".planning/phases/v2.1-04-hive-validation/04-PLAN.md",
       "source_location": "L89",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_04_hive_validation_04_plan_phase_4_hive_validation_sign_off_plan",
-      "target": "v2_1_04_hive_validation_04_plan_what_s_next"
+      "target": "v2_1_04_hive_validation_04_plan_what_s_next",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7632,9 +7342,9 @@
       "source_file": ".planning/phases/v2.1-04-hive-validation/04-PLAN.md",
       "source_location": "L16",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_04_hive_validation_04_plan_requirements",
-      "target": "v2_1_04_hive_validation_04_plan_validate_01_sample_acceptance"
+      "target": "v2_1_04_hive_validation_04_plan_validate_01_sample_acceptance",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7642,9 +7352,9 @@
       "source_file": ".planning/phases/v2.1-04-hive-validation/04-PLAN.md",
       "source_location": "L21",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_04_hive_validation_04_plan_requirements",
-      "target": "v2_1_04_hive_validation_04_plan_validate_02_indexing_verification"
+      "target": "v2_1_04_hive_validation_04_plan_validate_02_indexing_verification",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7652,9 +7362,9 @@
       "source_file": ".planning/phases/v2.1-04-hive-validation/04-PLAN.md",
       "source_location": "L26",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_04_hive_validation_04_plan_requirements",
-      "target": "v2_1_04_hive_validation_04_plan_validate_03_edge_case_identification"
+      "target": "v2_1_04_hive_validation_04_plan_validate_03_edge_case_identification",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7662,9 +7372,9 @@
       "source_file": ".planning/phases/v2.1-04-hive-validation/04-PLAN.md",
       "source_location": "L32",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_04_hive_validation_04_plan_requirements",
-      "target": "v2_1_04_hive_validation_04_plan_validate_04_remediation"
+      "target": "v2_1_04_hive_validation_04_plan_validate_04_remediation",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7672,9 +7382,9 @@
       "source_file": ".planning/phases/v2.1-04-hive-validation/04-PLAN.md",
       "source_location": "L39",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_04_hive_validation_04_plan_tasks",
-      "target": "v2_1_04_hive_validation_04_plan_wave_1_sample_selection_2026_06_29"
+      "target": "v2_1_04_hive_validation_04_plan_wave_1_sample_selection_2026_06_29",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7682,9 +7392,9 @@
       "source_file": ".planning/phases/v2.1-04-hive-validation/04-PLAN.md",
       "source_location": "L54",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_04_hive_validation_04_plan_tasks",
-      "target": "v2_1_04_hive_validation_04_plan_wave_2_live_validation_2026_06_30"
+      "target": "v2_1_04_hive_validation_04_plan_wave_2_live_validation_2026_06_30",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7692,9 +7402,9 @@
       "source_file": ".planning/phases/v2.1-04-hive-validation/04-PLAN.md",
       "source_location": "L68",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "v2_1_04_hive_validation_04_plan_tasks",
-      "target": "v2_1_04_hive_validation_04_plan_wave_3_issues_remediation_2026_07_01"
+      "target": "v2_1_04_hive_validation_04_plan_wave_3_issues_remediation_2026_07_01",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7702,9 +7412,9 @@
       "source_file": ".planning/todos/README.md",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "todos_readme",
-      "target": "todos_readme_pending_todos_phase_1_capture_contract"
+      "target": "todos_readme_pending_todos_phase_1_capture_contract",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7712,9 +7422,9 @@
       "source_file": ".planning/todos/README.md",
       "source_location": "L18",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "todos_readme_pending_todos_phase_1_capture_contract",
-      "target": "todos_readme_capture_entry_point"
+      "target": "todos_readme_capture_entry_point",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7722,9 +7432,9 @@
       "source_file": ".planning/todos/README.md",
       "source_location": "L62",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "todos_readme_pending_todos_phase_1_capture_contract",
-      "target": "todos_readme_deduplication_behavior_soft"
+      "target": "todos_readme_deduplication_behavior_soft",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7732,9 +7442,9 @@
       "source_file": ".planning/todos/README.md",
       "source_location": "L70",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "todos_readme_pending_todos_phase_1_capture_contract",
-      "target": "todos_readme_example_pending_todo"
+      "target": "todos_readme_example_pending_todo",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7742,9 +7452,9 @@
       "source_file": ".planning/todos/README.md",
       "source_location": "L26",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "todos_readme_pending_todos_phase_1_capture_contract",
-      "target": "todos_readme_file_naming"
+      "target": "todos_readme_file_naming",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7752,9 +7462,9 @@
       "source_file": ".planning/todos/README.md",
       "source_location": "L46",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "todos_readme_pending_todos_phase_1_capture_contract",
-      "target": "todos_readme_required_body_sections"
+      "target": "todos_readme_required_body_sections",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7762,9 +7472,9 @@
       "source_file": ".planning/todos/README.md",
       "source_location": "L36",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "todos_readme_pending_todos_phase_1_capture_contract",
-      "target": "todos_readme_required_frontmatter"
+      "target": "todos_readme_required_frontmatter",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7772,9 +7482,9 @@
       "source_file": ".planning/todos/README.md",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "todos_readme_pending_todos_phase_1_capture_contract",
-      "target": "todos_readme_scope"
+      "target": "todos_readme_scope",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7782,9 +7492,9 @@
       "source_file": ".planning/todos/README.md",
       "source_location": "L54",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "todos_readme_pending_todos_phase_1_capture_contract",
-      "target": "todos_readme_validation_behavior_lenient"
+      "target": "todos_readme_validation_behavior_lenient",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7792,9 +7502,9 @@
       "source_file": ".planning/todos/README.md",
       "source_location": "L96",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "todos_readme_pending_todos_phase_1_capture_contract",
-      "target": "todos_readme_verification_checklist"
+      "target": "todos_readme_verification_checklist",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7802,9 +7512,9 @@
       "source_file": ".planning/todos/pending/20260624_capture-todo-contract.todo.md",
       "source_location": "L17",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "pending_20260624_capture_todo_contract_todo",
-      "target": "pending_20260624_capture_todo_contract_todo_notes"
+      "target": "pending_20260624_capture_todo_contract_todo_notes",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7812,9 +7522,9 @@
       "source_file": ".planning/todos/pending/20260624_capture-todo-contract.todo.md",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "pending_20260624_capture_todo_contract_todo",
-      "target": "pending_20260624_capture_todo_contract_todo_problem"
+      "target": "pending_20260624_capture_todo_contract_todo_problem",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7822,9 +7532,9 @@
       "source_file": ".planning/todos/pending/20260624_capture-todo-contract.todo.md",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "pending_20260624_capture_todo_contract_todo",
-      "target": "pending_20260624_capture_todo_contract_todo_solution"
+      "target": "pending_20260624_capture_todo_contract_todo_solution",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7832,9 +7542,9 @@
       "source_file": ".planning/todos/pending/_TEMPLATE.todo.md",
       "source_location": "L17",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "pending_template_todo",
-      "target": "pending_template_todo_notes"
+      "target": "pending_template_todo_notes",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7842,9 +7552,9 @@
       "source_file": ".planning/todos/pending/_TEMPLATE.todo.md",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "pending_template_todo",
-      "target": "pending_template_todo_problem"
+      "target": "pending_template_todo_problem",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7852,9 +7562,9 @@
       "source_file": ".planning/todos/pending/_TEMPLATE.todo.md",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "pending_template_todo",
-      "target": "pending_template_todo_solution"
+      "target": "pending_template_todo_solution",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7872,9 +7582,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L83",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "agents",
-      "target": "extraction_contract"
+      "target": "extraction_contract",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -7892,9 +7602,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L107",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "agents",
-      "target": "troubleshooting"
+      "target": "troubleshooting",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7902,9 +7612,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L97",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "agents_tiktok_extraction_pipeline_agent_instructions",
-      "target": "agents_common_issues_workarounds"
+      "target": "agents_common_issues_workarounds",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7912,9 +7622,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L57",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "agents_tiktok_extraction_pipeline_agent_instructions",
-      "target": "agents_contract_output_structure"
+      "target": "agents_contract_output_structure",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7992,9 +7702,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L114",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "agents_tiktok_extraction_pipeline_agent_instructions",
-      "target": "agents_recent_changes_v2_1_0_2026_06_24"
+      "target": "agents_recent_changes_v2_1_0_2026_06_24",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8012,9 +7722,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L123",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "agents_tiktok_extraction_pipeline_agent_instructions",
-      "target": "agents_skill_automation"
+      "target": "agents_skill_automation",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8022,9 +7732,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L2",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract",
-      "target": "extraction_contract_tiktok_extraction_contract_ingestion_specification"
+      "target": "extraction_contract_tiktok_extraction_contract_ingestion_specification",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -8032,9 +7742,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L361",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract",
-      "target": "readme"
+      "target": "readme",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -8042,9 +7752,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L362",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract",
-      "target": "troubleshooting"
+      "target": "troubleshooting",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8052,9 +7762,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L313",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_tiktok_extraction_contract_ingestion_specification",
-      "target": "extraction_contract_changes_in_v2_1_0_2026_06_24"
+      "target": "extraction_contract_changes_in_v2_1_0_2026_06_24",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8062,9 +7772,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L16",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_tiktok_extraction_contract_ingestion_specification",
-      "target": "extraction_contract_contract_structure"
+      "target": "extraction_contract_contract_structure",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8072,9 +7782,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L215",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_tiktok_extraction_contract_ingestion_specification",
-      "target": "extraction_contract_example_contract"
+      "target": "extraction_contract_example_contract",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8082,9 +7792,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L184",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_tiktok_extraction_contract_ingestion_specification",
-      "target": "extraction_contract_field_validation_rules"
+      "target": "extraction_contract_field_validation_rules",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8092,9 +7802,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L341",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_tiktok_extraction_contract_ingestion_specification",
-      "target": "extraction_contract_hive_indexer_integration"
+      "target": "extraction_contract_hive_indexer_integration",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8102,9 +7812,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_tiktok_extraction_contract_ingestion_specification",
-      "target": "extraction_contract_overview"
+      "target": "extraction_contract_overview",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8112,9 +7822,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L359",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_tiktok_extraction_contract_ingestion_specification",
-      "target": "extraction_contract_related_documentation"
+      "target": "extraction_contract_related_documentation",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8122,9 +7832,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L324",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_tiktok_extraction_contract_ingestion_specification",
-      "target": "extraction_contract_validation_checklist"
+      "target": "extraction_contract_validation_checklist",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8132,9 +7842,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L18",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_contract_structure",
-      "target": "extraction_contract_yaml_frontmatter_required"
+      "target": "extraction_contract_yaml_frontmatter_required",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8142,9 +7852,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L44",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_yaml_frontmatter_required",
-      "target": "extraction_contract_content_metadata"
+      "target": "extraction_contract_content_metadata",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8152,9 +7862,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L22",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_yaml_frontmatter_required",
-      "target": "extraction_contract_core_ingestion_fields"
+      "target": "extraction_contract_core_ingestion_fields",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8162,9 +7872,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L114",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_yaml_frontmatter_required",
-      "target": "extraction_contract_extracted_content"
+      "target": "extraction_contract_extracted_content",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8172,9 +7882,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L176",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_yaml_frontmatter_required",
-      "target": "extraction_contract_other_fields"
+      "target": "extraction_contract_other_fields",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8182,9 +7892,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L60",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_yaml_frontmatter_required",
-      "target": "extraction_contract_processing_metadata"
+      "target": "extraction_contract_processing_metadata",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8192,9 +7902,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L157",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_yaml_frontmatter_required",
-      "target": "extraction_contract_quality_checks_required"
+      "target": "extraction_contract_quality_checks_required",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8202,9 +7912,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L130",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_yaml_frontmatter_required",
-      "target": "extraction_contract_supporting_files_required"
+      "target": "extraction_contract_supporting_files_required",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8212,9 +7922,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L80",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_yaml_frontmatter_required",
-      "target": "extraction_contract_tiktok_specific_metadata"
+      "target": "extraction_contract_tiktok_specific_metadata",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8222,9 +7932,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L200",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_field_validation_rules",
-      "target": "extraction_contract_derived_computed_fields"
+      "target": "extraction_contract_derived_computed_fields",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8232,9 +7942,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L207",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_field_validation_rules",
-      "target": "extraction_contract_optional_fields"
+      "target": "extraction_contract_optional_fields",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8242,9 +7952,9 @@
       "source_file": "EXTRACTION_CONTRACT.md",
       "source_location": "L186",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "extraction_contract_field_validation_rules",
-      "target": "extraction_contract_required_fields_extraction_fails_without"
+      "target": "extraction_contract_required_fields_extraction_fails_without",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8252,9 +7962,9 @@
       "source_file": "README.md",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme",
-      "target": "readme_tiktok_extraction_pipeline_ingestion_contract_extractor"
+      "target": "readme_tiktok_extraction_pipeline_ingestion_contract_extractor",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -8262,9 +7972,9 @@
       "source_file": "README.md",
       "source_location": "L195",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme",
-      "target": "troubleshooting"
+      "target": "troubleshooting",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8272,9 +7982,9 @@
       "source_file": "README.md",
       "source_location": "L150",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_tiktok_extraction_pipeline_ingestion_contract_extractor",
-      "target": "readme_batch_processing"
+      "target": "readme_batch_processing",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8282,9 +7992,9 @@
       "source_file": "README.md",
       "source_location": "L82",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_tiktok_extraction_pipeline_ingestion_contract_extractor",
-      "target": "readme_contract_compliance_hive_indexer_ready"
+      "target": "readme_contract_compliance_hive_indexer_ready",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8292,9 +8002,9 @@
       "source_file": "README.md",
       "source_location": "L141",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_tiktok_extraction_pipeline_ingestion_contract_extractor",
-      "target": "readme_feeding_the_ingestion_pipeline"
+      "target": "readme_feeding_the_ingestion_pipeline",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8302,9 +8012,9 @@
       "source_file": "README.md",
       "source_location": "L173",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_tiktok_extraction_pipeline_ingestion_contract_extractor",
-      "target": "readme_ledger_deduplication"
+      "target": "readme_ledger_deduplication",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8312,9 +8022,9 @@
       "source_file": "README.md",
       "source_location": "L137",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_tiktok_extraction_pipeline_ingestion_contract_extractor",
-      "target": "readme_legacy_compatibility"
+      "target": "readme_legacy_compatibility",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8322,9 +8032,9 @@
       "source_file": "README.md",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_tiktok_extraction_pipeline_ingestion_contract_extractor",
-      "target": "readme_one_time_setup"
+      "target": "readme_one_time_setup",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8332,9 +8042,9 @@
       "source_file": "README.md",
       "source_location": "L93",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_tiktok_extraction_pipeline_ingestion_contract_extractor",
-      "target": "readme_output_directory_structure"
+      "target": "readme_output_directory_structure",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8342,9 +8052,9 @@
       "source_file": "README.md",
       "source_location": "L197",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_tiktok_extraction_pipeline_ingestion_contract_extractor",
-      "target": "readme_related_documentation"
+      "target": "readme_related_documentation",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8352,9 +8062,9 @@
       "source_file": "README.md",
       "source_location": "L193",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_tiktok_extraction_pipeline_ingestion_contract_extractor",
-      "target": "readme_troubleshooting"
+      "target": "readme_troubleshooting",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8362,9 +8072,9 @@
       "source_file": "README.md",
       "source_location": "L47",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_tiktok_extraction_pipeline_ingestion_contract_extractor",
-      "target": "readme_two_step_workflow_recommended"
+      "target": "readme_two_step_workflow_recommended",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8372,9 +8082,9 @@
       "source_file": "README.md",
       "source_location": "L20",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_tiktok_extraction_pipeline_ingestion_contract_extractor",
-      "target": "readme_usage"
+      "target": "readme_usage",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8382,9 +8092,9 @@
       "source_file": "README.md",
       "source_location": "L49",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_two_step_workflow_recommended",
-      "target": "readme_step_1_stage_validate_without_promoting"
+      "target": "readme_step_1_stage_validate_without_promoting",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8392,9 +8102,9 @@
       "source_file": "README.md",
       "source_location": "L64",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_two_step_workflow_recommended",
-      "target": "readme_step_2_finalize_promote_all_staged_assets"
+      "target": "readme_step_2_finalize_promote_all_staged_assets",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8402,9 +8112,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L2",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting",
-      "target": "troubleshooting_tiktok_extraction_troubleshooting_guide"
+      "target": "troubleshooting_tiktok_extraction_troubleshooting_guide",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8412,9 +8122,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L409",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_tiktok_extraction_troubleshooting_guide",
-      "target": "troubleshooting_batch_processing_issues"
+      "target": "troubleshooting_batch_processing_issues",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8422,9 +8132,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L534",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_tiktok_extraction_troubleshooting_guide",
-      "target": "troubleshooting_contact_support"
+      "target": "troubleshooting_contact_support",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8432,9 +8142,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L214",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_tiktok_extraction_troubleshooting_guide",
-      "target": "troubleshooting_contract_compliance_issues"
+      "target": "troubleshooting_contract_compliance_issues",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8442,9 +8152,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L484",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_tiktok_extraction_troubleshooting_guide",
-      "target": "troubleshooting_debugging"
+      "target": "troubleshooting_debugging",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8452,9 +8162,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L284",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_tiktok_extraction_troubleshooting_guide",
-      "target": "troubleshooting_deduplication_issues"
+      "target": "troubleshooting_deduplication_issues",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8462,9 +8172,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L84",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_tiktok_extraction_troubleshooting_guide",
-      "target": "troubleshooting_download_issues"
+      "target": "troubleshooting_download_issues",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8472,9 +8182,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L360",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_tiktok_extraction_troubleshooting_guide",
-      "target": "troubleshooting_output_issues"
+      "target": "troubleshooting_output_issues",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8482,9 +8192,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L544",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_tiktok_extraction_troubleshooting_guide",
-      "target": "troubleshooting_related_documentation"
+      "target": "troubleshooting_related_documentation",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8492,9 +8202,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L464",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_tiktok_extraction_troubleshooting_guide",
-      "target": "troubleshooting_rights_policy"
+      "target": "troubleshooting_rights_policy",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8502,9 +8212,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_tiktok_extraction_troubleshooting_guide",
-      "target": "troubleshooting_setup_issues"
+      "target": "troubleshooting_setup_issues",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8512,9 +8222,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L152",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_tiktok_extraction_troubleshooting_guide",
-      "target": "troubleshooting_transcription_issues"
+      "target": "troubleshooting_transcription_issues",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8522,9 +8232,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L60",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_setup_issues",
-      "target": "troubleshooting_dependency_installation_fails"
+      "target": "troubleshooting_dependency_installation_fails",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8532,9 +8242,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L47",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_setup_issues",
-      "target": "troubleshooting_ffmpeg_or_yt_dlp_missing"
+      "target": "troubleshooting_ffmpeg_or_yt_dlp_missing",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8542,9 +8252,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_setup_issues",
-      "target": "troubleshooting_python_3_12_not_found"
+      "target": "troubleshooting_python_3_12_not_found",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8552,9 +8262,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L30",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_setup_issues",
-      "target": "troubleshooting_venv_path_error"
+      "target": "troubleshooting_venv_path_error",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8562,9 +8272,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L129",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_download_issues",
-      "target": "troubleshooting_segmentation_fault_ffmpeg"
+      "target": "troubleshooting_segmentation_fault_ffmpeg",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8572,9 +8282,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L86",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_download_issues",
-      "target": "troubleshooting_yt_dlp_download_fails"
+      "target": "troubleshooting_yt_dlp_download_fails",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8582,9 +8292,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L176",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_transcription_issues",
-      "target": "troubleshooting_cuda_out_of_memory"
+      "target": "troubleshooting_cuda_out_of_memory",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8592,9 +8302,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L196",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_transcription_issues",
-      "target": "troubleshooting_transcription_takes_too_long"
+      "target": "troubleshooting_transcription_takes_too_long",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8602,9 +8312,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L154",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_transcription_issues",
-      "target": "troubleshooting_whisper_model_not_found"
+      "target": "troubleshooting_whisper_model_not_found",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8612,9 +8322,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L259",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_contract_compliance_issues",
-      "target": "troubleshooting_creator_handle_not_stripped"
+      "target": "troubleshooting_creator_handle_not_stripped",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8622,9 +8332,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L239",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_contract_compliance_issues",
-      "target": "troubleshooting_title_not_found"
+      "target": "troubleshooting_title_not_found",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8632,9 +8342,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L216",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_contract_compliance_issues",
-      "target": "troubleshooting_zone_compliance_fails"
+      "target": "troubleshooting_zone_compliance_fails",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8642,9 +8352,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L336",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_deduplication_issues",
-      "target": "troubleshooting_ledger_corruption"
+      "target": "troubleshooting_ledger_corruption",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8652,9 +8362,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L286",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_deduplication_issues",
-      "target": "troubleshooting_video_already_extracted"
+      "target": "troubleshooting_video_already_extracted",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8662,9 +8372,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L312",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_deduplication_issues",
-      "target": "troubleshooting_video_in_failed_list"
+      "target": "troubleshooting_video_in_failed_list",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8672,9 +8382,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L388",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_output_issues",
-      "target": "troubleshooting_output_directory_permission_denied"
+      "target": "troubleshooting_output_directory_permission_denied",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8682,9 +8392,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L362",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_output_issues",
-      "target": "troubleshooting_staging_directory_fills_up_disk"
+      "target": "troubleshooting_staging_directory_fills_up_disk",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8692,9 +8402,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L438",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_batch_processing_issues",
-      "target": "troubleshooting_batch_extraction_very_slow"
+      "target": "troubleshooting_batch_extraction_very_slow",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8702,9 +8412,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L411",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_batch_processing_issues",
-      "target": "troubleshooting_batch_script_stops_early"
+      "target": "troubleshooting_batch_script_stops_early",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8712,9 +8422,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L466",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_rights_policy",
-      "target": "troubleshooting_rights_not_provided"
+      "target": "troubleshooting_rights_not_provided",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8722,9 +8432,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L497",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_debugging",
-      "target": "troubleshooting_check_extraction_error"
+      "target": "troubleshooting_check_extraction_error",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8732,9 +8442,9 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L486",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_debugging",
-      "target": "troubleshooting_enable_verbose_output"
+      "target": "troubleshooting_enable_verbose_output",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8742,10 +8452,11 @@
       "source_file": "TROUBLESHOOTING.md",
       "source_location": "L521",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "troubleshooting_debugging",
-      "target": "troubleshooting_verify_contract_fields"
+      "target": "troubleshooting_verify_contract_fields",
+      "confidence_score": 1.0
     }
   ],
-  "hyperedges": []
+  "hyperedges": [],
+  "built_at_commit": "a6502ff302049e00c2f36d5809a9673194cc06f9"
 }

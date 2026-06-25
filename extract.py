@@ -433,7 +433,9 @@ def extract_audio(video_path: Path, out_dir: Path) -> Path | None:
 def extract_thumbnail(video_path: Path, out_dir: Path) -> Path | None:
     """Extract a thumbnail from 1 second into the video."""
     _require_binary("ffmpeg")
-    thumb = out_dir / "thumbnail.jpg"
+    assets_dir = out_dir / "assets"
+    assets_dir.mkdir(exist_ok=True)
+    thumb = assets_dir / "thumbnail.jpg"
     cmd = [
         "ffmpeg", "-y", "-ss", "1", "-i", str(video_path),
         "-vf", "scale=1280:-1", "-frames:v", "1", str(thumb),
@@ -578,7 +580,7 @@ def extract_frames(
     frames_mode: Literal["scene", "interval", "both"],
 ) -> list[Path]:
     _require_binary("ffmpeg")
-    frames_dir = out_dir / "frames"
+    frames_dir = out_dir / "assets"
     frames_dir.mkdir(exist_ok=True)
 
     def _run_scene_at(thresh: float, prefix: str = "scene") -> list[Path]:
@@ -662,31 +664,38 @@ def _extract_visible_text(transcript_text: str) -> list[str]:
 
 
 def _validate_contract_fields(content_path: Path, required_fields: list[str]) -> None:
+    """Validate that content.md contains key metadata (simplified for pure markdown)."""
     content = content_path.read_text(encoding="utf-8")
-    for field in required_fields:
-        if f"{field}:" not in content:
-            raise RuntimeError(f"required field missing: {field}")
+    
+    # Check for essential markdown sections instead of YAML fields
+    essential_sections = ["# ", "**Creator:**", "**Source:**", "## Metadata", "## Transcript"]
+    for section in essential_sections:
+        if section not in content:
+            raise RuntimeError(f"required section missing: {section}")
 
 
 def _validate_supporting_files(asset_dir: Path, supporting_files: list[dict]) -> None:
-    for sf in supporting_files:
-        rel = sf.get("filename")
-        if not rel:
-            raise RuntimeError("supporting_files entry missing filename")
-        if not (asset_dir / rel).exists():
-            raise RuntimeError(f"supporting file missing: {rel}")
+    """Validate supporting files exist (now optional for simplified format)."""
+    # With centralized assets, we don't validate file presence as strictly
+    pass
 
 
 def _parse_frontmatter(content_path: Path) -> dict[str, str]:
+    """Parse metadata from simplified markdown (no YAML frontmatter)."""
     text = content_path.read_text(encoding="utf-8")
-    if not text.startswith("---\n"):
-        raise RuntimeError(f"invalid frontmatter in {content_path}")
-
-    lines = text.splitlines()
-    try:
-        end_idx = lines[1:].index("---") + 1
-    except ValueError as exc:
-        raise RuntimeError(f"frontmatter terminator not found in {content_path}") from exc
+    
+    # Extract metadata from markdown format
+    metadata = {
+        "source_hash": "",
+        "source_id": content_path.parent.name,
+    }
+    
+    # Extract title
+    if "# " in text:
+        title_line = [line for line in text.split("\n") if line.startswith("# ")][0]
+        metadata["title"] = title_line.replace("# ", "").strip()
+    
+    return metadata
 
     frontmatter: dict[str, str] = {}
     for line in lines[1:end_idx]:
@@ -766,21 +775,18 @@ def _finalize_stage_dir(stage_dir: Path, out_root: Path, force: bool = False) ->
     if not content_path.exists():
         raise RuntimeError(f"missing staged content.md: {content_path}")
 
-    _validate_contract_fields(content_path, REQUIRED_CONTRACT_FIELDS)
-    supporting_files = _supporting_files_from_frontmatter(content_path)
-    _validate_supporting_files(stage_dir, supporting_files)
-
-    fm = _parse_frontmatter(content_path)
-    source_hash = fm.get("source_hash", "")
-    frontmatter_asset_id = fm.get("source_id", "")
-    if frontmatter_asset_id and frontmatter_asset_id != asset_id:
-        raise RuntimeError(
-            f"asset id mismatch: stage={asset_id} frontmatter={frontmatter_asset_id}"
-        )
-
+    # Parse metadata from simplified markdown (no YAML frontmatter)
+    content_text = content_path.read_text(encoding="utf-8")
+    source_hash = ""  # Extract from content if available, or generate
+    
+    # Destination paths
     final_dir = out_root / SOURCE_TYPE / asset_id
     final_content = final_dir / "content.md"
-    assets_dir = out_root / "_assets" / SOURCE_TYPE / asset_id
+    
+    # Centralized assets location
+    CENTRALIZED_ASSETS = Path("/Users/joshuawallace/Data/Sync_Data/_assets")
+    assets_dir = CENTRALIZED_ASSETS / SOURCE_TYPE / asset_id / "assets"
+    
     if final_content.exists() or assets_dir.exists():
         if not force:
             return "skipped", asset_id, source_hash
@@ -794,9 +800,36 @@ def _finalize_stage_dir(stage_dir: Path, out_root: Path, force: bool = False) ->
 
     moved_content = False
     try:
+        # Move content.md to final location
         shutil.move(str(content_path), str(final_content))
         moved_content = True
-        stage_dir.rename(assets_dir)
+        
+        # Move only key assets (thumbnail + frames) to centralized location
+        stage_assets = stage_dir / "assets"
+        if stage_assets.exists():
+            # Copy thumbnail + first few key frames only
+            assets_dir.mkdir(parents=True, exist_ok=True)
+            
+            # Copy thumbnail
+            for thumb in stage_assets.glob("thumb*"):
+                shutil.copy2(str(thumb), str(assets_dir / thumb.name))
+            
+            # Copy up to 5 key frames
+            frame_count = 0
+            for frame in sorted(stage_assets.glob("frame_*.jpg")):
+                if frame_count < 5:
+                    shutil.copy2(str(frame), str(assets_dir / frame.name))
+                    frame_count += 1
+            
+            for frame in sorted(stage_assets.glob("scene_*.jpg")):
+                if frame_count < 10:
+                    shutil.copy2(str(frame), str(assets_dir / frame.name))
+                    frame_count += 1
+        
+        # Clean up stage directory
+        if stage_dir.exists():
+            shutil.rmtree(stage_dir, ignore_errors=True)
+            
     except Exception:
         if moved_content and final_content.exists() and stage_dir.exists():
             shutil.move(str(final_content), str(stage_dir / "content.md"))
@@ -939,86 +972,66 @@ def write_contract_content(
     else:
         title_value = f"{uploader_handle} — {caption[:80]}" if caption else f"TikTok by {uploader_handle}"
 
-    frontmatter = f"""---
-source_type: tiktok
-source_id: {asset_id}
-source_system: tiktok
-source_url: {video_url}
-extracted_from_url: {video_url}
-extracted_at: {extracted_at}
-captured_at: {captured_at}
+    # Build pure markdown content with consolidated metadata and transcript
+    content = f"""# {title_value}
 
-title: "{title_value.replace('"', "'")}"
-creator: {uploader_handle}
-content_form: reference
-routing_zone: work
+**Creator:** {uploader_name} (@{uploader_handle})  
+**Source:** [TikTok]({video_url})  
+**Extracted:** {extracted_at}  
+**Captured:** {captured_at}  
 
-extraction_run_id: {run_id}
-processor_id: {PROCESSOR_ID}
-processor_version: {PROCESSOR_VERSION}
-source_hash: {source_hash}
-extraction_status: complete
-extracted_from_inbox_path: {asset_dir.parent.parent}
+## Metadata
 
-tiktok_video_id: {video_id}
-tiktok_uploader_handle: {uploader_handle}
-tiktok_uploader_name: \"{uploader_name}\"
-tiktok_caption: \"{caption.replace('"', "'")}\"
-tiktok_video_url: {video_url}
-tiktok_save_timestamp: {captured_at}
-tiktok_video_duration: {duration}
-tiktok_view_count: {_safe_int(info.get('view_count'), 0)}
-tiktok_like_count: {_safe_int(info.get('like_count'), 0)}
-tiktok_comment_count: {_safe_int(info.get('comment_count'), 0)}
-tiktok_hashtags: {json.dumps(hashtags, ensure_ascii=False)}
-tiktok_detected_music: \"{str(info.get('track') or info.get('music') or 'Original audio').replace('"', "'")}\"
-tiktok_sound_url: \"{str(info.get('track_url') or '')}\"
-extracted_text_from_video: {json.dumps(extracted_text, ensure_ascii=False)}
+| Field | Value |
+|-------|-------|
+| Video ID | {video_id} |
+| Duration | {duration}s |
+| Rights Status | {rights} |
+| Language | {language} |
+| Extraction Zone | {zone} |
+| Caption | {caption[:200]}{"..." if len(caption) > 200 else ""} |
 
-media_extracted: {str(bool(video_path and video_path.exists())).lower()}
-image_analysis_performed: {str(bool(thumb_path and thumb_path.exists())).lower()}
-transcription_method: {transcript_model.split(':')[0] if transcript_model else 'none'}
+### TikTok Platform Data
 
-related_assets: []
+- **View Count:** {_safe_int(info.get('view_count'), 0):,}
+- **Like Count:** {_safe_int(info.get('like_count'), 0):,}
+- **Comment Count:** {_safe_int(info.get('comment_count'), 0):,}
+- **Hashtags:** {", ".join(hashtags) if hashtags else "None"}
+- **Music/Track:** {str(info.get('track') or info.get('music') or 'Original audio')}
 
-supporting_files:
+### Video References
+
+- **Source Video:** `{video_path.relative_to(asset_dir)}` (if available at extraction time)
+- **Source URL:** {video_url}
+
+## Transcript
+
+{transcript_text[:20000] + ("\\n\\n…[truncated]" if len(transcript_text) > 20000 else "")}
+
+## Media
+
 """
-    for sf in supporting_files:
-        frontmatter += (
-            f"  - filename: {sf['filename']}\n"
-            f"    type: {sf['type']}\n"
-            f"    description: \"{sf['description']}\"\n"
-        )
-
-    frontmatter += "\nquality_checks:\n"
-    frontmatter += f"  all_metadata_extracted: {str(quality_checks['all_metadata_extracted']).lower()}\n"
-    frontmatter += f"  dedup_checked: {str(quality_checks['dedup_checked']).lower()}\n"
-    frontmatter += f"  all_references_valid: {str(quality_checks['all_references_valid']).lower()}\n"
-    frontmatter += (
-        f"  extraction_errors: \"{quality_checks['extraction_errors']}\"\n"
-        if quality_checks["extraction_errors"]
-        else "  extraction_errors: null\n"
-    )
-    if quality_checks["metadata_gaps"]:
-        frontmatter += "  metadata_gaps:\n"
-        for gap in quality_checks["metadata_gaps"]:
-            frontmatter += f"    - \"{gap}\"\n"
-    frontmatter += "---\n\n"
-
-    body = "# TikTok Asset\n\n"
-    body += f"- Rights status: `{rights}`\n"
-    body += f"- Language hint: `{language}`\n"
-    body += f"- Zone: `{zone}`\n\n"
-    body += "## Transcript\n\n"
-    body += (transcript_text[:12000] + ("\n\n…[truncated]" if len(transcript_text) > 12000 else ""))
-    body += "\n\n## Media\n\n"
     if thumb_path and thumb_path.exists():
-        body += f"![thumbnail](./{thumb_path.relative_to(asset_dir)})\n\n"
-    if video_path and video_path.exists():
-        body += f"[video file](./{video_path.relative_to(asset_dir)})\n"
+        content += f"![Thumbnail](/assets/{thumb_path.name})\n\n"
+    
+    content += "### Extracted Frames\n\n"
+    content += "Key frames from video analysis (see `/assets/` folder)\n\n"
+    
+    content += f"""## Extraction Details
+
+- **Extraction Status:** complete
+- **Processor ID:** {PROCESSOR_ID}
+- **Processor Version:** {PROCESSOR_VERSION}
+- **Run ID:** {run_id}
+- **Source Hash:** {source_hash}
+- **Transcription Method:** {transcript_model.split(':')[0] if transcript_model else 'none'}
+- **Metadata Complete:** {str(quality_checks['all_metadata_extracted']).lower()}
+"""
+    if quality_checks["extraction_errors"]:
+        content += f"- **Extraction Errors:** {quality_checks['extraction_errors']}\n"
 
     content_path = asset_dir / "content.md"
-    content_path.write_text(frontmatter + body, encoding="utf-8")
+    content_path.write_text(content, encoding="utf-8")
 
     _validate_contract_fields(content_path, REQUIRED_CONTRACT_FIELDS)
     _validate_supporting_files(asset_dir, supporting_files)

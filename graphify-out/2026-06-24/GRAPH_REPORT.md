@@ -1,13 +1,17 @@
-# Graph Report - tittok-local-extactor  (2026-06-25)
+# Graph Report - /Volumes/Sync_Data/tools/tittok-local-extactor  (2026-06-24)
 
 ## Corpus Check
-- 32 files · ~19,831 words
-- Verdict: corpus is large enough that graph structure adds value.
+- cluster-only mode — file stats not available
 
 ## Summary
-- 393 nodes · 469 edges · 29 communities (25 shown, 4 thin omitted)
+- 378 nodes · 455 edges · 29 communities (25 shown, 4 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
+
+## Graph Freshness
+- Built from commit: `588eacfe`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - [[_COMMUNITY_Community 0|Community 0]]
@@ -101,12 +105,12 @@ Cohesion: 0.42
 Nodes (9): Namespace, build_url_map(), extract_username(), ffprobe_duration(), main(), parse_args(), patch_frontmatter(), Path (+1 more)
 
 ### Community 10 - "Community 10"
-Cohesion: 0.13
-Nodes (14): 1. Archive Old GSD Phases ✅, 2026-06-28, 2026-06-29, 2026-07-01, 2. Create v2.1 Milestone Structure ✅, 3. Document Phase 1 Completion ✅, 4. Update Milestone Tracking ✅, 5. Create Phase 2 Tracking ✅ (+6 more)
+Cohesion: 0.20
+Nodes (9): Active Milestone, Backlog, Phase 2: Todo Triage & Promotion, Phase 3: Roadmap Linkage, Phase 999.1: Update extractor based on ingestion template contract (BACKLOG), Phases, Progress, ROADMAP (+1 more)
 
 ### Community 11 - "Community 11"
-Cohesion: 0.10
-Nodes (19): Active Milestone, Backlog, Phase 2: Todo Triage & Promotion, Phase 3: Roadmap Linkage, Phase 999.1: Update extractor based on ingestion template contract (BACKLOG), Phases, Progress, ROADMAP (+11 more)
+Cohesion: 0.17
+Nodes (10): Current Configuration, Deduplication & Ledger, Extraction Progress, File Locations, Ledger Reset (2026-06-24), Next Steps (Phase 2 Active), Overall Status, Phase 1 Outcome ✅ (2026-06-24) (+2 more)
 
 ### Community 14 - "Community 14"
 Cohesion: 0.11
@@ -161,7 +165,7 @@ Cohesion: 0.50
 Nodes (3): Notes, Problem, Solution
 
 ## Knowledge Gaps
-- **239 isolated node(s):** `batch_extract.sh script`, `check_progress.sh script`, `Namespace`, `reprocess_sources.sh script`, `Rights policy (enforce before every run)` (+234 more)
+- **228 isolated node(s):** `batch_extract.sh script`, `check_progress.sh script`, `Namespace`, `reprocess_sources.sh script`, `Rights policy (enforce before every run)` (+223 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -169,13 +173,13 @@ Nodes (3): Notes, Problem, Solution
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `TikTok Extraction — Troubleshooting Guide` connect `Community 4` to `Community 11`?**
-  _High betweenness centrality (0.045) - this node is a cross-community bridge._
+  _High betweenness centrality (0.049) - this node is a cross-community bridge._
 - **Why does `TikTok Extraction Contract — Ingestion Specification` connect `Community 7` to `Community 11`?**
-  _High betweenness centrality (0.028) - this node is a cross-community bridge._
+  _High betweenness centrality (0.030) - this node is a cross-community bridge._
 - **Why does `TikTok Extraction Pipeline — Ingestion Contract Extractor` connect `Community 6` to `Community 11`?**
-  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+  _High betweenness centrality (0.021) - this node is a cross-community bridge._
 - **What connects `batch_extract.sh script`, `check_progress.sh script`, `Extract human-readable title from old TikTok export folder slug.` to the rest of the system?**
-  _248 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _237 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.125 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
