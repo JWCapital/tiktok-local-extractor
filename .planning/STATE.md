@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v2.1
 milestone_name: Hive Compliance & Reprocessing
 status: active
-last_updated: "2026-06-24T18:30:00.000Z"
-last_activity: "2026-06-24 18:30 — Phase 1 complete; Phase 2 active (160/381 staged, 42%); GSD phases archived & restructured"
+last_updated: "2026-06-25T17:47:26.274Z"
+last_activity: "2026-06-25 17:47 — Todo captured: full project review + reset to align with Revised_process_overview.md; all v2.1 phases to be closed and restarted fresh"
 progress:
   total_phases: 4
   completed_phases: 1
