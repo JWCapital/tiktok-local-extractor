@@ -25,10 +25,6 @@ Fix the two concrete storage discrepancies in `extract.py` so that staging and i
 - **D-05:** Apply to new runs only. Do not rename or migrate existing extracted video folders under `_assets/tiktok/`.
 - **D-06:** Update any internal path references that copy or glob from `assets/` (e.g., `_copy_hive_image_assets`, `_mirror_stage_images_to_assets`) to use `images/` consistently.
 
-### OCR / Transcript Merge
-
-- **D-07:** **Deferred.** OCR implementation (extract URLs/handles from screenshots, merge into transcript timeline) is out of scope for Phase 1. The existing lightweight proxy/stub can remain as-is.
-
 ### Claude's Discretion
 
 - Exact line numbers and call sites to patch — identify all `"assets"` string literals and `/ "assets"` path constructions in extract.py and update consistently.

@@ -14,7 +14,7 @@
 1. Staging path is `Sync_Data/_staging/tiktok/` (not inside `Inbox-Raw/`)
 2. Image subfolder is named `images/` (not `assets/`)
 3. Finalize destination is `Inbox-Raw/tiktok/tiktok-video-<id>/` (with `tiktok/` subfolder)
-4. OCR → transcript timeline merge is verified present or implemented
+4. OCR → transcript timeline merge is deferred to a future phase (D-07)
 
 **Plans:** 1 plan
 
