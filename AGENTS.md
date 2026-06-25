@@ -24,7 +24,7 @@ cd /Users/joshuawallace/Data/TikTok
 .venv/bin/python extract.py --finalize-all
 
 # Batch from favs_raw.txt
-./batch_extract.sh                        # uses exports/favs_raw.txt
+./batch_extract.sh                        # uses _assets/tiktok/queues/favs_raw.txt
 ./batch_extract.sh /path/to/other.txt    # custom URL list
 
 # Reprocess preserved legacy source videos
@@ -46,13 +46,12 @@ test -f /Users/joshuawallace/Data/TikTok/.venv/bin/python || echo "venv missing"
 | File | Purpose |
 | --- | --- |
 | `extract.py` | Main extractor — single URL or local file |
-| `batch_extract.sh` | Batch loop over `exports/favs_raw.txt`; skips done/failed IDs |
+| `batch_extract.sh` | Batch loop over `_assets/tiktok/queues/favs_raw.txt`; skips done/failed IDs |
 | `patch_metadata.py` | Back-fills `source_url`, `creator`, `duration_s` in extracted dirs |
-| `reprocess_sources.sh` | Re-runs extractor over legacy `exports/*/source/*.mp4` files |
-| `exports/ingest.py` | Ingests export folders into Hive Brain `inbox-raw/` |
-| `exports/favs_raw.txt` | Master URL queue (one URL per line) |
-| `exports/done_ids.txt` | Persistent dedup ledger — extracted video IDs |
-| `exports/failed_ids.txt` | Persistent skip list — remove an ID here to retry |
+| `reprocess_sources.sh` | Re-runs extractor over legacy `_assets/tiktok/legacy_exports/*/source/*.mp4` files |
+| `_assets/tiktok/queues/favs_raw.txt` | Master URL queue (one URL per line) |
+| `_assets/tiktok/state/done_ids.txt` | Persistent dedup ledger — extracted video IDs |
+| `_assets/tiktok/state/failed_ids.txt` | Persistent skip list — remove an ID here to retry |
 
 ## Contract Output Structure
 
@@ -85,14 +84,14 @@ See [EXTRACTION_CONTRACT.md](./EXTRACTION_CONTRACT.md) for full specification.
 ## Deduplication
 
 - Video ID extracted from URL via regex `[0-9]{17,}`
-- `done_ids.txt` and `failed_ids.txt` are checked before each run
+- `_assets/tiktok/state/done_ids.txt` and `_assets/tiktok/state/failed_ids.txt` are checked before each run
 - In batch/reprocess workflows, `done_ids.txt` is written only after successful finalize
-- Persistent ledger at `~/.extractors/tiktok/extraction-history.json`
-- Re-run a failed video: remove its ID from `failed_ids.txt`
+- Persistent ledger at `/Users/joshuawallace/Data/Sync_Data/_assets/tiktok/extraction-history.json`
+- Re-run a failed video: remove its ID from `_assets/tiktok/state/failed_ids.txt`
 
 ## Legacy exports
 
-`exports/<date>_<creator>_<title-slug>/` folders are the old format. They are **never modified** by the pipeline — use `reprocess_sources.sh` to re-extract them into the contract format, or `exports/ingest.py` to push them into Hive Brain.
+Legacy source folders are stored under `_assets/tiktok/legacy_exports/<date>_<creator>_<title-slug>/`. They are **never modified** by the pipeline — use `reprocess_sources.sh` to re-extract them into the contract format.
 
 ## Common Issues & Workarounds
 

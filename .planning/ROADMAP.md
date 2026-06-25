@@ -16,10 +16,11 @@
 3. Finalize destination is `Inbox-Raw/tiktok/tiktok-video-<id>/` (with `tiktok/` subfolder)
 4. OCR → transcript timeline merge is deferred to a future phase (D-07)
 
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 
 Plans:
-- [ ] 01-01-PLAN.md — Fix staging root path and rename images subfolder throughout extract.py and shell scripts
+
+- [x] 01-01-PLAN.md — Fix staging root path and rename images subfolder throughout extract.py and shell scripts
 
 ### Phase 2: Reprocess Remaining Videos
 
@@ -75,6 +76,7 @@ Plans:
 ## Canonical Reference
 
 All phases implement the architecture defined in:
+
 - `Revised_process_overview.md` — authoritative pipeline spec
 
 ## Backlog

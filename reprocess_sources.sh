@@ -4,20 +4,23 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 OUT_DIR="/Users/joshuawallace/Data/Sync_Data/Inbox-Raw"
-LOG_FILE="$ROOT/exports/reprocess_sources.log"
-DONE_FILE="$ROOT/exports/done_ids.txt"
-FAILED_FILE="$ROOT/exports/failed_ids.txt"
+ASSET_ROOT="/Users/joshuawallace/Data/Sync_Data/_assets/tiktok"
+LEGACY_EXPORTS_DIR="$ASSET_ROOT/legacy_exports"
+STATE_DIR="/Users/joshuawallace/Data/Sync_Data/_assets/tiktok/state"
+LOG_FILE="$STATE_DIR/reprocess_sources.log"
+DONE_FILE="$STATE_DIR/done_ids.txt"
+FAILED_FILE="$STATE_DIR/failed_ids.txt"
 
 cd "$ROOT"
-mkdir -p "$(dirname "$LOG_FILE")"
+mkdir -p "$STATE_DIR"
 : > "$LOG_FILE"
 
 echo "# Reprocess started $(date)" | tee -a "$LOG_FILE"
 echo "Output dir: $OUT_DIR" | tee -a "$LOG_FILE"
 
-TOTAL=$(find exports -mindepth 2 -maxdepth 2 -type d -name source | wc -l | tr -d ' ')
+TOTAL=$(find "$LEGACY_EXPORTS_DIR" -mindepth 2 -maxdepth 2 -type d -name source | wc -l | tr -d ' ')
 if [[ "$TOTAL" -eq 0 ]]; then
-  echo "No source directories found under exports/." | tee -a "$LOG_FILE"
+  echo "No source directories found under $LEGACY_EXPORTS_DIR." | tee -a "$LOG_FILE"
   exit 0
 fi
 
@@ -42,7 +45,7 @@ while IFS= read -r src_dir; do
       echo "[FAIL $count] $vid" | tee -a "$LOG_FILE"
     fi
   done < <(find "$src_dir" -type f \( -name '*.mp4' -o -name '*.mov' -o -name '*.mkv' -o -name '*.webm' \))
-done < <(find exports -mindepth 2 -maxdepth 2 -type d -name source)
+done < <(find "$LEGACY_EXPORTS_DIR" -mindepth 2 -maxdepth 2 -type d -name source)
 
 echo "" | tee -a "$LOG_FILE"
 echo "=== Finalize staged assets ===" | tee -a "$LOG_FILE"

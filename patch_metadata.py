@@ -3,7 +3,7 @@
 
 Updates:
 - _assets/tiktok/tiktok-video-<id>/meta.json
-- Inbox-Raw/tiktok/tiktok-video-<id>/content.md frontmatter
+- Inbox-Raw/tiktok/tiktok-video-<id>/*.md metadata file
 """
 
 from __future__ import annotations
@@ -14,12 +14,14 @@ import re
 import subprocess
 from pathlib import Path
 
+MAX_FILENAME_SLUG_LEN = 150
+
 ROOT = Path("/Users/joshuawallace/Data/Sync_Data/Inbox-Raw")
 INBOX = ROOT / "tiktok"
 ASSETS = ROOT / "_assets" / "tiktok"
 URL_SOURCES = [
     Path("/Users/joshuawallace/Downloads/kwitcom_favorites.txt"),
-    Path("/Users/joshuawallace/Data/TikTok/exports/favs_raw.txt"),
+    Path("/Users/joshuawallace/Data/Sync_Data/_assets/tiktok/queues/favs_raw.txt"),
 ]
 
 
@@ -72,6 +74,38 @@ def patch_frontmatter(md_path: Path, updates: dict[str, str]) -> bool:
 def extract_username(url: str) -> str:
     m = re.search(r"tiktok\.com/@([^/]+)/video/", url)
     return m.group(1) if m else "unknown"
+
+
+def _normalize_whitespace(text: str) -> str:
+    return re.sub(r"\s+", " ", str(text or "")).strip()
+
+
+def _slug(text: str, max_len: int = MAX_FILENAME_SLUG_LEN) -> str:
+    text = _normalize_whitespace(text).lower()
+    text = re.sub(r"[^a-z0-9]+", "-", text)
+    return text.strip("-")[:max_len]
+
+
+def _extract_h1_title(md_path: Path) -> str:
+    for line in md_path.read_text(encoding="utf-8", errors="ignore").splitlines():
+        if line.startswith("# "):
+            return _normalize_whitespace(line[2:])
+    return ""
+
+
+def _build_filename_slug(title: str, creator: str = "") -> str:
+    parts = [_slug(creator, 32), _slug(title, MAX_FILENAME_SLUG_LEN)]
+    value = "-".join(part for part in parts if part)
+    value = re.sub(r"-+", "-", value).strip("-")
+    return value[:MAX_FILENAME_SLUG_LEN].rstrip("-") or "tiktok-video"
+
+
+def _find_markdown_content_file(directory: Path) -> Path | None:
+    markdown_files = sorted(
+        [p for p in directory.glob("*.md") if p.is_file()],
+        key=lambda p: (p.name != "content.md", p.name),
+    )
+    return markdown_files[0] if markdown_files else None
 
 
 def parse_args() -> argparse.Namespace:
@@ -134,8 +168,8 @@ def main() -> None:
             continue
 
         meta_path = ASSETS / content_dir.name / "meta.json"
-        content_md = content_dir / "content.md"
-        if not meta_path.exists() or not content_md.exists():
+        content_md = _find_markdown_content_file(content_dir)
+        if not meta_path.exists() or content_md is None or not content_md.exists():
             missing_files += 1
             continue
 
@@ -146,6 +180,8 @@ def main() -> None:
             continue
 
         username = extract_username(source_url)
+        human_title = _extract_h1_title(content_md) or _normalize_whitespace(str(meta.get("title") or ""))
+        filename_slug = _build_filename_slug(human_title or f"tiktok-video-{video_id}", username)
 
         changed = False
         if args.force or not meta.get("source_url"):
@@ -167,6 +203,17 @@ def main() -> None:
                 if meta.get("duration_s") != duration:
                     changed = True
                 meta["duration_s"] = duration
+
+        if human_title and meta.get("title") != human_title:
+            changed = True
+            meta["title"] = human_title
+        if meta.get("filename_slug") != filename_slug:
+            changed = True
+            meta["filename_slug"] = filename_slug
+        suggested_name = f"{filename_slug}.md"
+        if meta.get("suggested_markdown_filename") != suggested_name:
+            changed = True
+            meta["suggested_markdown_filename"] = suggested_name
 
         updates = {
             "source_url": source_url,

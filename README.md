@@ -74,7 +74,7 @@ This:
 This:
 - Atomically moves `content.md` to `tiktok/tiktok-video-<id>/` (polled inbox lane)
 - Moves video, audio, transcripts, frames to `_assets/tiktok/tiktok-video-<id>/`
-- Updates `done_ids.txt` and persistent ledger (`~/.extractors/tiktok/extraction-history.json`)
+- Updates `done_ids.txt` and persistent ledger (`/Users/joshuawallace/Data/Sync_Data/_assets/tiktok/extraction-history.json`)
 - **Only finalized videos are marked as done** (retryable on stage failure)
 
 **Batch scripts automatically follow this pattern:** stage all → validate → finalize all
@@ -132,11 +132,11 @@ finalization mode, it atomically moves `content.md` to
 
 Persistent dedupe ledger (outside inbox purge lifecycle):
 
-- `~/.extractors/tiktok/extraction-history.json`
+- `/Users/joshuawallace/Data/Sync_Data/_assets/tiktok/extraction-history.json`
 
 ## Legacy compatibility
 
-Legacy `exports/` folders remain untouched unless manually migrated.
+Legacy source archives are stored under `/Users/joshuawallace/Data/Sync_Data/_assets/tiktok/legacy_exports/`.
 
 ## Feeding the ingestion pipeline
 
@@ -152,13 +152,13 @@ Legacy `exports/` folders remain untouched unless manually migrated.
 For extracting multiple videos from a URL list:
 
 ```bash
-# Extract all URLs in exports/favs_raw.txt
+# Extract all URLs in /Users/joshuawallace/Data/Sync_Data/_assets/tiktok/queues/favs_raw.txt
 ./batch_extract.sh
 
 # Extract from custom URL list
 ./batch_extract.sh /path/to/urls.txt
 
-# Reprocess all legacy source videos (exports/*/source/)
+# Reprocess all legacy source videos (_assets/tiktok/legacy_exports/*/source/)
 ./reprocess_sources.sh
 ```
 
@@ -166,24 +166,24 @@ Batch scripts:
 - Stage all videos (parallel or sequential)
 - Skip videos in `done_ids.txt` (already extracted)
 - Skip videos in `failed_ids.txt` (permanently failed)
-- Log progress to `exports/batch_extract.log` or `exports/reprocess_sources.log`
+- Log progress to `/Users/joshuawallace/Data/Sync_Data/_assets/tiktok/state/batch_extract.log` or `/Users/joshuawallace/Data/Sync_Data/_assets/tiktok/state/reprocess_sources.log`
 - Finalize all in one run
 - Update `done_ids.txt` only after successful finalize
 
 ## Ledger & Deduplication
 
-**Persistent ledger:** `~/.extractors/tiktok/extraction-history.json`
+**Persistent ledger:** `/Users/joshuawallace/Data/Sync_Data/_assets/tiktok/extraction-history.json`
 - Records extraction runs (one entry per finalized video)
 - Tracks source hash for dedup detection
 
 **Local dedup files:**
-- `exports/done_ids.txt` — extracted video IDs (do not re-extract)
-- `exports/failed_ids.txt` — permanently failed IDs (skip by default)
+- `/Users/joshuawallace/Data/Sync_Data/_assets/tiktok/state/done_ids.txt` — extracted video IDs (do not re-extract)
+- `/Users/joshuawallace/Data/Sync_Data/_assets/tiktok/state/failed_ids.txt` — permanently failed IDs (skip by default)
 
 **Retry a failed video:**
 ```bash
 # Remove ID from failed list
-sed -i '' '/^<video_id>$/d' exports/failed_ids.txt
+sed -i '' '/^<video_id>$/d' /Users/joshuawallace/Data/Sync_Data/_assets/tiktok/state/failed_ids.txt
 
 # Re-extract (with --force to bypass ledger)
 .venv/bin/python extract.py /path/to/video.mp4 --rights research --stage-only --force

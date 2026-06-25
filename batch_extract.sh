@@ -4,15 +4,19 @@ set -uo pipefail
 # Avoid SIGPIPE from head/tail closing pipes early
 trap '' PIPE
 
-URLS_FILE="${1:-exports/favs_raw.txt}"
-LOG_FILE="exports/batch_extract.log"
-LINKS_FILE="exports/batch_links.tsv"
-DONE_FILE="exports/done_ids.txt"       # persistent: survives reboots
-FAILED_FILE="exports/failed_ids.txt"   # persistent: remove an ID here to retry it
+ASSET_ROOT="/Users/joshuawallace/Data/Sync_Data/_assets/tiktok"
+STATE_DIR="$ASSET_ROOT/state"
+QUEUE_DIR="$ASSET_ROOT/queues"
+COOKIE_DIR="$ASSET_ROOT/cookies"
+URLS_FILE="${1:-$QUEUE_DIR/favs_raw.txt}"
+LOG_FILE="$STATE_DIR/batch_extract.log"
+LINKS_FILE="$STATE_DIR/batch_links.tsv"
+DONE_FILE="$STATE_DIR/done_ids.txt"       # persistent: survives reboots
+FAILED_FILE="$STATE_DIR/failed_ids.txt"   # persistent: remove an ID here to retry it
 OUT_DIR="/Users/joshuawallace/Data/Sync_Data/Inbox-Raw"
-COOKIE_FILE="exports/tiktok_cookies.txt"
+COOKIE_FILE="$COOKIE_DIR/tiktok_cookies.txt"
 
-mkdir -p exports
+mkdir -p "$STATE_DIR" "$QUEUE_DIR" "$COOKIE_DIR"
 
 if [[ ! -f "$URLS_FILE" ]]; then
   echo "ERROR: URL list not found: $URLS_FILE"
@@ -83,9 +87,9 @@ for url in "${URLS[@]}"; do
     staged_ok=$((staged_ok + 1))
 
     # Extract links from info.json description
-    latest_dir=$(ls -td exports/*/ 2>/dev/null | head -1)
-    if [ -n "$latest_dir" ]; then
-      info_json=$(ls "$latest_dir"source/*.info.json 2>/dev/null | head -1)
+    latest_stage=$(ls -td "$OUT_DIR"/_staging/tiktok/tiktok-video-*/ 2>/dev/null | head -1)
+    if [ -n "$latest_stage" ]; then
+      info_json=$(ls "$latest_stage"source/*.info.json 2>/dev/null | head -1)
       if [ -n "$info_json" ]; then
         links=$(.venv/bin/python -c "
 import json, re

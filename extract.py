@@ -21,6 +21,7 @@ import re
 import shutil
 import subprocess
 import sys
+import unicodedata
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
@@ -32,7 +33,9 @@ DEFAULT_OUT = Path(os.environ.get("HIVE_INBOX_RAW", Path.home() / "Code/hive/inb
 SOURCE_TYPE = "tiktok"
 PROCESSOR_ID = "tiktok-extractor-contract"
 PROCESSOR_VERSION = "2.1.0"
-LEDGER_PATH = Path.home() / ".extractors" / "tiktok" / "extraction-history.json"
+LEDGER_PATH = Path("/Users/joshuawallace/Data/Sync_Data/_assets/tiktok/extraction-history.json")
+CENTRALIZED_ASSETS_ROOT = Path("/Users/joshuawallace/Data/Sync_Data/_assets")
+MAX_FILENAME_SLUG_LEN = 150
 REQUIRED_CONTRACT_FIELDS = [
     "source_type",
     "source_id",
@@ -67,9 +70,106 @@ def _require_binary(name: str) -> None:
 
 
 def _slug(text: str, max_len: int = 40) -> str:
+    text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("ascii")
     text = text.lower()
     text = re.sub(r"[^a-z0-9]+", "-", text)
     return text.strip("-")[:max_len]
+
+
+def _normalize_whitespace(text: str) -> str:
+    return re.sub(r"\s+", " ", str(text or "")).strip()
+
+
+def _trimmed_text(text: str, max_len: int) -> str:
+    cleaned = _normalize_whitespace(text)
+    if len(cleaned) <= max_len:
+        return cleaned
+    clipped = cleaned[:max_len].rstrip()
+    if " " in clipped:
+        clipped = clipped.rsplit(" ", 1)[0]
+    return clipped.rstrip(" ,;:-") + "…"
+
+
+def _looks_like_placeholder_title(title: str, video_id: str) -> bool:
+    cleaned = _normalize_whitespace(title)
+    if not cleaned:
+        return True
+    lowered = cleaned.lower()
+    return bool(
+        re.fullmatch(r"\d{15,}", cleaned)
+        or lowered == f"tiktok video #{video_id}".lower()
+        or lowered == f"tiktok-video-{video_id}".lower()
+    )
+
+
+def _description_as_title(description: str) -> str:
+    cleaned = _normalize_whitespace(description)
+    if not cleaned:
+        return ""
+    cleaned = re.sub(r"https?://\S+", "", cleaned).strip()
+    cleaned = re.sub(r"(?:\s+#\w+)+\s*$", "", cleaned).strip()
+    if not cleaned:
+        return ""
+    sentence_match = re.match(r"^(.+?[.!?])(?:\s|$)", cleaned)
+    if sentence_match:
+        return _trimmed_text(sentence_match.group(1).strip(), 220)
+    return _trimmed_text(cleaned, 220)
+
+
+def _derive_human_title(
+    info: dict,
+    source: str,
+    creator_handle: str,
+    creator_name: str,
+    video_id: str,
+) -> str:
+    raw_title = _normalize_whitespace(str(info.get("title") or ""))
+    derived_from_description = _description_as_title(str(info.get("description") or ""))
+    derived_from_source = _normalize_whitespace(_title_from_source_path(source, video_id))
+
+    if raw_title and not _looks_like_placeholder_title(raw_title, video_id):
+        if raw_title.endswith("...") or raw_title.endswith("…"):
+            if derived_from_description:
+                return derived_from_description
+        return raw_title
+
+    if derived_from_description:
+        return derived_from_description
+    if derived_from_source:
+        return derived_from_source
+
+    fallback_name = creator_name or creator_handle or "unknown"
+    return f"TikTok by {fallback_name}"
+
+
+def _derive_human_description(info: dict, human_title: str) -> str:
+    description = _normalize_whitespace(str(info.get("description") or ""))
+    if description:
+        return description
+    title = _normalize_whitespace(str(info.get("title") or ""))
+    if title and title != human_title:
+        return title
+    return human_title
+
+
+def _build_filename_slug(title: str, creator: str = "", upload_date: str = "") -> str:
+    parts = [
+        _slug(upload_date, 16),
+        _slug(creator, 32),
+        _slug(title, MAX_FILENAME_SLUG_LEN),
+    ]
+    combined = "-".join(part for part in parts if part)
+    combined = re.sub(r"-+", "-", combined).strip("-")
+    if len(combined) > MAX_FILENAME_SLUG_LEN:
+        combined = combined[:MAX_FILENAME_SLUG_LEN].rstrip("-")
+    return combined or "tiktok-video"
+
+
+def _md_inline(text: object, max_len: int | None = None) -> str:
+    cleaned = _normalize_whitespace(str(text or ""))
+    if max_len is not None:
+        cleaned = _trimmed_text(cleaned, max_len)
+    return cleaned.replace("|", "\\|")
 
 
 def _sha256(path: Path) -> str:
@@ -176,8 +276,8 @@ def _normalize_source_url(
     # Construct canonical TikTok URL from metadata when source is a local file
     vid_id = str(info.get("id") or video_id_hint or _video_id_from_source(source) or "")
     uploader = str(
-        info.get("uploader_id")
-        or info.get("uploader")
+        info.get("uploader")
+        or info.get("uploader_id")
         or creator_hint
         or _creator_from_source_path(source)
         or ""
@@ -648,9 +748,10 @@ def extract_frames(
 
 def build_slug(info: dict, source: str) -> str:
     upload_date = info.get("upload_date", datetime.now(timezone.utc).strftime("%Y%m%d"))
-    creator = _slug(info.get("uploader", info.get("creator", "unknown")), 20)
-    title = _slug(info.get("title", Path(source).stem), 40)
-    return f"{upload_date}_{creator}_{title}"
+    creator = str(info.get("uploader") or info.get("creator") or info.get("uploader_id") or "unknown")
+    video_id = str(info.get("id") or _video_id_from_source(source))
+    human_title = _derive_human_title(info, source, creator, str(info.get("creator") or creator), video_id)
+    return _build_filename_slug(human_title, creator=creator, upload_date=str(upload_date))
 
 
 def _extract_hashtags(caption: str) -> list[str]:
@@ -663,8 +764,24 @@ def _extract_visible_text(transcript_text: str) -> list[str]:
     return lines[:12]
 
 
+def _clean_transcript_for_markdown(transcript_text: str) -> str:
+    """Normalize transcript for readable markdown while preserving line intent."""
+    cleaned_lines: list[str] = []
+    prev_line = ""
+    for raw_line in transcript_text.splitlines():
+        line = _normalize_whitespace(raw_line)
+        if not line:
+            continue
+        # Drop immediate duplicates from noisy ASR/caption streams.
+        if line == prev_line:
+            continue
+        cleaned_lines.append(line)
+        prev_line = line
+    return "\n".join(cleaned_lines)
+
+
 def _validate_contract_fields(content_path: Path, required_fields: list[str]) -> None:
-    """Validate that content.md contains key metadata (simplified for pure markdown)."""
+    """Validate that the generated markdown file contains key metadata sections."""
     content = content_path.read_text(encoding="utf-8")
     
     # Check for essential markdown sections instead of YAML fields
@@ -719,6 +836,93 @@ def _supporting_files_from_frontmatter(content_path: Path) -> list[dict]:
     return filenames
 
 
+def _find_markdown_content_file(directory: Path) -> Path | None:
+    markdown_files = sorted(
+        [p for p in directory.glob("*.md") if p.is_file()],
+        key=lambda p: (p.name != "content.md", p.name),
+    )
+    return markdown_files[0] if markdown_files else None
+
+
+def _copy_hive_image_assets(asset_payload_dir: Path, inbox_item_dir: Path) -> int:
+    """Copy image assets from persisted payload into Hive-facing inbox item dir.
+
+    Keeps only image files (thumbnail + extracted frames) in `inbox_item_dir/assets/`.
+    """
+    source_assets_dir = asset_payload_dir / "assets"
+    if not source_assets_dir.exists() or not source_assets_dir.is_dir():
+        return 0
+
+    inbox_assets_dir = inbox_item_dir / "assets"
+    inbox_assets_dir.mkdir(parents=True, exist_ok=True)
+
+    copied = 0
+    image_exts = {".jpg", ".jpeg", ".png", ".webp"}
+    for image_path in sorted(source_assets_dir.iterdir()):
+        if not image_path.is_file():
+            continue
+        if image_path.suffix.lower() not in image_exts:
+            continue
+        shutil.copy2(str(image_path), str(inbox_assets_dir / image_path.name))
+        copied += 1
+
+    return copied
+
+
+def _mirror_stage_images_to_assets(stage_dir: Path, asset_dir: Path) -> int:
+    """Copy staged images into centralized assets payload."""
+    stage_assets = stage_dir / "assets"
+    if not stage_assets.exists() or not stage_assets.is_dir():
+        return 0
+
+    target_assets = asset_dir / "assets"
+    target_assets.mkdir(parents=True, exist_ok=True)
+
+    copied = 0
+    image_exts = {".jpg", ".jpeg", ".png", ".webp"}
+    for image_path in sorted(stage_assets.iterdir()):
+        if not image_path.is_file() or image_path.suffix.lower() not in image_exts:
+            continue
+        shutil.copy2(str(image_path), str(target_assets / image_path.name))
+        copied += 1
+    return copied
+
+
+def _offload_nonimage_payload_to_assets(stage_dir: Path, asset_id: str) -> Path:
+    """Move non-image payload from stage into centralized _assets.
+
+    Stage keeps only markdown + image assets for quick review.
+    """
+    asset_dir = CENTRALIZED_ASSETS_ROOT / SOURCE_TYPE / asset_id
+    asset_dir.mkdir(parents=True, exist_ok=True)
+
+    # Keep hosted payload image-complete as well.
+    _mirror_stage_images_to_assets(stage_dir, asset_dir)
+
+    for folder_name in ("source", "transcript", "audio", "captions"):
+        src = stage_dir / folder_name
+        if not src.exists():
+            continue
+        dest = asset_dir / folder_name
+        if dest.exists():
+            if dest.is_dir():
+                shutil.rmtree(dest, ignore_errors=True)
+            else:
+                dest.unlink(missing_ok=True)
+        shutil.move(str(src), str(dest))
+
+    for file_name in ("meta.json",):
+        srcf = stage_dir / file_name
+        if not srcf.exists():
+            continue
+        destf = asset_dir / file_name
+        if destf.exists():
+            destf.unlink(missing_ok=True)
+        shutil.move(str(srcf), str(destf))
+
+    return asset_dir
+
+
 def _append_finalize_run(
     ledger: dict,
     run_id: str,
@@ -771,9 +975,21 @@ def _finalize_stage_dir(stage_dir: Path, out_root: Path, force: bool = False) ->
         raise RuntimeError(f"staged directory not found: {stage_dir}")
 
     asset_id = stage_dir.name
-    content_path = stage_dir / "content.md"
-    if not content_path.exists():
-        raise RuntimeError(f"missing staged content.md: {content_path}")
+    content_path = _find_markdown_content_file(stage_dir)
+    if content_path is None:
+        raise RuntimeError(f"missing staged markdown file in: {stage_dir}")
+
+    # Normalize staged markdown to exactly one file named content.md.
+    all_md_files = sorted([p for p in stage_dir.glob("*.md") if p.is_file()])
+    for md_path in all_md_files:
+        if md_path != content_path:
+            md_path.unlink(missing_ok=True)
+    if content_path.name != "content.md":
+        normalized = stage_dir / "content.md"
+        if normalized.exists():
+            normalized.unlink()
+        content_path.rename(normalized)
+        content_path = normalized
 
     # Parse metadata from simplified markdown (no YAML frontmatter)
     content_text = content_path.read_text(encoding="utf-8")
@@ -781,58 +997,69 @@ def _finalize_stage_dir(stage_dir: Path, out_root: Path, force: bool = False) ->
     
     # Destination paths
     final_dir = out_root / SOURCE_TYPE / asset_id
-    final_content = final_dir / "content.md"
+    final_content = final_dir / content_path.name
     
-    # Centralized assets location
-    CENTRALIZED_ASSETS = Path("/Users/joshuawallace/Data/Sync_Data/_assets")
-    assets_dir = CENTRALIZED_ASSETS / SOURCE_TYPE / asset_id / "assets"
+    # Centralized assets location (full persisted payload)
+    assets_dir = CENTRALIZED_ASSETS_ROOT / SOURCE_TYPE / asset_id
     
-    if final_content.exists() or assets_dir.exists():
+    if final_content.exists():
         if not force:
             return "skipped", asset_id, source_hash
         if final_dir.exists():
             shutil.rmtree(final_dir, ignore_errors=True)
-        if assets_dir.exists():
-            shutil.rmtree(assets_dir, ignore_errors=True)
 
     final_dir.mkdir(parents=True, exist_ok=True)
     assets_dir.parent.mkdir(parents=True, exist_ok=True)
 
     moved_content = False
+    copied_images = 0
     try:
-        # Move content.md to final location
+        # 1) Persist non-image payload into centralized assets; keep stage lightweight.
+        assets_dir = _offload_nonimage_payload_to_assets(stage_dir, asset_id)
+
+        # 2) Move only inbox-facing markdown into final polled lane
+        if not content_path.exists():
+            raise RuntimeError(f"staged markdown missing before finalize move: {content_path}")
         shutil.move(str(content_path), str(final_content))
         moved_content = True
-        
+
         # Move only key assets (thumbnail + frames) to centralized location
         stage_assets = stage_dir / "images"
         if stage_assets.exists():
             # Copy thumbnail + first few key frames only
             assets_dir.mkdir(parents=True, exist_ok=True)
-            
+
             # Copy thumbnail
             for thumb in stage_assets.glob("thumb*"):
                 shutil.copy2(str(thumb), str(assets_dir / thumb.name))
-            
+
             # Copy up to 5 key frames
             frame_count = 0
             for frame in sorted(stage_assets.glob("frame_*.jpg")):
                 if frame_count < 5:
                     shutil.copy2(str(frame), str(assets_dir / frame.name))
                     frame_count += 1
-            
+
             for frame in sorted(stage_assets.glob("scene_*.jpg")):
                 if frame_count < 10:
                     shutil.copy2(str(frame), str(assets_dir / frame.name))
                     frame_count += 1
-        
+
         # Clean up stage directory
         if stage_dir.exists():
             shutil.rmtree(stage_dir, ignore_errors=True)
-            
+
     except Exception:
+        # Roll back markdown move if needed
         if moved_content and final_content.exists() and stage_dir.exists():
-            shutil.move(str(final_content), str(stage_dir / "content.md"))
+            rollback_path = stage_dir / "content.md"
+            if rollback_path.exists():
+                rollback_path.unlink()
+            shutil.move(str(final_content), str(rollback_path))
+        # Roll back copied image assets if needed
+        inbox_assets_dir = final_dir / "assets"
+        if copied_images > 0 and inbox_assets_dir.exists():
+            shutil.rmtree(inbox_assets_dir, ignore_errors=True)
         raise
 
     return "created", asset_id, source_hash
@@ -878,7 +1105,7 @@ def write_contract_content(
     video_id = str(info.get("id") or _video_id_from_source(source))
     asset_id = f"tiktok-video-{video_id}"
     creator_fallback = _creator_from_source_path(source)
-    uploader_handle = str(info.get("uploader_id") or info.get("uploader") or "").strip()
+    uploader_handle = str(info.get("uploader") or info.get("uploader_id") or "").strip()
     if not uploader_handle or uploader_handle.lower() == "unknown":
         uploader_handle = creator_fallback
     # Strip @ prefix if present for consistent storage in downstream systems
@@ -890,7 +1117,14 @@ def write_contract_content(
     uploader_name = str(info.get("creator") or info.get("uploader") or "").strip()
     if not uploader_name or uploader_name.lower() == "unknown":
         uploader_name = _humanize_handle(creator_fallback or uploader_handle)
-    caption = str(info.get("description") or info.get("title") or "")
+    title_value = _derive_human_title(info, source, uploader_handle, uploader_name, video_id)
+    description_value = _derive_human_description(info, title_value)
+    filename_slug = _build_filename_slug(
+        title_value,
+        creator=uploader_handle,
+        upload_date=str(info.get("upload_date") or ""),
+    )
+    caption = description_value
     video_url = _normalize_source_url(
         source,
         info,
@@ -965,15 +1199,52 @@ def write_contract_content(
     hashtags = _extract_hashtags(caption)
     extracted_text = _extract_visible_text(transcript_text)
 
-    # Use meta.json title if available, fall back to derived title
-    title_from_meta = str(info.get("title") or "").strip()
-    if title_from_meta and not re.match(r"^\d{15,}$", title_from_meta):
-        title_value = title_from_meta
-    else:
-        title_value = f"{uploader_handle} — {caption[:80]}" if caption else f"TikTok by {uploader_handle}"
+    staged_source_rel = (
+        str(video_path.relative_to(asset_dir))
+        if video_path and video_path.exists()
+        else "not available"
+    )
+    hosted_assets_dir = CENTRALIZED_ASSETS_ROOT / SOURCE_TYPE / asset_id
+    hosted_source_rel = (
+        f"{SOURCE_TYPE}/{asset_id}/source/{video_path.name}"
+        if video_path and video_path.exists()
+        else "not available"
+    )
+    hosted_source_uri = (
+        (CENTRALIZED_ASSETS_ROOT / SOURCE_TYPE / asset_id / "source" / video_path.name).as_uri()
+        if video_path and video_path.exists()
+        else ""
+    )
+    cleaned_transcript = _clean_transcript_for_markdown(transcript_text)
+
+    # Enforce exactly one staged markdown file per asset directory.
+    for existing_md in asset_dir.glob("*.md"):
+        try:
+            existing_md.unlink()
+        except FileNotFoundError:
+            pass
 
     # Build pure markdown content with consolidated metadata and transcript
     content = f"""# {title_value}
+
+## Quick Metadata
+
+| Key | Value |
+|---|---|
+| Source ID | `{asset_id}` |
+| Video ID | `{video_id}` |
+| Creator | `{uploader_name}` (`@{uploader_handle}`) |
+| Title | {_md_inline(title_value, 220)} |
+| Duration | `{duration}s` |
+| Captured At | `{captured_at}` |
+| Extracted At | `{extracted_at}` |
+| Rights | `{rights}` |
+| Language | `{language}` |
+| Routing Zone | `{zone}` |
+| Source URL | {video_url} |
+| Source Hash | `{source_hash}` |
+| Processor | `{PROCESSOR_ID}@{PROCESSOR_VERSION}` |
+| Run ID | `{run_id}` |
 
 **Creator:** {uploader_name} (@{uploader_handle})  
 **Source:** [TikTok]({video_url})  
@@ -984,12 +1255,14 @@ def write_contract_content(
 
 | Field | Value |
 |-------|-------|
+| Human Title | {_md_inline(title_value, 220)} |
+| Filename Slug | `{filename_slug}` |
 | Video ID | {video_id} |
 | Duration | {duration}s |
 | Rights Status | {rights} |
 | Language | {language} |
 | Extraction Zone | {zone} |
-| Caption | {caption[:200]}{"..." if len(caption) > 200 else ""} |
+| Description | {_md_inline(description_value, 260)} |
 
 ### TikTok Platform Data
 
@@ -1001,19 +1274,26 @@ def write_contract_content(
 
 ### Video References
 
-- **Source Video:** `{video_path.relative_to(asset_dir)}` (if available at extraction time)
+- **Staged Source (pre-finalize):** `{staged_source_rel}`
 - **Source URL:** {video_url}
+- **Hosted Source (_assets):** {f"[source video]({hosted_source_uri})" if hosted_source_uri else "not available"}
+- **Hosted Source Path (_assets):** `{hosted_source_rel}`
+- **Hosted Asset Root (_assets):** `{hosted_assets_dir}`
+
+## Description
+
+{description_value}
 
 ## Transcript
 
-{transcript_text[:20000] + ("\\n\\n…[truncated]" if len(transcript_text) > 20000 else "")}
+{cleaned_transcript[:20000] + ("\\n\\n…[truncated]" if len(cleaned_transcript) > 20000 else "")}
 
 ## Media
 
 """
     if thumb_path and thumb_path.exists():
         content += f"![Thumbnail](images/{thumb_path.name})\n\n"
-    
+
     content += "### Extracted Frames\n\n"
     content += "Key frames from video analysis (see `images/` folder)\n\n"
     
@@ -1052,16 +1332,20 @@ def write_package(
     caption_path: Path | None,
 ) -> None:
     captured_at = datetime.now(timezone.utc).isoformat()
-    creator = str(info.get("uploader_id") or info.get("uploader") or info.get("creator") or "")
+    creator = str(info.get("uploader") or info.get("uploader_id") or info.get("creator") or "")
     if not creator:
         creator = _creator_from_source_path(source)
     if not creator:
         creator = "unknown"
     video_id = str(info.get("id") or _video_id_from_source(source))
-    raw_title = str(info.get("title", ""))
-    if not raw_title or re.match(r"^\d{15,}$", raw_title):
-        raw_title = _title_from_source_path(source, video_id) or f"TikTok by @{creator}"
-    title = raw_title
+    creator_name = str(info.get("creator") or info.get("uploader") or creator).strip()
+    title = _derive_human_title(info, source, creator, creator_name, video_id)
+    description = _derive_human_description(info, title)
+    filename_slug = _build_filename_slug(
+        title,
+        creator=creator,
+        upload_date=str(info.get("upload_date") or ""),
+    )
     source_url = _normalize_source_url(source, info, creator_hint=creator, video_id_hint=video_id)
     duration_s = info.get("duration") or None
     if duration_s is None:
@@ -1076,6 +1360,9 @@ def write_package(
         "platform": "tiktok",
         "creator": creator,
         "title": title,
+        "description": description,
+        "filename_slug": filename_slug,
+        "suggested_markdown_filename": f"{filename_slug}.md",
         "captured_at": captured_at,
         "rights_status": rights,
         "language": language,
@@ -1197,7 +1484,7 @@ def main() -> None:
 
     rights = check_rights(args.rights)
     print(f"[1/7] rights: {rights} ✓")
-    print("Compatibility: legacy folders under exports/ are left untouched unless manually migrated.")
+    print("Compatibility: legacy source archives live under /Users/joshuawallace/Data/Sync_Data/_assets/tiktok/legacy_exports unless manually migrated.")
 
     acquire_dir = staging_root / f"_acquire_{run_id}"
     asset_id = f"tiktok-video-{_video_id_from_source(args.source)}"
@@ -1336,6 +1623,9 @@ def main() -> None:
         )
         print(f"  content: {content_path}")
 
+        hosted_assets_dir = _offload_nonimage_payload_to_assets(stage_dir, asset_id)
+        print(f"  hosted non-image payload: {hosted_assets_dir}")
+
         if args.dry_run:
             print("Dry-run: skipping final atomic move into source directory.")
             shutil.rmtree(stage_dir, ignore_errors=True)
@@ -1351,7 +1641,7 @@ def main() -> None:
             raise RuntimeError(f"final destination already exists for {finalized_asset_id}; use --force to overwrite")
 
         final_dir = out_root / SOURCE_TYPE / finalized_asset_id
-        assets_dir = out_root / "_assets" / SOURCE_TYPE / finalized_asset_id
+        assets_dir = Path("/Users/joshuawallace/Data/Sync_Data/_assets") / SOURCE_TYPE / finalized_asset_id
         print(f"  atomic move complete: {final_dir}")
         print(f"  assets: {assets_dir}")
 
