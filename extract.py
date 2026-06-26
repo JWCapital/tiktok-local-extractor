@@ -1023,13 +1023,26 @@ def _finalize_stage_dir(stage_dir: Path, out_root: Path, force: bool = False) ->
         shutil.move(str(content_path), str(final_content))
         moved_content = True
 
-        # Move only key assets (thumbnail + frames) to centralized location
+        # Copy inbox-facing and permanent image assets before removing staging.
         stage_assets = stage_dir / "images"
         if stage_assets.exists():
-            # Copy thumbnail + first few key frames only
+            final_images_dir = final_dir / "images"
+            permanent_images_dir = assets_dir / "images"
+            final_images_dir.mkdir(parents=True, exist_ok=True)
+            permanent_images_dir.mkdir(parents=True, exist_ok=True)
             assets_dir.mkdir(parents=True, exist_ok=True)
 
-            # Copy thumbnail
+            for image_path in sorted(stage_assets.iterdir()):
+                if not image_path.is_file():
+                    continue
+                if image_path.suffix.lower() not in {".jpg", ".jpeg", ".png", ".webp"}:
+                    continue
+                shutil.copy2(str(image_path), str(final_images_dir / image_path.name))
+                shutil.copy2(str(image_path), str(permanent_images_dir / image_path.name))
+                copied_images += 1
+
+            # Preserve legacy centralized root copies for consumers that already
+            # read thumbnail/key frames directly under the asset payload root.
             for thumb in stage_assets.glob("thumb*"):
                 shutil.copy2(str(thumb), str(assets_dir / thumb.name))
 
@@ -1057,9 +1070,9 @@ def _finalize_stage_dir(stage_dir: Path, out_root: Path, force: bool = False) ->
                 rollback_path.unlink()
             shutil.move(str(final_content), str(rollback_path))
         # Roll back copied image assets if needed
-        inbox_assets_dir = final_dir / "assets"
-        if copied_images > 0 and inbox_assets_dir.exists():
-            shutil.rmtree(inbox_assets_dir, ignore_errors=True)
+        inbox_images_dir = final_dir / "images"
+        if copied_images > 0 and inbox_images_dir.exists():
+            shutil.rmtree(inbox_images_dir, ignore_errors=True)
         raise
 
     return "created", asset_id, source_hash
