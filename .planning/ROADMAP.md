@@ -34,7 +34,16 @@ Plans:
 3. Finalized content lands in `Inbox-Raw/tiktok/tiktok-video-<id>/`
 4. `done_ids.txt` and `extraction-history.json` are updated correctly
 
-**Plans:** TBD
+**Plans:** 2/2 plans complete
+
+Plans:
+**Wave 1**
+
+- [x] 02-01-PLAN.md — Fix the link-extraction staging glob prefix in batch_extract.sh line 90 (D-04)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [x] 02-02-PLAN.md — Run all 186 queued URLs through the corrected pipeline and verify outputs/state
 
 ### Phase 3: Documentation
 
@@ -69,7 +78,7 @@ Plans:
 | Phase | Target | Status |
 |-------|--------|--------|
 | 1. Code Alignment | 2026-06-26 | Not started |
-| 2. Reprocess Remaining | 2026-06-28 | Not started |
+| 2. Reprocess Remaining | 2026-06-28 | Complete |
 | 3. Documentation | 2026-06-27 | Not started (parallel with Phase 2) |
 | 4. Validation | 2026-06-30 | Not started |
 
