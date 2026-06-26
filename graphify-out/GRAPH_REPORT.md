@@ -1,17 +1,13 @@
-# Graph Report - /Volumes/Sync_Data/tools/tiktok-local-extactor  (2026-06-25)
+# Graph Report - tiktok-local-extactor  (2026-06-26)
 
 ## Corpus Check
-- cluster-only mode — file stats not available
+- 46 files · ~33,301 words
+- Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 429 nodes · 530 edges · 29 communities (25 shown, 4 thin omitted)
+- 572 nodes · 670 edges · 42 communities (36 shown, 6 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
-
-## Graph Freshness
-- Built from commit: `d9db20a4`
-- Run `git rev-parse HEAD` and compare to check if the graph is stale.
-- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - [[_COMMUNITY_Community 0|Community 0]]
@@ -43,18 +39,31 @@
 - [[_COMMUNITY_Community 26|Community 26]]
 - [[_COMMUNITY_Community 27|Community 27]]
 - [[_COMMUNITY_Community 28|Community 28]]
+- [[_COMMUNITY_Community 29|Community 29]]
+- [[_COMMUNITY_Community 30|Community 30]]
+- [[_COMMUNITY_Community 31|Community 31]]
+- [[_COMMUNITY_Community 32|Community 32]]
+- [[_COMMUNITY_Community 33|Community 33]]
+- [[_COMMUNITY_Community 34|Community 34]]
+- [[_COMMUNITY_Community 35|Community 35]]
+- [[_COMMUNITY_Community 36|Community 36]]
+- [[_COMMUNITY_Community 37|Community 37]]
+- [[_COMMUNITY_Community 38|Community 38]]
+- [[_COMMUNITY_Community 39|Community 39]]
+- [[_COMMUNITY_Community 40|Community 40]]
+- [[_COMMUNITY_Community 41|Community 41]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `main()` - 24 edges
-2. `write_contract_content()` - 19 edges
+1. `main()` - 25 edges
+2. `write_contract_content()` - 20 edges
 3. `TikTok Extraction Pipeline — Agent Instructions` - 13 edges
 4. `write_package()` - 12 edges
 5. `main()` - 12 edges
 6. `TikTok Extraction Pipeline — Ingestion Contract Extractor` - 12 edges
 7. `TikTok Extraction — Troubleshooting Guide` - 12 edges
-8. `TikTok Extraction Pipeline — Project Overview` - 10 edges
-9. `Phase 999.1 Plan 01 Summary` - 10 edges
-10. `Pending Todos (Phase 1 Capture Contract)` - 10 edges
+8. `TikTok Extraction Pipeline — Project Overview` - 11 edges
+9. `Goal Achievement` - 11 edges
+10. `Phase 999.1 Plan 01 Summary` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
 - None detected - all connections are within the same source files.
@@ -62,15 +71,15 @@
 ## Import Cycles
 - None detected.
 
-## Communities (29 total, 4 thin omitted)
+## Communities (42 total, 6 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.12
 Nodes (15): A. Single video extraction, B. Check and process new favorites, Dep check, Notes, Output, Recency window policy, Rights policy (enforce before every run), Step 1 — Open TikTok favorites in browser (+7 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.08
-Nodes (66): acquire(), _append_finalize_run(), _append_run(), _best_captured_at(), _build_filename_slug(), build_slug(), check_rights(), collect_captions() (+58 more)
+Cohesion: 0.07
+Nodes (74): acquire(), _append_finalize_run(), _append_run(), _best_captured_at(), _build_filename_slug(), build_slug(), check_rights(), _clean_transcript_for_markdown() (+66 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.17
@@ -81,15 +90,15 @@ Cohesion: 0.06
 Nodes (35): Batch Extraction Very Slow, Batch Processing Issues, Batch Script Stops Early, Check Extraction Error, Contact & Support, Contract Compliance Issues, Creator Handle Not Stripped, CUDA Out of Memory (+27 more)
 
 ### Community 4 - "Community 4"
-Cohesion: 0.10
+Cohesion: 0.09
 Nodes (21): Changes in v2.1.0 (2026-06-24), Content Metadata, Contract Structure, Core Ingestion Fields, Derived/Computed Fields, Example Contract, Extracted Content, Field Validation Rules (+13 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.08
-Nodes (22): Constraints, Context, Core Value, Current Milestone: v2.1 Compliance & Reprocessing, Evolution, Key Constraints, Key Decisions, Last updated (+14 more)
+Cohesion: 0.15
+Nodes (13): Canonical Pipeline (Revised_process_overview.md), Constraints, Context, Core Value, Current Milestone: v2.2 — Pipeline Alignment to Revised Process Overview, Evolution, Key Constraints, Key Decisions (+5 more)
 
 ### Community 6 - "Community 6"
-Cohesion: 0.07
+Cohesion: 0.06
 Nodes (27): Common Issues & Workarounds, Contract Output Structure, Critical Constraints, Deduplication, Dependency check, Favorites pull scope (process update), Further reading, Key files (+19 more)
 
 ### Community 7 - "Community 7"
@@ -109,8 +118,8 @@ Cohesion: 0.13
 Nodes (14): 1. Archive Old GSD Phases ✅, 2026-06-28, 2026-06-29, 2026-07-01, 2. Create v2.1 Milestone Structure ✅, 3. Document Phase 1 Completion ✅, 4. Update Milestone Tracking ✅, 5. Create Phase 2 Tracking ✅ (+6 more)
 
 ### Community 11 - "Community 11"
-Cohesion: 0.20
-Nodes (9): Active Milestone, Backlog, Phase 2: Todo Triage & Promotion, Phase 3: Roadmap Linkage, Phase 999.1: Update extractor based on ingestion template contract (BACKLOG), Phases, Progress, ROADMAP (+1 more)
+Cohesion: 0.09
+Nodes (22): 1. Core ingestion, 2. Content metadata, 3. Processing metadata, 4. TikTok-specific metadata, 5. Extracted content flags, 6. Supporting files, 7. Quality checks, 8. Other (+14 more)
 
 ### Community 14 - "Community 14"
 Cohesion: 0.11
@@ -164,25 +173,69 @@ Nodes (3): Notes, Problem, Solution
 Cohesion: 0.50
 Nodes (3): Notes, Problem, Solution
 
+### Community 29 - "Community 29"
+Cohesion: 0.10
+Nodes (19): batch_extract.sh Staging Fix, Canonical References, Claude's Discretion, Deferred Ideas, Established Patterns, Existing Code Insights, Failed IDs Handling, Implementation Decisions (+11 more)
+
+### Community 30 - "Community 30"
+Cohesion: 0.12
+Nodes (15): Canonical References, Claude's Discretion, Deferred Ideas, Established Patterns, Existing Code Insights, Image Subfolder Rename, Implementation Decisions, Implementation Target (+7 more)
+
+### Community 31 - "Community 31"
+Cohesion: 0.13
+Nodes (14): ALIGN-03 Confirmed, Auto-fixed Issues, Changes Made, Deviations from Plan, Known Stubs, Phase 01 Plan 01: Code Alignment — Staging Root and Image Subfolder Fix Summary, Plan vs. Code Discrepancies (Documentation), Self-Check: PASSED (+6 more)
+
+### Community 32 - "Community 32"
+Cohesion: 0.14
+Nodes (14): Batch Processing, Contract Compliance (Hive Indexer Ready), Feeding the ingestion pipeline, Ledger & Deduplication, Legacy compatibility, One-time Setup, Output Directory Structure, Related Documentation (+6 more)
+
+### Community 33 - "Community 33"
+Cohesion: 0.15
+Nodes (12): Anti-Patterns Found, Behavioral Spot-Checks, Data-Flow Trace (Level 4), Gaps Summary, Goal Achievement, Human Verification Required, Key Link Verification, Observable Truths (+4 more)
+
+### Community 34 - "Community 34"
+Cohesion: 0.17
+Nodes (11): Accomplishments, Auto-fixed Issues, Decisions Made, Deviations from Plan, Files Created/Modified, Issues Encountered, Next Phase Readiness, Performance (+3 more)
+
+### Community 35 - "Community 35"
+Cohesion: 0.22
+Nodes (8): Deviations from Plan, Known Stubs, Phase 02 Plan 01: Fix batch_extract.sh Link-Extraction Staging Glob (D-04) Summary, Self-Check: PASSED, Tasks Completed, Threat Flags, Verification Results, What Was Built
+
+### Community 36 - "Community 36"
+Cohesion: 0.22
+Nodes (8): Deviations Verified, Gaps Summary, Goal Achievement, Human Verification Required, Notes, Observable Truths, Phase 2: Reprocess Remaining Videos — Verification Report, Required Artifacts
+
+### Community 37 - "Community 37"
+Cohesion: 0.25
+Nodes (7): batch_extract.sh Staging Glob Fix, Claude's Discretion, Deferred Ideas, Failed IDs — Retry or Skip, Legacy Exports Scope, Phase 2: Reprocess Remaining Videos - Discussion Log, Rights Flag for Batch Run
+
+### Community 38 - "Community 38"
+Cohesion: 0.50
+Nodes (3): Artifacts this plan produces, STRIDE Threat Register, Trust Boundaries
+
+### Community 39 - "Community 39"
+Cohesion: 0.50
+Nodes (3): Artifacts this plan produces, STRIDE Threat Register, Trust Boundaries
+
 ## Knowledge Gaps
-- **253 isolated node(s):** `batch_extract.sh script`, `check_progress.sh script`, `Namespace`, `reprocess_sources.sh script`, `Rights policy (enforce before every run)` (+248 more)
+- **354 isolated node(s):** `batch_extract.sh script`, `check_progress.sh script`, `Namespace`, `reprocess_sources.sh script`, `Rights policy (enforce before every run)` (+349 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `TikTok Extraction — Troubleshooting Guide` connect `Community 3` to `Community 5`?**
-  _High betweenness centrality (0.023) - this node is a cross-community bridge._
-- **Why does `TikTok Extraction Contract — Ingestion Specification` connect `Community 4` to `Community 5`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
+- **Why does `TikTok Extraction — Troubleshooting Guide` connect `Community 3` to `Community 4`?**
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+- **Why does `TikTok Extraction Pipeline — Ingestion Contract Extractor` connect `Community 32` to `Community 6`?**
+  _High betweenness centrality (0.004) - this node is a cross-community bridge._
 - **What connects `batch_extract.sh script`, `check_progress.sh script`, `Extract human-readable title from old TikTok export folder slug.` to the rest of the system?**
-  _265 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _369 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.125 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.07869742198100407 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06882882882882883 - nodes in this community are weakly interconnected._
 - **Should `Community 3` be split into smaller, more focused modules?**
   _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
 - **Should `Community 4` be split into smaller, more focused modules?**
-  _Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08695652173913043 - nodes in this community are weakly interconnected._
