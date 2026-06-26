@@ -2,20 +2,20 @@
 gsd_state_version: 1.0
 milestone: v2.2
 milestone_name: — Pipeline Alignment to Revised Process Overview
-status: executing
-stopped_at: Phase 02 Plan 02 complete — 186 queued videos staged/finalized
-last_updated: "2026-06-25T23:27:05.000Z"
+status: planning
+stopped_at: Phase 02 Plan 02 complete — 186 queued videos staged/finalized; image folder repair committed (be9bc92)
+last_updated: "2026-06-26T00:44:28.150Z"
 progress:
   total_phases: 4
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 3
-  completed_plans: 2
-  percent: 25
+  completed_plans: 3
+  percent: 50
 ---
 
 # TikTok Extraction Pipeline — Current State
 
-**Last Updated:** 2026-06-25 | **Status:** Phase 02 Complete — Reprocessing Done
+**Last Updated:** 2026-06-25 | **Status:** Ready to plan
 
 See: [PROJECT.md](./PROJECT.md) — Project overview and constraints
 
